@@ -2,6 +2,7 @@
 #include "Core\Init\Init_GLFW.h"
 #include "Core\Init\WindowInfo.h"
 #include "Managers\SceneManager.h"
+#include "Managers\InputManager.h"
 
 using namespace Core;
 using namespace Init;
@@ -13,13 +14,17 @@ int main(int argc, char *argv[])
 	Core::ContextInfo context(4, 5, true);
 
 	try{
-		Core::Init::Init_GLFW::Init(window,context);
+		Core::Init::Init_GLFW glfwContext;
+		glfwContext.Init(window,context);
 		IListener* scene = new Managers::SceneManager();
-		Init_GLFW::SetListener(scene);
+		IListener* inputManager = new Managers::InputManager();
+		glfwContext.AddListener(scene);
+		glfwContext.AddListener(inputManager);
 
-		Init_GLFW::Run();
+		glfwContext.Run();
 
 		delete scene;
+		delete inputManager;
 	}
 	catch (const std::exception& e){
 		//log here

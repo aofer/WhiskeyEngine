@@ -5,6 +5,7 @@
 #include "ContextInfo.h"
 #include "WindowInfo.h"
 #include "IListener.h"
+#include <vector>
 
 
 namespace Core
@@ -18,19 +19,21 @@ namespace Core
 			~Init_GLFW();
 
 			//void error_callback(int error, const char* description);
-			static void Init(const Core::WindowInfo& window, const Core::ContextInfo& context);
-			static void Run(void);
+			void Init(const Core::WindowInfo& window, const Core::ContextInfo& context);
+			void Run(void);
 			//static void Close();
 			//void EnterFullscreen();
 			//void ExitFullscreen();
 			//static void PrintOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& context);
-			static void DisplayCallback(void);
+			void DisplayCallback(void);
 		private:
-			static Core::IListener* listener;
-			static Core::WindowInfo windowInformation;
+			//static Core::IListener* listener;
+			std::vector<Core::IListener*> m_listeners;
+			Core::WindowInfo windowInformation;
 			//static GLFWwindow* window;
 		public:
-			static void SetListener(Core::IListener*& iListener);
+			//static void SetListener(Core::IListener*& iListener);
+			void AddListener(Core::IListener* listener);
 		};
 	}
 }

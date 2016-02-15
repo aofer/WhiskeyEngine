@@ -72,9 +72,12 @@
     <ClCompile Include="Core\Init\Init_GLEW.cpp" />
     <ClCompile Include="Core\Init\Init_GLFW.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Managers\ModelsManager.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
+    <ClCompile Include="Rendering\Camera.cpp" />
+    <ClCompile Include="Rendering\Models\Cube.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
     <ClCompile Include="Rendering\Models\Quad.cpp" />
     <ClCompile Include="Rendering\Models\Traingle.cpp" />
@@ -85,16 +88,21 @@
     <ClInclude Include="Core\Init\Init_GLEW.h" />
     <ClInclude Include="Core\Init\Init_GLFW.h" />
     <ClInclude Include="Core\Init\WindowInfo.h" />
+    <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\ModelsManager.h" />
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
+    <ClInclude Include="Rendering\Camera.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
+    <ClInclude Include="Rendering\Models\Cube.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\Models\Quad.h" />
     <ClInclude Include="Rendering\Models\Triangle.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\Camera.fragment" />
+    <None Include="Shaders\Camera.vertex" />
     <None Include="Shaders\Fragment_Shader.glsl" />
     <None Include="Shaders\Vertex_Shader.glsl" />
   </ItemGroup>

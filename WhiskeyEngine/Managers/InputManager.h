@@ -1,26 +1,22 @@
 #pragma once
-#include "ShaderManager.h"
-#include "ModelsManager.h"
 #include "../Core/Init/IListener.h"
-#include "../Rendering/Camera.h"
+//#include "../Rendering/Camera.h"
 namespace Managers
 {
-	class SceneManager : public Core::IListener
+	class InputManager : public Core::IListener
 
 	{
 	public:
-		SceneManager();
-		~SceneManager();
+		InputManager();
+		~InputManager();
 
 		virtual void NotifyBeginFrame();
 		virtual void NotifyDisplayFrame();
 		virtual void NotifyEndFrame();
 		virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);
-
+		void update(float dt);
 	private:
-		Managers::ShaderManager* shaderManager;
-		Managers::ModelsManager* modelsManager;
-		Camera* activeCamera;
+
 	};
 
 }

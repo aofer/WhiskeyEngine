@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include <glm/glm.hpp>
 using namespace Managers;
 
 SceneManager::SceneManager()
@@ -10,9 +11,20 @@ SceneManager::SceneManager()
 	shaderManager->CreateProgram("colorShader",
 		"Shaders\\Vertex_Shader.glsl",
 		"Shaders\\Fragment_Shader.glsl");
+	shaderManager->CreateProgram("cameraShader",
+		"Shaders\\Camera.vertex",
+		"Shaders\\Camera.fragment");
 
 
 	modelsManager = new ModelsManager();
+	activeCamera = new Camera();
+	activeCamera->setPosition(glm::vec3(0.0,1.5f,6.0));
+	activeCamera->lookAt(glm::vec3(0.0, 0, 0.0));
+	/*
+	cam = new Camera(45.0f, 640 / 480, 0.1f, 100.0f);
+	cam->setPosition(Vector3(0, 1.5f, 6.0));
+	cam->setLookAt(Vector3(0, 1.5f, 0));
+	*/
 }
 
 SceneManager::~SceneManager()
@@ -20,6 +32,7 @@ SceneManager::~SceneManager()
 
 	delete shaderManager;
 	delete modelsManager;
+	delete activeCamera;
 }
 
 void SceneManager::NotifyBeginFrame()
@@ -34,6 +47,7 @@ void SceneManager::NotifyDisplayFrame()
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
 	modelsManager->Draw();
+	modelsManager->Draw(activeCamera->getProjection(), activeCamera->getView());
 }
 
 void SceneManager::NotifyEndFrame()

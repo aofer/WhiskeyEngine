@@ -25,14 +25,14 @@
     <Filter Include="Source Files\Managers">
       <UniqueIdentifier>{b73b544f-c8f1-4a6c-a512-2e00cfa67e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering">
-      <UniqueIdentifier>{64169b2b-b2a2-4ebf-9967-accde121873a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Models">
-      <UniqueIdentifier>{fe0ef919-4b13-4924-ad00-b8e5a1b700d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{7d73af74-d248-44b7-91cc-f3e41aec1823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{d769cf0e-7baf-4428-9a98-870b2132661b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Models">
+      <UniqueIdentifier>{cd074c6c-ea1f-4b9e-bee8-85b7a7226dc1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +57,9 @@
     <ClCompile Include="Managers\ShaderManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\Cube.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
     <ClCompile Include="Rendering\Models\Model.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
@@ -65,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="Rendering\Models\Traingle.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Camera.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\InputManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +107,9 @@
     <ClInclude Include="Rendering\VertexFormat.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Models\Cube.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
     <ClInclude Include="Rendering\Models\Model.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
@@ -107,12 +119,24 @@
     <ClInclude Include="Rendering\Models\Triangle.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Camera.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\InputManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\Vertex_Shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Camera.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Camera.vertex">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

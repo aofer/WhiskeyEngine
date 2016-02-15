@@ -3,15 +3,40 @@ using namespace Core;
 using namespace Core::Init;
 
 
-Core::IListener* Init_GLFW::listener = NULL;
-Core::WindowInfo Init_GLFW::windowInformation;
+//Core::IListener* Init_GLFW::listener = NULL;
+//Core::WindowInfo Init_GLFW::windowInformation;
 GLFWwindow* window = NULL;
 /*
 Errors callback
 */
+
+Init_GLFW::Init_GLFW()
+{
+
+}
+
+Init_GLFW::~Init_GLFW()
+{
+
+}
+
 void error_callback(int error, const char* description)
 {
 	throw std::runtime_error(description);
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+
+	else if (key == GLFW_KEY_A && action == GLFW_PRESS)
+	{
+
+	}
+
 }
 
 void Init_GLFW::Init(const Core::WindowInfo&  windowInfo,
@@ -48,6 +73,8 @@ void Init_GLFW::Init(const Core::WindowInfo&  windowInfo,
 	std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 	std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
 	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+
+	glfwSetKeyCallback(window, key_callback);
 }
 
 void Init_GLFW::Run()
@@ -65,19 +92,37 @@ void Init_GLFW::Run()
 }
 void Init_GLFW::DisplayCallback()
 {
-	if (listener)
+	//if (listener)
+	//{
+
+	//	listener->NotifyBeginFrame();
+	//	listener->NotifyDisplayFrame();
+
+	//	glfwSwapBuffers(window);
+
+	//	listener->NotifyEndFrame();
+	//}
+	for (auto iter = m_listeners.begin(); iter != m_listeners.end(); iter++)
 	{
-
-		listener->NotifyBeginFrame();
-		listener->NotifyDisplayFrame();
-
-		glfwSwapBuffers(window);
-
-		listener->NotifyEndFrame();
+		(*iter)->NotifyBeginFrame();
+	}
+	for (auto iter = m_listeners.begin(); iter != m_listeners.end(); iter++)
+	{
+		(*iter)->NotifyDisplayFrame();
+	}
+	glfwSwapBuffers(window);
+	for (auto iter = m_listeners.begin(); iter != m_listeners.end(); iter++)
+	{
+		(*iter)->NotifyEndFrame();
 	}
 }
 
-void Init_GLFW::SetListener(Core::IListener*& iListener)
+//void Init_GLFW::SetListener(Core::IListener*& iListener)
+//{
+//	listener = iListener;
+//}
+
+void Init_GLFW::AddListener(Core::IListener* listener)
 {
-	listener = iListener;
+	m_listeners.push_back(listener);
 }
