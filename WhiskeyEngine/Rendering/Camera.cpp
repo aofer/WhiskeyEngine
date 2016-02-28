@@ -10,11 +10,11 @@ using namespace Rendering;
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
 Camera::Camera() :
-position(0.0f, 1.0f, 1.0f),
+position(0.0f, 0.0f, 1.0f),
 horizontalAngle(0.0f),
 verticalAngle(0.0f),
 fov(45.0f),
-nearPlane(0.1f),
+nearPlane(0.01f),
 farPlane(100.0f),
 viewportAspectRatio(4.0f / 3.0f)
 {
@@ -142,10 +142,19 @@ void Camera::updateMatrices()
 
 void Camera::updateProjectionMatrix()
 {
-	projectionMatrix = glm::perspective(glm::radians(fov), viewportAspectRatio, nearPlane, farPlane);
+	//projectionMatrix = glm::perspective(glm::radians(fov), viewportAspectRatio, nearPlane, farPlane);
+	projectionMatrix[0][0] = 1.0f / (viewportAspectRatio * tan(fov / 2.0f));
+	projectionMatrix[1][1] = 1.0f / tan(fov / 2.0f);
+	projectionMatrix[2][2] = (-nearPlane - farPlane) / (nearPlane - farPlane);
+	projectionMatrix[2][3] = 1.0f;
+	projectionMatrix[3][2] = 2.0f * nearPlane * farPlane / (nearPlane - farPlane);
 }
 
 void Camera::updateViewMatrix()
 {
 	viewMatrix = getOrientation() * glm::translate(glm::mat4(), -position);
+	/*viewMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, -1.0f, 0.0f,
+		0.0f, 0.0f, 10.0f, 1.0f);*/
 }

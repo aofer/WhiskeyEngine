@@ -7,6 +7,9 @@ using namespace Models;
 
 Cube::Cube()
 {
+	m_texture = Texture("Assets\\tex1.png", GL_TEXTURE_2D);
+	m_texture.Load();
+	//m_texture("Resources\\tex1.png", GL_TEXTURE_2D);
 }
 
 Cube::~Cube()
@@ -26,93 +29,93 @@ void Cube::Create()
 	std::vector<VertexFormat> vertices;
 	//vertices for the front face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0),
-		glm::vec4(0.0, 0.0, 1.0, 1.0)));
+		glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec2(0.0,0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0),
-		glm::vec4(1.0, 0.0, 1.0, 1.0)));
+		glm::vec4(1.0, 0.0, 1.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0),
-		glm::vec4(1.0, 1.0, 1.0, 1.0)));
+		glm::vec4(1.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0),
-		glm::vec4(0.0, 1.0, 1.0, 1.0)));
+		glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0),
-		glm::vec4(1.0, 1.0, 1.0, 1.0)));
+		glm::vec4(1.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0),
-		glm::vec4(0.0, 0.0, 1.0, 1.0)));
+		glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec2(0.0, 0.0)));
 
 	//vertices for the right face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0),
-		glm::vec4(1.0, 1.0, 1.0, 1.0)));
+		glm::vec4(1.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0),
-		glm::vec4(1.0, 1.0, 0.0, 1.0)));
+		glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0),
-		glm::vec4(1.0, 0.0, 0.0, 1.0)));
+		glm::vec4(1.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0),
-		glm::vec4(1.0, 1.0, 1.0, 1.0)));
+		glm::vec4(1.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0),
-		glm::vec4(1.0, 0.0, 0.0, 1.0)));
+		glm::vec4(1.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0),
-		glm::vec4(1.0, 0.0, 1.0, 1.0)));
+		glm::vec4(1.0, 0.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 
 	//vertices for the back face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec4(0.0, 0.0, 0.0, 1.0)));
+		glm::vec4(0.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0),
-		glm::vec4(1.0, 0.0, 0.0, 1.0)));
+		glm::vec4(1.0, 0.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0),
-		glm::vec4(1.0, 1.0, 0.0, 1.0)));
+		glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 1.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec4(0.0, 0.0, 0.0, 1.0)));
+		glm::vec4(0.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0),
-		glm::vec4(1.0, 1.0, 0.0, 1.0)));
+		glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0),
-		glm::vec4(0.0, 1.0, 0.0, 1.0)));
+		glm::vec4(0.0, 1.0, 0.0, 1.0), glm::vec2(0.0, 1.0)));
 
 	//vertices for the left face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec4(0.0, 0.0, 0.0, 1.0)));
+		glm::vec4(0.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0),
-		glm::vec4(0.0, 0.0, 1.0, 1.0)));
+		glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0),
-		glm::vec4(0.0, 1.0, 1.0, 1.0)));
+		glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec4(0.0, 0.0, 0.0, 1.0)));
+		glm::vec4(0.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0),
-		glm::vec4(0.0, 1.0, 1.0, 1.0)));
+		glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0),
-		glm::vec4(0.0, 1.0, 0.0, 1.0)));
+		glm::vec4(0.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 
 	//vertices for the upper face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0),
-		glm::vec4(1.0, 1.0, 1.0, 1.0)));
+		glm::vec4(1.0, 1.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0),
-		glm::vec4(0.0, 1.0, 1.0, 1.0)));
+		glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0),
-		glm::vec4(1.0, 1.0, 0.0, 1.0)));
+		glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, 1.0),
-		glm::vec4(0.0, 1.0, 1.0, 1.0)));
+		glm::vec4(0.0, 1.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, -1.0),
-		glm::vec4(1.0, 1.0, 0.0, 1.0)));
+		glm::vec4(1.0, 1.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0),
-		glm::vec4(0.0, 1.0, 0.0, 1.0)));
+		glm::vec4(0.0, 1.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 
 	//vertices for the bottom face of the cube
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec4(0.0, 0.0, 0.0, 1.0)));
+		glm::vec4(0.0, 0.0, 0.0, 1.0), glm::vec2(0.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0),
-		glm::vec4(1.0, 0.0, 0.0, 1.0)));
+		glm::vec4(1.0, 0.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0),
-		glm::vec4(0.0, 0.0, 1.0, 1.0)));
+		glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0),
-		glm::vec4(1.0, 0.0, 0.0, 1.0)));
+		glm::vec4(1.0, 0.0, 0.0, 1.0), glm::vec2(1.0, 0.0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0),
-		glm::vec4(0.0, 0.0, 1.0, 1.0)));
+		glm::vec4(0.0, 0.0, 1.0, 1.0), glm::vec2(0.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, 1.0),
-		glm::vec4(1.0, 0.0, 1.0, 1.0)));
+		glm::vec4(1.0, 0.0, 1.0, 1.0), glm::vec2(1.0, 1.0)));
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -122,6 +125,10 @@ void Cube::Create()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::uv)));
+	glEnableVertexAttribArray(3);
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::normal)));
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
@@ -152,5 +159,6 @@ void Cube::Draw(const glm::mat4& projection_matrix,
 		false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glBindVertexArray(vao);
+	m_texture.Bind(GL_TEXTURE0);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }

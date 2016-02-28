@@ -18,8 +18,8 @@ SceneManager::SceneManager()
 
 	modelsManager = new ModelsManager();
 	activeCamera = new Camera();
-	activeCamera->setPosition(glm::vec3(0.0,1.5f,6.0));
-	activeCamera->lookAt(glm::vec3(0.0, 0, 0.0));
+	activeCamera->setPosition(glm::vec3(0.0,1.5f,-6.0));
+	activeCamera->lookAt(glm::vec3(0.0, 0.0, 0.0));
 	/*
 	cam = new Camera(45.0f, 640 / 480, 0.1f, 100.0f);
 	cam->setPosition(Vector3(0, 1.5f, 6.0));
