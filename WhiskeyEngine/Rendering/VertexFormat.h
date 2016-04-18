@@ -37,6 +37,14 @@
 				uv = iUv;
 				normal = iNormal;
 			}
+
+			VertexFormat(const glm::vec3 &iPos, const glm::vec2 &iUv, const glm::vec3 &iNormal)
+			{
+				position = iPos;
+				uv = iUv;
+				normal = iNormal;
+			}
+
 			VertexFormat()
 			{
 

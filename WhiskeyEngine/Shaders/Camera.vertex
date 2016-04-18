@@ -5,7 +5,7 @@ layout(location = 1) in vec4 in_color;
 layout(location = 2) in vec2 in_textcoords;
 layout(location = 3) in vec3 in_normal;
  
-uniform mat4 projection_matrix, view_matrix;
+uniform mat4 projection_matrix, view_matrix, model_matrix;
 uniform vec3 rotation;
 uniform sampler2D tex;
  
@@ -34,7 +34,8 @@ void main()
                     0.0, 0.0, 1.0, 0.0,
                     0.0, 0.0, 0.0, 1.0);
  
-    gl_Position = projection_matrix * view_matrix *  rotate_y * rotate_x *rotate_z * vec4(in_position, 1);
+    //gl_Position = projection_matrix * view_matrix *  rotate_y * rotate_x *rotate_z * vec4(in_position, 1);
+	gl_Position = projection_matrix * view_matrix *  model_matrix * vec4(in_position, 1);
 	//gl_Position = vec4(in_position, 1) * projection_matrix * view_matrix;
 	textcoord = in_textcoords;
      

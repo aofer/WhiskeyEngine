@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -21,7 +29,20 @@
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
@@ -34,16 +55,29 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)platforms\windows;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)platforms\windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -53,7 +87,18 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,7 +113,22 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;glew32s.lib;soil.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -82,12 +142,14 @@
     <ClCompile Include="Managers\ShaderManager.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\Models\Cube.cpp" />
+    <ClCompile Include="Rendering\Models\Mesh.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
     <ClCompile Include="Rendering\Models\Quad.cpp" />
     <ClCompile Include="Rendering\Models\Traingle.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Init\Common.h" />
     <ClInclude Include="Core\Init\ContextInfo.h" />
     <ClInclude Include="Core\Init\IListener.h" />
     <ClInclude Include="Core\Init\Init_GLEW.h" />
@@ -100,6 +162,7 @@
     <ClInclude Include="Rendering\Camera.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
     <ClInclude Include="Rendering\Models\Cube.h" />
+    <ClInclude Include="Rendering\Models\Mesh.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
     <ClInclude Include="Rendering\Models\Quad.h" />
     <ClInclude Include="Rendering\Models\Triangle.h" />

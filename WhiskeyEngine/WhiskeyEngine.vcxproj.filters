@@ -78,6 +78,9 @@
     <ClCompile Include="Rendering\Texture.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\Mesh.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -130,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Texture.h">
       <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\Mesh.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\Common.h">
+      <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "../IGameObject.h"
+
 namespace Rendering{
 
 	namespace Models{
@@ -21,10 +22,27 @@ namespace Rendering{
 			virtual GLuint GetVao()                     const override;
 			virtual const std::vector<GLuint> GetVbos() const override;
 
+			glm::mat4 getModelMatrix() const;
+			glm::vec3 getPosition() const;
+			float getScale() const;
+
+			void setPosition(const glm::vec3& position);
+			void setScale(const float& scale);
+
 		protected:
 			GLuint vao;
 			GLuint program;
 			std::vector<GLuint> vbos;
+
+
+			private:
+
+				glm::mat4 modelMatrix;
+				glm::vec3 position;
+				//glm::quat orientation;
+				float scale;
+
+				void updateModelMatrix();
 		};
 	}
 }

@@ -1,4 +1,5 @@
 #include "ModelsManager.h"
+#include "../Rendering/Models/Mesh.h"
 
 using namespace Managers;
 using namespace Rendering;
@@ -20,7 +21,15 @@ ModelsManager::ModelsManager()
 	cube->SetProgram(ShaderManager::GetShader("cameraShader"));
 	cube->Create();
 	gameModelList["cube"] = cube;
-	
+	cube->setPosition(glm::vec3(0.0f, 3.0f, 1.0f));
+	cube->setScale(0.25f);
+
+	Models::Mesh* mesh = new Models::Mesh();
+	mesh->SetProgram(ShaderManager::GetShader("cameraShader"));
+	mesh->Create("Assets\\cow.obj");
+	gameModelList["cow"] = mesh;
+	mesh->setPosition(glm::vec3(1.0, 1.0, 1.0));
+	mesh->setScale(2.0f);
 }
 
 ModelsManager::~ModelsManager()
