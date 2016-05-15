@@ -30,14 +30,30 @@ void Mesh::SubMesh::Init(const std::vector<VertexFormat>& Vertices,
 	const std::vector<unsigned int>& Indices)
 {
 	NumIndices = Indices.size();
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
 	glGenBuffers(1, &VB);
 	glBindBuffer(GL_ARRAY_BUFFER, VB);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexFormat) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::uv)));
+	glEnableVertexAttribArray(3);
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::normal)));
 
 	glGenBuffers(1, &IB);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * NumIndices, &Indices[0], GL_STATIC_DRAW);
+
+	glBindVertexArray(0);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
 }
 
 Mesh::Mesh()
@@ -181,24 +197,31 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
 
 void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
+
+	glUseProgram(program);
+
+	glUniform3f(glGetUniformLocation(program, "rotation"),
+		0.0,
+		0.0,
+		0.0);
+
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1,
 		false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &getModelMatrix()[0][0]);
-	glBindVertexArray(vao);
+	//glBindVertexArray(vao);
 
 	for (unsigned int i = 0; i < m_Entries.size(); i++) {
-		glBindBuffer(GL_ARRAY_BUFFER, m_Entries[i].VB);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::uv)));
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::normal)));
-		glBindVertexArray(0);
+		glBindVertexArray(m_Entries.at(i).VAO);
+		//glBindBuffer(GL_ARRAY_BUFFER, m_Entries[i].VB);
+		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
+		//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
+		//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::uv)));
+		//glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::normal)));
+		////glBindVertexArray(0);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[i].IB);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[i].IB);
 
 		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
 
@@ -209,9 +232,8 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
 	}
 
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
+	glBindVertexArray(0);
+
 }
 void Mesh::Update()
 {

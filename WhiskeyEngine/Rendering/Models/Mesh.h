@@ -46,6 +46,7 @@ namespace Rendering
 
 				GLuint VB;
 				GLuint IB;
+				GLuint VAO;
 				unsigned int NumIndices;
 				unsigned int MaterialIndex;
 			};
