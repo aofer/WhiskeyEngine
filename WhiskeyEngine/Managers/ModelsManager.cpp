@@ -33,7 +33,7 @@ ModelsManager::ModelsManager()
 
 	Models::Mesh* boxMesh = new Models::Mesh();
 	boxMesh->SetProgram(ShaderManager::GetShader("cameraShader"));
-	boxMesh->Create("Assets\\cow.obj");
+	boxMesh->Create("Assets\\box.obj");
 	gameModelList["box"] = boxMesh;
 	boxMesh->setPosition(glm::vec3(0.0, 3.5, 1.0));
 	boxMesh->setScale(1.0f);
