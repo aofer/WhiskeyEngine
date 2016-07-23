@@ -12,8 +12,8 @@ SceneManager::SceneManager()
 		"Shaders\\Vertex_Shader.glsl",
 		"Shaders\\Fragment_Shader.glsl");
 	shaderManager->CreateProgram("cameraShader",
-		"Shaders\\Camera.vertex",
-		"Shaders\\Camera.fragment");
+		"Shaders\\Camera_vertex.glsl",
+		"Shaders\\Camera.Fragment.glsl");
 
 
 	modelsManager = new ModelsManager();
