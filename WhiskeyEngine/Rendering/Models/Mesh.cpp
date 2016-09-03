@@ -210,18 +210,9 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 		false, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &getModelMatrix()[0][0]);
-	//glBindVertexArray(vao);
 
 	for (unsigned int i = 0; i < m_Entries.size(); i++) {
 		glBindVertexArray(m_Entries.at(i).VAO);
-		//glBindBuffer(GL_ARRAY_BUFFER, m_Entries[i].VB);
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
-		//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
-		//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::uv)));
-		//glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::normal)));
-		////glBindVertexArray(0);
-
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[i].IB);
 
 		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
 
@@ -239,31 +230,3 @@ void Mesh::Update()
 {
 
 }
-//
-//void Mesh::Render()
-//{
-//	glEnableVertexAttribArray(0);
-//	glEnableVertexAttribArray(1);
-//	glEnableVertexAttribArray(2);
-//
-//	for (unsigned int i = 0; i < m_Entries.size(); i++) {
-//		glBindBuffer(GL_ARRAY_BUFFER, m_Entries[i].VB);
-//		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-//		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)12);
-//		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)20);
-//
-//		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[i].IB);
-//
-//		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
-//
-//		if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
-//			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
-//		}
-//
-//		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
-//	}
-//
-//	glDisableVertexAttribArray(0);
-//	glDisableVertexAttribArray(1);
-//	glDisableVertexAttribArray(2);
-//}

@@ -161,6 +161,7 @@
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Rendering\Camera.h" />
     <ClInclude Include="Rendering\IGameObject.h" />
+    <ClInclude Include="Rendering\Lighting.h" />
     <ClInclude Include="Rendering\Models\Cube.h" />
     <ClInclude Include="Rendering\Models\Mesh.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
@@ -172,6 +173,8 @@
   <ItemGroup>
     <None Include="Shaders\Camera.fragment" />
     <None Include="Shaders\Camera.vertex" />
+    <None Include="Shaders\Camera_fragment.glsl" />
+    <None Include="Shaders\Camera_vertex.glsl" />
     <None Include="Shaders\Fragment_Shader.glsl" />
     <None Include="Shaders\Vertex_Shader.glsl" />
   </ItemGroup>

@@ -13,13 +13,13 @@ SceneManager::SceneManager()
 		"Shaders\\Fragment_Shader.glsl");
 	shaderManager->CreateProgram("cameraShader",
 		"Shaders\\Camera_vertex.glsl",
-		"Shaders\\Camera.Fragment.glsl");
+		"Shaders\\Camera_Fragment.glsl");
 
 
 	modelsManager = new ModelsManager();
-	activeCamera = new Camera();
-	activeCamera->setPosition(glm::vec3(0.0,1.5f,-6.0));
-	activeCamera->lookAt(glm::vec3(0.0, 0.0, 0.0));
+	m_activeCamera = new Camera();
+	m_activeCamera->setPosition(glm::vec3(0.0,1.5f,-6.0));
+	m_activeCamera->lookAt(glm::vec3(0.0, 0.0, 0.0));
 	/*
 	cam = new Camera(45.0f, 640 / 480, 0.1f, 100.0f);
 	cam->setPosition(Vector3(0, 1.5f, 6.0));
@@ -32,7 +32,7 @@ SceneManager::~SceneManager()
 
 	delete shaderManager;
 	delete modelsManager;
-	delete activeCamera;
+	delete m_activeCamera;
 }
 
 void SceneManager::NotifyBeginFrame()
@@ -47,7 +47,7 @@ void SceneManager::NotifyDisplayFrame()
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
 	modelsManager->Draw();
-	modelsManager->Draw(activeCamera->getProjection(), activeCamera->getView());
+	modelsManager->Draw(m_activeCamera->getProjection(), m_activeCamera->getView());
 }
 
 void SceneManager::NotifyEndFrame()
@@ -58,4 +58,17 @@ void SceneManager::NotifyEndFrame()
 void SceneManager::NotifyReshape(int width, int height,
 	int previos_width, int previous_height){
 
+}
+
+void SceneManager::addPointLight(PointLight light)
+{
+	m_pointLights.push_back(light);
+}
+void SceneManager::addSpotLight(SpotLight light)
+{
+	m_spotLights.push_back(light);
+}
+void SceneManager::addDirectionalLight(DirectionalLight light)
+{
+	m_directionalLights.push_back(light);
 }

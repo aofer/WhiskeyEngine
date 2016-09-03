@@ -140,6 +140,9 @@
     <ClInclude Include="Core\Init\Common.h">
       <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Lighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -154,5 +157,7 @@
     <None Include="Shaders\Camera.vertex">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\Camera_fragment.glsl" />
+    <None Include="Shaders\Camera_vertex.glsl" />
   </ItemGroup>
 </Project>
