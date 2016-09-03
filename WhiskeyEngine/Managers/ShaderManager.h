@@ -22,6 +22,7 @@ namespace Managers
 			const std::string& FragmentShaderFilename);
 
 		static const GLuint GetShader(const std::string&);
+		void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType);
 
 	private:
 

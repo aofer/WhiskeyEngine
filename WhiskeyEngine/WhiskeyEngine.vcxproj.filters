@@ -81,6 +81,21 @@
     <ClCompile Include="Rendering\Models\Mesh.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShadowMapFbo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderingTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\LightingTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShadowMapTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -140,6 +155,24 @@
     <ClInclude Include="Core\Init\Common.h">
       <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Lighting.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderingTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Pipeline.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapFbo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\LightingTechnique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapTechnique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -148,11 +181,15 @@
     <None Include="Shaders\Vertex_Shader.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Camera.fragment">
+    <None Include="Shaders\Camera_vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Camera.vertex">
+    <None Include="Shaders\Camera_fragment.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\Lighting_vs.glsl" />
+    <None Include="Shaders\ShadowMap_fs.glsl" />
+    <None Include="Shaders\ShadowMap_vs.glsl" />
+    <None Include="Shaders\Lighting_fs.glsl" />
   </ItemGroup>
 </Project>

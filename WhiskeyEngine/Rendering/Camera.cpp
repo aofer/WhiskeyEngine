@@ -77,11 +77,16 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
 
 void Camera::lookAt(glm::vec3 position) {
 	assert(position != this->position);
+	m_lookAt = position;
 	glm::vec3 direction = glm::normalize(position - this->position);
 	verticalAngle = glm::radians(asinf(-direction.y));
 	horizontalAngle = -glm::radians(atan2f(-direction.x, -direction.z));
 	normalizeAngles();
 	updateViewMatrix();
+}
+
+glm::vec3 Camera::getLookAt() const {
+	return m_lookAt;
 }
 
 float Camera::getAspectRatio() const {

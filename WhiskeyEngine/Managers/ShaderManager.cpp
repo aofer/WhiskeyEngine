@@ -1,4 +1,5 @@
 #include "ShaderManager.h"
+#include "../Core/Init/Common.h"
 
 using namespace Managers;
 
@@ -20,22 +21,7 @@ ShaderManager::~ShaderManager(void)
 
 std::string ShaderManager::ReadShader(const std::string& filename)
 {
-
-	std::string shaderCode;
-	std::ifstream file(filename, std::ios::in);
-
-	if (!file.good()){
-		std::cout << "Can't read file " << filename.c_str() << std::endl;
-		std::terminate();
-	}
-
-	file.seekg(0, std::ios::end);
-	shaderCode.resize((unsigned int)file.tellg());
-	file.seekg(0, std::ios::beg);
-	file.read(&shaderCode[0], shaderCode.size());
-	file.close();
-
-	return shaderCode;
+	return readFileIntoString(filename);
 }
 
 GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source, const std::string& shaderName)
@@ -66,6 +52,16 @@ GLuint ShaderManager::CreateShader(GLenum shaderType, const std::string& source,
 
 }
 
+void ShaderManager::AddShader(GLuint ShaderProgram, const char* shaderPath, GLenum ShaderType)
+{
+	//read the shader files and save the code
+	std::string shader_code = ReadShader(shaderPath);
+
+	GLuint shader = CreateShader(ShaderType, shader_code, shaderPath);
+
+	glAttachShader(ShaderProgram, shader);
+}
+
 void ShaderManager::CreateProgram(const std::string& shaderName, const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename)
 {
 
@@ -77,7 +73,7 @@ void ShaderManager::CreateProgram(const std::string& shaderName, const std::stri
 	GLuint fragment_shader = CreateShader(GL_FRAGMENT_SHADER, fragment_shader_code, "fragment shader");
 
 	int  link_result = 0;
-	//create the program handle, attatch the shaders and link it
+	//create the program handle, attach the shaders and link it
 	GLuint program = glCreateProgram();
 	glAttachShader(program, vertex_shader);
 	glAttachShader(program, fragment_shader);
