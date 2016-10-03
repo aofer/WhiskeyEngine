@@ -3,6 +3,7 @@
 #include "ModelsManager.h"
 #include "../Core/Init/IListener.h"
 #include "../Rendering/Camera.h"
+#include "../Rendering/LightingTechnique.h"
 namespace Managers
 {
 	class SceneManager : public Core::IListener
@@ -20,7 +21,8 @@ namespace Managers
 	private:
 		Managers::ShaderManager* shaderManager;
 		Managers::ModelsManager* modelsManager;
-		Camera* activeCamera;
+		Camera* m_pActiveCamera;
+		LightingTechnique m_lighting;
 	};
 
 }

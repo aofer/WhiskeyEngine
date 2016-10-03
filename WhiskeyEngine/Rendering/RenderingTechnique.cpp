@@ -115,7 +115,6 @@ bool Technique::Finalize()
 	}
 
 	m_shaderObjList.clear();
-
 	return GLCheckError();
 }
 

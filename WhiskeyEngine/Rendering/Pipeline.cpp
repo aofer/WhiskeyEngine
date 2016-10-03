@@ -4,7 +4,7 @@ using namespace Rendering;
 
 const glm::mat4& Pipeline::GetProjTrans()
 {
-	return glm::perspective(m_persProjInfo.FOV, m_persProjInfo.Width / m_persProjInfo.Height, m_persProjInfo.zNear, m_persProjInfo.zFar);
+	return glm::perspective(m_persProjInfo.FOV, m_persProjInfo.aspectRatio, m_persProjInfo.zNear, m_persProjInfo.zFar);
 }
 
 

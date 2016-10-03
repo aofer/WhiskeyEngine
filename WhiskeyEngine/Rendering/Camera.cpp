@@ -4,13 +4,15 @@
 #include <cmath>
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <iostream>
 
 using namespace Rendering;
 
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
 Camera::Camera() :
-position(0.0f, 0.0f, 1.0f),
+m_position(0.0f, 0.0f, 1.0f),
 horizontalAngle(0.0f),
 verticalAngle(0.0f),
 fov(45.0f),
@@ -22,16 +24,16 @@ viewportAspectRatio(4.0f / 3.0f)
 }
 
 const glm::vec3& Camera::getPosition() const {
-	return position;
+	return m_position;
 }
 
 void Camera::setPosition(const glm::vec3& position) {
-	this->position = position;
+	this->m_position = position;
 	updateViewMatrix();
 }
 
 void Camera::offsetPosition(const glm::vec3& offset) {
-	position += offset;
+	m_position += offset;
 	updateViewMatrix();
 }
 
@@ -63,8 +65,10 @@ void Camera::setNearAndFarPlanes(float nearPlane, float farPlane) {
 
 glm::mat4 Camera::getOrientation() const {
 	glm::mat4 orientation;
-	orientation = glm::rotate(orientation, glm::radians(verticalAngle), glm::vec3(1, 0, 0));
-	orientation = glm::rotate(orientation, glm::radians(horizontalAngle), glm::vec3(0, 1, 0));
+	//orientation = glm::rotate(orientation, glm::radians(verticalAngle), glm::vec3(1, 0, 0));
+	//orientation = glm::rotate(orientation, glm::radians(horizontalAngle), glm::vec3(0, 1, 0));
+	orientation = glm::rotate(orientation, verticalAngle, glm::vec3(1, 0, 0));
+	orientation = glm::rotate(orientation, horizontalAngle, glm::vec3(0, 1, 0));
 	return orientation;
 }
 
@@ -76,11 +80,13 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
 }
 
 void Camera::lookAt(glm::vec3 position) {
-	assert(position != this->position);
+	assert(position != this->m_position);
 	m_lookAt = position;
-	glm::vec3 direction = glm::normalize(position - this->position);
-	verticalAngle = glm::radians(asinf(-direction.y));
-	horizontalAngle = -glm::radians(atan2f(-direction.x, -direction.z));
+	glm::vec3 direction = glm::normalize(position - this->m_position);
+	//verticalAngle = glm::radians(asinf(-direction.y));
+	//horizontalAngle = -glm::radians(atan2f(-direction.x, -direction.z));
+	verticalAngle = glm::degrees(asinf(-direction.y));
+	horizontalAngle = -glm::degrees(atan2f(-direction.x, -direction.z));
 	normalizeAngles();
 	updateViewMatrix();
 }
@@ -157,7 +163,8 @@ void Camera::updateProjectionMatrix()
 
 void Camera::updateViewMatrix()
 {
-	viewMatrix = getOrientation() * glm::translate(glm::mat4(), -position);
+	viewMatrix = getOrientation() * glm::translate(glm::mat4(), -m_position);
+	std::cout << glm::to_string(viewMatrix) << std::endl;
 	/*viewMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, -1.0f, 0.0f,

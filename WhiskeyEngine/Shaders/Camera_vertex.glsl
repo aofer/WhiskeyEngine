@@ -7,7 +7,6 @@ layout(location = 3) in vec3 in_normal;
  
 uniform mat4 projection_matrix, view_matrix, model_matrix;
 uniform vec3 rotation;
-uniform sampler2D tex;
  
 out vec4 color;
 out vec2 textcoord;

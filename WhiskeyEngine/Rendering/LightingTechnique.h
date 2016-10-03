@@ -24,7 +24,6 @@ namespace Rendering
 		void SetLightWVP(const glm::mat4& LightWVP);
 		void SetWorldMatrix(const glm::mat4& WVP);
 		void SetTextureUnit(unsigned int TextureUnit);
-		void SetShadowMapTextureUnit(unsigned int TextureUnit);
 		void SetDirectionalLight(const DirectionalLight& Light);
 		void SetPointLights(unsigned int NumLights, const PointLight* pLights);
 		void SetSpotLights(unsigned int NumLights, const SpotLight* pLights);
@@ -38,7 +37,6 @@ namespace Rendering
 		GLuint m_LightWVPLocation;
 		GLuint m_WorldMatrixLocation;
 		GLuint m_samplerLocation;
-		GLuint m_shadowMapLocation;
 		GLuint m_eyeWorldPosLocation;
 		GLuint m_matSpecularIntensityLocation;
 		GLuint m_matSpecularPowerLocation;

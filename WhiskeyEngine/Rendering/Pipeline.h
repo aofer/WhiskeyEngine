@@ -27,8 +27,7 @@ namespace Rendering
 	struct PersProjInfo
 	{
 		float FOV;
-		float Width;
-		float Height;
+		float aspectRatio;
 		float zNear;
 		float zFar;
 	};

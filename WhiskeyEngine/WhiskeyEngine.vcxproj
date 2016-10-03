@@ -181,6 +181,8 @@
     <ClInclude Include="Rendering\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\BasicLighting_fs.glsl" />
+    <None Include="Shaders\BasicLighting_vs.glsl" />
     <None Include="Shaders\Camera_fragment.glsl" />
     <None Include="Shaders\Camera_vertex.glsl" />
     <None Include="Shaders\Fragment_Shader.glsl" />

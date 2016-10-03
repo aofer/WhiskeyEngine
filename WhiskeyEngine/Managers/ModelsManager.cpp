@@ -35,7 +35,7 @@ ModelsManager::ModelsManager()
 	boxMesh->SetProgram(ShaderManager::GetShader("cameraShader"));
 	boxMesh->Create("Assets\\box.obj");
 	gameModelList["box"] = boxMesh;
-	boxMesh->setPosition(glm::vec3(0.0, 3.5, 1.0));
+	boxMesh->setPosition(glm::vec3(0.0, 1.0, 0.0));
 	boxMesh->setScale(1.0f);
 }
 

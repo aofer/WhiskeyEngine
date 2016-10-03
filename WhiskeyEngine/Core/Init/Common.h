@@ -7,6 +7,7 @@
 #define INVALID_UNIFORM_LOCATION 0xffffffff
 
 #define GLCheckError() (glGetError() == GL_NO_ERROR)
+#define GLCheckError2() glGetError()
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
 
@@ -14,6 +15,7 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef unsigned char uchar;
 #define SNPRINTF _snprintf_s
+
 
 static std::string readFileIntoString(const std::string& filename)
 {

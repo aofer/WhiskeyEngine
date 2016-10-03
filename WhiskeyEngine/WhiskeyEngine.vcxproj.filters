@@ -187,9 +187,23 @@
     <None Include="Shaders\Camera_fragment.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Lighting_vs.glsl" />
-    <None Include="Shaders\ShadowMap_fs.glsl" />
-    <None Include="Shaders\ShadowMap_vs.glsl" />
-    <None Include="Shaders\Lighting_fs.glsl" />
+    <None Include="Shaders\BasicLighting_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\BasicLighting_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lighting_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lighting_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ShadowMap_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ShadowMap_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

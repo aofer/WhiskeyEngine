@@ -122,7 +122,7 @@ namespace Rendering{
 		glm::vec3 getLookAt() const;
 
 	private:
-		glm::vec3 position;
+		glm::vec3 m_position;
 		glm::vec3 m_lookAt; //TODO need to adjust it when moving camera
 		float horizontalAngle;
 		float verticalAngle;
