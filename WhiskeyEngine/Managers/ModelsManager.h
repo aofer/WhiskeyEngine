@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "ShaderManager.h"
-#include "../Rendering/IGameObject.h"
+#include "../Rendering/IRenderable.h"
 #include "../Rendering/Models/Triangle.h"
 #include "../Rendering/Models/Quad.h"
 #include "../Rendering/Models/Cube.h"
@@ -16,14 +16,13 @@ namespace Managers
 		ModelsManager();
 		~ModelsManager();
 
-		void Draw();
-		virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
 		void Update();
 		void DeleteModel(const std::string& gameModelName);
-		const IGameObject& GetModel(const std::string& gameModelName) const;
+		void AddModel(const std::string& gameModelName, IRenderable* gameObject);
+		const IRenderable& GetModel(const std::string& gameModelName) const;
 
 	private:
-		std::map<std::string, IGameObject*> gameModelList;
+		std::map<std::string, IRenderable*> gameModelList;
 
 	};
 }

@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Rendering\Models">
       <UniqueIdentifier>{cd074c6c-ea1f-4b9e-bee8-85b7a7226dc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{d81c0491-50e8-4bcc-8619-1fbe2e798db8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,6 +99,9 @@
     <ClCompile Include="Rendering\ShadowMapTechnique.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\GameObject.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -121,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="Managers\ShaderManager.h">
       <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\IGameObject.h">
-      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\VertexFormat.h">
       <Filter>Source Files\Rendering</Filter>
@@ -172,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\ShadowMapTechnique.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\IRenderable.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameObject.h">
+      <Filter>Source Files\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

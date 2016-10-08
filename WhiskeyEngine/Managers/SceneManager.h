@@ -4,6 +4,12 @@
 #include "../Core/Init/IListener.h"
 #include "../Rendering/Camera.h"
 #include "../Rendering/LightingTechnique.h"
+
+namespace Scene
+{
+	class GameObject;
+}
+
 namespace Managers
 {
 	class SceneManager : public Core::IListener
@@ -21,6 +27,9 @@ namespace Managers
 	private:
 		Managers::ShaderManager* shaderManager;
 		Managers::ModelsManager* modelsManager;
+		std::vector<Rendering::Models::Model*> modelList;
+		std::vector<Scene::GameObject*> m_gameObjectsFlat;
+		Scene::GameObject* m_pRoot;
 		Camera* m_pActiveCamera;
 		LightingTechnique m_lighting;
 	};

@@ -168,7 +168,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
 			aiString Path;
 
 			if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &Path, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
-				std::string FullPath = Dir + "/" + Path.data;
+				std::string FullPath = Dir + "/Assets/" + Path.data;
 				//m_Textures[i] = new Texture(GL_TEXTURE_2D, );
 				m_Textures[i] = new Texture(FullPath.c_str());
 
@@ -210,7 +210,7 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 	//	false, &view_matrix[0][0]);
 	//glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 	//glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &getModelMatrix()[0][0]);
-
+	//glUniformMatrix4fv(glGetUniformLocation(1, "modelMatrix"), 1, GL_FALSE, &getModelMatrix()[0][0]);
 	for (unsigned int i = 0; i < m_Entries.size(); i++) {
 		glBindVertexArray(m_Entries.at(i).VAO);
 		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;

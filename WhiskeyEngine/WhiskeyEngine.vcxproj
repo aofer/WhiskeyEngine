@@ -152,6 +152,7 @@
     <ClCompile Include="Rendering\ShadowMapFbo.cpp" />
     <ClCompile Include="Rendering\ShadowMapTechnique.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
+    <ClCompile Include="Scene\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\Common.h" />
@@ -165,7 +166,7 @@
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Rendering\Camera.h" />
-    <ClInclude Include="Rendering\IGameObject.h" />
+    <ClInclude Include="Rendering\IRenderable.h" />
     <ClInclude Include="Rendering\Lighting.h" />
     <ClInclude Include="Rendering\LightingTechnique.h" />
     <ClInclude Include="Rendering\Models\Cube.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Rendering\ShadowMapTechnique.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
+    <ClInclude Include="Scene\GameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\BasicLighting_fs.glsl" />

@@ -2,13 +2,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 
-using namespace Rendering;
-using namespace Models;
+using namespace Rendering::Models;
+//using namespace Models;
 
 Model::Model()
 {
-	modelMatrix = glm::mat4(1.0f);
-	scale = 1.0f;
 }
 
 Model::~Model()
@@ -57,39 +55,4 @@ void Model::Destroy()
 	}
 
 	vbos.clear();
-}
-
-glm::mat4 Model::getModelMatrix() const
-{
-	return modelMatrix;
-}
-
-glm::vec3 Model::getPosition() const
-{
-	return position;
-}
-
-float Model::getScale() const
-{
-	return scale;
-}
-
-void Model::setPosition(const glm::vec3& position)
-{
-	this->position = position;
-	//glm::mat4 mat = glm::mat4::identyi
-	updateModelMatrix();
-}
-
-void Model::setScale(const float& scale)
-{
-	this->scale = scale;
-	updateModelMatrix();
-}
-
-void Model::updateModelMatrix()
-{
-	modelMatrix = glm::translate(
-		glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale)),
-		position);
 }

@@ -7,10 +7,10 @@
 namespace Rendering
 {
 
-	class IGameObject
+	class IRenderable
 	{
 	public:
-		virtual ~IGameObject() = 0;
+		virtual ~IRenderable() = 0;
 
 		virtual void Draw() = 0;
 		virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) = 0;
@@ -23,7 +23,7 @@ namespace Rendering
 
 	};
 
-	inline IGameObject::~IGameObject()
+	inline IRenderable::~IRenderable()
 	{
 	}
 }

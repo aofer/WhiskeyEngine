@@ -31,12 +31,7 @@ ModelsManager::ModelsManager()
 	//mesh->setPosition(glm::vec3(1.0, 3.0, 1.0));
 	//mesh->setScale(2.0f);
 
-	Models::Mesh* boxMesh = new Models::Mesh();
-	boxMesh->SetProgram(ShaderManager::GetShader("cameraShader"));
-	boxMesh->Create("Assets\\box.obj");
-	gameModelList["box"] = boxMesh;
-	boxMesh->setPosition(glm::vec3(0.0, 1.0, 0.0));
-	boxMesh->setScale(1.0f);
+
 }
 
 ModelsManager::~ModelsManager()
@@ -53,13 +48,22 @@ ModelsManager::~ModelsManager()
 void ModelsManager::DeleteModel(const std::string& gameModelName)
 {
 
-	IGameObject* model = gameModelList[gameModelName];
+	IRenderable* model = gameModelList[gameModelName];
 	model->Destroy();
 	gameModelList.erase(gameModelName);
 
 }
 
-const IGameObject& ModelsManager::GetModel(const std::string& gameModelName) const
+void ModelsManager::AddModel(const std::string& gameModelName, IRenderable* gameObject)
+{
+	if (gameModelList.find(gameModelName) != gameModelList.end())
+	{
+		DeleteModel(gameModelName);
+	}
+	gameModelList[gameModelName] = gameObject;
+}
+
+const IRenderable& ModelsManager::GetModel(const std::string& gameModelName) const
 {
 	return (*gameModelList.at(gameModelName));
 }
@@ -69,19 +73,5 @@ void ModelsManager::Update()
 	for (auto model : gameModelList)
 	{
 		model.second->Update();
-	}
-}
-void ModelsManager::Draw(){
-
-	for (auto model : gameModelList)
-	{
-		model.second->Draw();
-	}
-}
-void ModelsManager::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
-{
-	for (auto model : gameModelList)
-	{
-		model.second->Draw(projection_matrix, view_matrix);
 	}
 }
