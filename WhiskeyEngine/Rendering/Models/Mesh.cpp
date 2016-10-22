@@ -216,7 +216,7 @@ void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix
 		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
 
 		if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
-			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
+			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0); //TODO not bind default texture when none is found
 		}
 
 		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);

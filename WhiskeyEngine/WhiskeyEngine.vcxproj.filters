@@ -102,6 +102,21 @@
     <ClCompile Include="Scene\GameObject.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\LightingScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ShadowMapScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ShadowMapDebugScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -182,6 +197,24 @@
     <ClInclude Include="Scene\GameObject.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\GameScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\LightingScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ShadowMapScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ShadowMapDebugScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapLightingTechnique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\IInputListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -214,5 +247,7 @@
     <None Include="Shaders\ShadowMap_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\ShadowMapLighting_fs.glsl" />
+    <None Include="Shaders\ShadowMapLighting_vs.glsl" />
   </ItemGroup>
 </Project>

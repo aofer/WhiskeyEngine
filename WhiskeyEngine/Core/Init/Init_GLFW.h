@@ -31,9 +31,11 @@ namespace Core
 			std::vector<Core::IListener*> m_listeners;
 			Core::WindowInfo windowInformation;
 			//static GLFWwindow* window;
+			static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		public:
 			//static void SetListener(Core::IListener*& iListener);
 			void AddListener(Core::IListener* listener);
+
 		};
 	}
 }

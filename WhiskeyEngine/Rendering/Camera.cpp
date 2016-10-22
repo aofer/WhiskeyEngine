@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
+#include <GLFW\glfw3.h> //TODO remove this dependency
 
 using namespace Rendering;
 
@@ -169,4 +170,45 @@ void Camera::updateViewMatrix()
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, -1.0f, 0.0f,
 		0.0f, 0.0f, 10.0f, 1.0f);*/
+}
+
+
+void Camera::onKeyPressed(int key, int scancode)
+{
+	if (key == GLFW_KEY_UP)
+	{
+		setPosition(m_position + glm::vec3(0.0, 0.5, 0.0));
+	}
+	else if (key == GLFW_KEY_DOWN)
+	{
+		setPosition(m_position + glm::vec3(0.0, -0.5, 0.0));
+	}
+	else if (key == GLFW_KEY_LEFT)
+	{
+		setPosition(m_position + glm::vec3(-0.5, 0.0, 0.0));
+	}
+	else if (key == GLFW_KEY_RIGHT)
+	{
+		setPosition(m_position + glm::vec3(0.5, 0.0, 0.0));
+	}
+	else if (key == GLFW_KEY_A)
+	{
+		setPosition(m_position + glm::vec3(00.0, 0.0, -0.5));
+	}
+	else if (key == GLFW_KEY_Q)
+	{
+		setPosition(m_position + glm::vec3(0.0, 0.0, 0.5));
+	}
+	else if (key == GLFW_KEY_W)
+	{
+		lookAt(m_lookAt + glm::vec3(0.0, -0.5, 0.0));
+	}
+	else if (key == GLFW_KEY_S)
+	{
+		lookAt(m_lookAt + glm::vec3(0.0, 0.5, 0.0));
+	}
+}
+void Camera::onKeyReleased(int key, int scancode)
+{
+
 }

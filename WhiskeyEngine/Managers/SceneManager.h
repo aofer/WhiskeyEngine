@@ -8,6 +8,7 @@
 namespace Scene
 {
 	class GameObject;
+	class GameScene;
 }
 
 namespace Managers
@@ -27,10 +28,7 @@ namespace Managers
 	private:
 		Managers::ShaderManager* shaderManager;
 		Managers::ModelsManager* modelsManager;
-		std::vector<Rendering::Models::Model*> modelList;
-		std::vector<Scene::GameObject*> m_gameObjectsFlat;
-		Scene::GameObject* m_pRoot;
-		Camera* m_pActiveCamera;
+		Scene::GameScene*			 m_activeScene;
 		LightingTechnique m_lighting;
 	};
 

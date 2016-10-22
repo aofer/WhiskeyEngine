@@ -1,4 +1,5 @@
 #include "Init_GLFW.h"
+#include "../../Managers/InputManager.h"
 using namespace Core;
 using namespace Core::Init;
 
@@ -25,8 +26,9 @@ void error_callback(int error, const char* description)
 	throw std::runtime_error(description);
 }
 
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Init_GLFW::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+	Managers::InputManager::getInstance().onKeyboardEvent(key, scancode, action, mods); //TODO remove dependency between core and managers
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
@@ -126,3 +128,4 @@ void Init_GLFW::AddListener(Core::IListener* listener)
 {
 	m_listeners.push_back(listener);
 }
+

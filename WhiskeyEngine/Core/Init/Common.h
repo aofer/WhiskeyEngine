@@ -11,6 +11,9 @@
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
 
+#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 800
+
 typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef unsigned char uchar;

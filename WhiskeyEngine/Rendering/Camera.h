@@ -2,9 +2,11 @@
 #define _Camera_H
 
 #include <glm/glm.hpp>
+//#include "../Core/Init/IInputListener.h"
 
+#include "../Core/Init/IInputListener.h"
 namespace Rendering{
-	class Camera{
+	class Camera : public Core::IInputListener{
 
 	public:
 
@@ -99,6 +101,8 @@ namespace Rendering{
 		/** A unit vector representing the direction out of the top of the camera*/
 		glm::vec3 up() const;
 
+		void setUp(glm::vec3 newUp) const;
+
 		/**
 		The combined camera transformation matrix, including perspective projection.
 
@@ -121,6 +125,9 @@ namespace Rendering{
 
 		glm::vec3 getLookAt() const;
 
+		virtual void onKeyPressed(int key, int scancode);
+		virtual void onKeyReleased(int key, int scancode);
+
 	private:
 		glm::vec3 m_position;
 		glm::vec3 m_lookAt; //TODO need to adjust it when moving camera
@@ -141,6 +148,9 @@ namespace Rendering{
 
 		void Camera::updateProjectionMatrix();
 		void Camera::updateViewMatrix();
+
+
+
 	};
 }
 #endif

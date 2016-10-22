@@ -1,22 +1,33 @@
 #pragma once
-#include "../Core/Init/IListener.h"
+#include "../Core/Init/IInputListener.h"
+#include <vector>
 //#include "../Rendering/Camera.h"
 namespace Managers
 {
-	class InputManager : public Core::IListener
+	class InputManager 
 
 	{
 	public:
-		InputManager();
-		~InputManager();
+		static InputManager& getInstance()
+		{
+			static InputManager    instance; 			
+			return instance;
+		}
 
-		virtual void NotifyBeginFrame();
-		virtual void NotifyDisplayFrame();
-		virtual void NotifyEndFrame();
-		virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);
+		InputManager(InputManager const&) = delete;
+		void operator=(InputManager const&) = delete;
+
 		void update(float dt);
+		
+		void AddInputListener(Core::IInputListener* listener);
+
+		void onKeyboardEvent(int key, int action, int scancode, int mods);
 	private:
 
+		InputManager() {}
+
+
+		std::vector<Core::IInputListener*> m_inputListeners;
 	};
 
 }

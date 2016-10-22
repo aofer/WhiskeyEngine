@@ -12,11 +12,11 @@ bool ShadowMapTechnique::Init()
 		return false;
 	}
 
-	if (!AddShader(GL_VERTEX_SHADER, "shadow_map.vs")) {
+	if (!AddShader(GL_VERTEX_SHADER, "Shaders\\ShadowMap_vs.glsl")) {
 		return false;
 	}
 
-	if (!AddShader(GL_FRAGMENT_SHADER, "shadow_map.fs")) {
+	if (!AddShader(GL_FRAGMENT_SHADER, "Shaders\\ShadowMap_fs.glsl")) {
 		return false;
 	}
 
@@ -26,9 +26,11 @@ bool ShadowMapTechnique::Init()
 
 	m_WVPLocation = GetUniformLocation("gWVP");
 	m_textureLocation = GetUniformLocation("gShadowMap");
+	m_WorldMatrixLocation = GetUniformLocation("gWorld");
 
 	if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
-		m_textureLocation == INVALID_UNIFORM_LOCATION) {
+		m_textureLocation == INVALID_UNIFORM_LOCATION ||
+		m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION) {
 		return false;
 	}
 
@@ -43,4 +45,10 @@ void ShadowMapTechnique::SetWVP(const glm::mat4& WVP)
 void ShadowMapTechnique::SetTextureUnit(unsigned int TextureUnit)
 {
 	glUniform1i(m_textureLocation, TextureUnit);
+}
+
+
+void ShadowMapTechnique::SetWorldMatrix(const glm::mat4& WorldInverse)
+{
+	glUniformMatrix4fv(m_WorldMatrixLocation, 1, GL_FALSE, &WorldInverse[0][0]);
 }

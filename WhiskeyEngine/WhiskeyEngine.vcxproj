@@ -150,13 +150,19 @@
     <ClCompile Include="Rendering\Pipeline.cpp" />
     <ClCompile Include="Rendering\RenderingTechnique.cpp" />
     <ClCompile Include="Rendering\ShadowMapFbo.cpp" />
+    <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp" />
     <ClCompile Include="Rendering\ShadowMapTechnique.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Scene\GameObject.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\LightingScene.cpp" />
+    <ClCompile Include="Scene\ShadowMapDebugScene.cpp" />
+    <ClCompile Include="Scene\ShadowMapScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\Common.h" />
     <ClInclude Include="Core\Init\ContextInfo.h" />
+    <ClInclude Include="Core\Init\IInputListener.h" />
     <ClInclude Include="Core\Init\IListener.h" />
     <ClInclude Include="Core\Init\Init_GLEW.h" />
     <ClInclude Include="Core\Init\Init_GLFW.h" />
@@ -177,10 +183,15 @@
     <ClInclude Include="Rendering\Pipeline.h" />
     <ClInclude Include="Rendering\RenderingTechnique.h" />
     <ClInclude Include="Rendering\ShadowMapFbo.h" />
+    <ClInclude Include="Rendering\ShadowMapLightingTechnique.h" />
     <ClInclude Include="Rendering\ShadowMapTechnique.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
     <ClInclude Include="Scene\GameObject.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\LightingScene.h" />
+    <ClInclude Include="Scene\ShadowMapDebugScene.h" />
+    <ClInclude Include="Scene\ShadowMapScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\BasicLighting_fs.glsl" />
@@ -190,6 +201,8 @@
     <None Include="Shaders\Fragment_Shader.glsl" />
     <None Include="Shaders\Lighting_fs.glsl" />
     <None Include="Shaders\Lighting_vs.glsl" />
+    <None Include="Shaders\ShadowMapLighting_fs.glsl" />
+    <None Include="Shaders\ShadowMapLighting_vs.glsl" />
     <None Include="Shaders\ShadowMap_fs.glsl" />
     <None Include="Shaders\ShadowMap_vs.glsl" />
     <None Include="Shaders\Vertex_Shader.glsl" />

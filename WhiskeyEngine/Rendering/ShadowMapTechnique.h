@@ -15,11 +15,13 @@ namespace Rendering
 		virtual bool Init();
 
 		void SetWVP(const glm::mat4& WVP);
+		void SetWorldMatrix(const glm::mat4& WVP);
 		void SetTextureUnit(unsigned int TextureUnit);
 	private:
 
 		GLuint m_WVPLocation;
 		GLuint m_textureLocation;
+		GLuint m_WorldMatrixLocation;
 	};
 
 }

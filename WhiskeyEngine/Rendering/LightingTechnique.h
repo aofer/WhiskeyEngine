@@ -31,7 +31,7 @@ namespace Rendering
 		void SetMatSpecularIntensity(float Intensity);
 		void SetMatSpecularPower(float Power);
 
-	private:
+	protected:
 
 		GLuint m_WVPLocation;
 		GLuint m_LightWVPLocation;
