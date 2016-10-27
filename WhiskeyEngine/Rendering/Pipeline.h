@@ -100,7 +100,7 @@ namespace Rendering
 
 		void SetCamera(const Camera& camera)
 		{
-			SetCamera(camera.getPosition(), camera.getLookAt(), camera.up());
+			SetCamera(camera.getPosition(), camera.getLookAt(), camera.getUp());
 		}
 
 		void Orient(const Orientation& o)

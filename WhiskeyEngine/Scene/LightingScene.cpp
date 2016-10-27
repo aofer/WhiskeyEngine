@@ -22,7 +22,7 @@ namespace Scene
 	void LightingScene::init()
 	{
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -8.0));
-		m_pActiveCamera->lookAt(glm::vec3(0.0, 2.0, -9.0));
+		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, -9.0));
 
 		int test = GLCheckError(); //TODO figure out why we need to clear this
 		if (!m_lighting.Init())

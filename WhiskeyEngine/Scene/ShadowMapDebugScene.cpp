@@ -24,7 +24,7 @@ namespace Scene
 	void ShadowMapDebugScene::init()
 	{
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 0.0f, -2.0));
-		m_pActiveCamera->lookAt(glm::vec3(0.0, 0.0, -3.0));
+		m_pActiveCamera->setLookAt(glm::vec3(0.0, 0.0, -3.0));
 
 		Models::Mesh* quad = new Models::Mesh();
 
@@ -145,7 +145,7 @@ namespace Scene
 		Pipeline p;
 		//p.Scale(50.0f, 50.0f, 50.0f);
 		//p.WorldPos(0.0f, 0.0f, 10.0f);
-		p.SetCamera(m_pActiveCamera->getPosition(), m_pActiveCamera->getLookAt(), m_pActiveCamera->up());
+		p.SetCamera(m_pActiveCamera->getPosition(), m_pActiveCamera->getLookAt(), m_pActiveCamera->getUp());
 		p.SetPerspectiveProj(persProjInfo);
 		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 

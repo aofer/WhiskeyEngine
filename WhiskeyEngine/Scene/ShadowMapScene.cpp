@@ -24,7 +24,7 @@ namespace Scene
 	{
 
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -8.0));
-		m_pActiveCamera->lookAt(glm::vec3(0.0, 2.0, -9.0));
+		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, -9.0));
 
 		int test = GLCheckError();
 		if (!m_lightingTech.Init())
@@ -71,7 +71,7 @@ namespace Scene
 
 
 		m_spotCamera.setPosition(m_spotLight.Position);
-		m_spotCamera.lookAt(glm::vec3(m_spotLight.Position + m_spotLight.Direction));
+		m_spotCamera.setLookAt(glm::vec3(m_spotLight.Position + m_spotLight.Direction));
 
 
 		//m_lighting.SetPointLights()
@@ -156,8 +156,8 @@ namespace Scene
 		//m_shadowMapTech.SetWVP(p.GetWVPTrans());
 
 		//m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView()); //todo this should be from light direction
-		//m_shadowMapTech.SetWVP(glm::perspective(persProjInfo.FOV, persProjInfo.aspectRatio, persProjInfo.zNear, persProjInfo.zFar) * glm::lookAt(m_spotLight.Position, m_spotLight.Direction, glm::vec3(1.0f, 0.0f, 0.0f)));
-		m_shadowMapTech.SetWVP(m_spotCamera.getProjection() * m_spotCamera.getView());
+		m_shadowMapTech.SetWVP(glm::perspective(persProjInfo.FOV, persProjInfo.aspectRatio, persProjInfo.zNear, persProjInfo.zFar) * glm::lookAt(m_spotLight.Position, m_spotLight.Direction, glm::vec3(1.0f, 0.0f, 0.0f)));
+		//m_shadowMapTech.SetWVP(m_spotCamera.getProjection() * m_spotCamera.getView());
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
@@ -184,7 +184,7 @@ namespace Scene
 
 		/*m_pActiveCamera->lookAt(glm::vec3(0.0, 0.0, 0.0));
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 10.0, 0.0));*/
-		m_lightingTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
+		m_lightingTech.SetWVP(m_pActiveCamera->getViewProjection());
 		//m_spotCamera.lookAt(glm::vec3(0.0, 0.0, 0.0));
 		//m_lightingTech.SetWVP(m_pActiveCamera->getProjection() * m_spotCamera.getView());
 
