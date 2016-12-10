@@ -11,7 +11,7 @@ using namespace Init;
 
 int main(int argc, char *argv[])
 {
-	WindowInfo window(std::string("Whiskey engine test"), 400, 200, WINDOW_WIDTH, WINDOW_HEIGHT, true);
+	WindowInfo window(std::string("Shadow Mapping Demo"), 400, 200, WINDOW_WIDTH, WINDOW_HEIGHT, true);
 	Core::ContextInfo context(4, 5, true);
 
 	try{

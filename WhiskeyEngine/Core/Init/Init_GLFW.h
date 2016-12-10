@@ -36,6 +36,7 @@ namespace Core
 			//static void SetListener(Core::IListener*& iListener);
 			void AddListener(Core::IListener* listener);
 
+			double m_lastUpdate = 0.0;
 		};
 	}
 }

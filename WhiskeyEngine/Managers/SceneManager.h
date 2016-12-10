@@ -20,7 +20,7 @@ namespace Managers
 		SceneManager();
 		~SceneManager();
 
-		virtual void NotifyBeginFrame();
+		virtual void NotifyBeginFrame(double dt);
 		virtual void NotifyDisplayFrame();
 		virtual void NotifyEndFrame();
 		virtual void NotifyReshape(int width, int height, int previos_width, int previous_height);

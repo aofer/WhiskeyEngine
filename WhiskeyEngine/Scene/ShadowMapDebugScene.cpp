@@ -1,6 +1,5 @@
 #include "ShadowMapDebugScene.h"
 #include "../Core/Init/Common.h"
-#include "../Rendering/Camera.h"
 #include "../Rendering/Models/Mesh.h"
 #include "../Rendering/Lighting.h"
 #include "GameObject.h"
@@ -23,8 +22,8 @@ namespace Scene
 
 	void ShadowMapDebugScene::init()
 	{
-		m_pActiveCamera->setPosition(glm::vec3(0.0, 0.0f, -2.0));
-		m_pActiveCamera->setLookAt(glm::vec3(0.0, 0.0, -3.0));
+		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -8.0));
+		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, 0.0));
 
 		Models::Mesh* quad = new Models::Mesh();
 
@@ -49,11 +48,14 @@ namespace Scene
 
 		m_spotLight.Color = glm::vec3(1.0, 1.0, 1.0);
 		m_spotLight.DiffuseIntensity = 0.3f;
-		m_spotLight.Direction = glm::vec3(0.0, -1.0, 0.0);
+		m_spotLight.Direction = glm::vec3(-0.5, -10.0, -2.0);
 		m_spotLight.Attenuation.Linear = 0.1f;
 		m_spotLight.AmbientIntensity = 0.1f;
 		m_spotLight.Cutoff = 40.5f;
-		m_spotLight.Position = glm::vec3(-2.0, 10.0, -2.0);
+		m_spotLight.Position = glm::vec3(0.5, 10.0, 2.0);
+
+		m_spotCamera.setPosition(m_spotLight.Position);
+		m_spotCamera.setLookAt(glm::vec3(m_spotLight.Position + m_spotLight.Direction));
 
 		Models::Mesh* boxMesh = new Models::Mesh();
 		boxMesh->Create("Assets\\box.obj");
@@ -69,6 +71,16 @@ namespace Scene
 		box2->setPosition(glm::vec3(3.0, 1.0, 0.0));
 		box2->setScale(0.8f);
 		m_gameObjectsFlat.push_back(box2);
+
+
+		//Models::Mesh* tankMesh = new Models::Mesh();
+		//tankMesh->Create("Assets\\phoenix_ugv.md2");
+		//m_pModelsManager->AddModel("tank", tankMesh);
+		//Scene::GameObject* tank = new GameObject();
+		//tank->setModel(tankMesh);
+		//tank->setPosition(glm::vec3(0.0, 0.0, 0.0));
+		//tank->setScale(0.08f);
+		//m_gameObjectsFlat.push_back(tank);
 
 
 		Models::Mesh* groundMesh = new Models::Mesh();
@@ -101,24 +113,8 @@ namespace Scene
 		m_shadowMapFBO.BindForWriting();
 		glClear(GL_DEPTH_BUFFER_BIT);
 
-
-
-		//TODO remove later
-		PersProjInfo persProjInfo;
-		persProjInfo.FOV = 60.0f;
-		persProjInfo.aspectRatio = WINDOW_WIDTH / WINDOW_HEIGHT;
-		persProjInfo.zNear = 1.0f;
-		persProjInfo.zFar = 50.0f;
-		Pipeline p;
-		p.Scale(0.1f, 0.1f, 0.1f);
-		p.Rotate(0.0f, 0.0f, 0.0f);
-		p.WorldPos(0.0f, 0.0f, 3.0f);
-		p.SetCamera(glm::vec3(0.0, 10.0, 0.0), glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0f, 1.0f, 0.0f));
-		p.SetPerspectiveProj(persProjInfo);
-		//m_shadowMapTech.SetWVP(p.GetWVPTrans());
-
-		//m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView()); //todo this should be from light direction
-		m_shadowMapTech.SetWVP(glm::perspective(persProjInfo.FOV, persProjInfo.aspectRatio, persProjInfo.zNear, persProjInfo.zFar) * glm::lookAt(m_spotLight.Position,m_spotLight.Direction, glm::vec3(1.0f, 0.0f, 0.0f)));
+		m_shadowMapTech.SetWVP(m_spotCamera.getProjection() * m_spotCamera.getView());
+//		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
@@ -137,16 +133,6 @@ namespace Scene
 		m_shadowMapTech.SetTextureUnit(0);
 		m_shadowMapFBO.BindForReading(GL_TEXTURE0);
 
-		PersProjInfo persProjInfo;
-		persProjInfo.FOV = 60.0f;
-		persProjInfo.aspectRatio = WINDOW_WIDTH / WINDOW_HEIGHT;
-		persProjInfo.zNear = 1.0f;
-		persProjInfo.zFar = 50.0f;
-		Pipeline p;
-		//p.Scale(50.0f, 50.0f, 50.0f);
-		//p.WorldPos(0.0f, 0.0f, 10.0f);
-		p.SetCamera(m_pActiveCamera->getPosition(), m_pActiveCamera->getLookAt(), m_pActiveCamera->getUp());
-		p.SetPerspectiveProj(persProjInfo);
 		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 
 		m_shadowMapTech.SetWorldMatrix(m_pQuad->getModelMatrix());

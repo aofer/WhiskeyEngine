@@ -14,7 +14,7 @@ namespace Rendering
 		lookAt = glm::vec3(0.0, 0.0, -1.0);
 	}
 
-	Camera::Camera() : Camera(45.0, 4.0 / 3.0, 0.01f, 100.0f)
+	Camera::Camera() : Camera(45.0f, 4.0f / 3.0f, 0.1f, 100.0f)
 	{
 
 	}
@@ -160,12 +160,12 @@ namespace Rendering
 	void Camera::updateMatrices()
 	{
 
-//		projectionMatrix = glm::perspective(fieldOfView, aspectRatio, zNear, zFar);
-		projectionMatrix[0][0] = 1.0f / (aspectRatio * glm::tan(fieldOfView / 2.0f));
-		projectionMatrix[1][1] = 1.0f / glm::tan(fieldOfView / 2.0f);
-		projectionMatrix[2][2] = (-zNear - zFar) / (zNear - zFar);
-		projectionMatrix[2][3] = 1.0f;
-		projectionMatrix[3][2] = 2.0f * zNear * zFar / (zNear - zFar);
+		projectionMatrix = glm::perspective(glm::degrees(fieldOfView), aspectRatio, zNear, zFar);
+		//projectionMatrix[0][0] = 1.0f / (aspectRatio * glm::tan(fieldOfView / 2.0f));
+		//projectionMatrix[1][1] = 1.0f / glm::tan(fieldOfView / 2.0f);
+		//projectionMatrix[2][2] = (-zNear - zFar) / (zNear - zFar);
+		//projectionMatrix[2][3] = 1.0f;
+		//projectionMatrix[3][2] = 2.0f * zNear * zFar / (zNear - zFar);
 
 
 		viewMatrix = glm::lookAt(position, lookAt, up);
@@ -197,43 +197,43 @@ namespace Rendering
 	{
 		if (key == GLFW_KEY_UP)
 		{
-			liftUp(0.1);
+			liftUp(0.5);
 		}
 		else if (key == GLFW_KEY_DOWN)
 		{
-			liftUp(-0.1);
+			liftUp(-0.5);
 		}
 		else if (key == GLFW_KEY_LEFT)
 		{
-			strafe(0.2);
+			strafe(0.5);
 		}
 		else if (key == GLFW_KEY_RIGHT)
 		{
-			strafe(-0.2);
+			strafe(-0.5);
 		}
 		else if (key == GLFW_KEY_A)
 		{
-			moveForward(0.1);
+			moveForward(-0.5);
 		}
 		else if (key == GLFW_KEY_Q)
 		{
-			moveForward(-0.1);
+			moveForward(0.5);
 		}
 		else if (key == GLFW_KEY_W)
 		{
-			pitch(0.1);
+			pitch(8.0);
 		}
 		else if (key == GLFW_KEY_S)
 		{
-			pitch(-0.1);
+			pitch(-8.0);
 		}
 		else if (key == GLFW_KEY_Z)
 		{
-			yaw(0.1);
+			yaw(1.6);
 		}
 		else if (key == GLFW_KEY_X)
 		{
-			yaw(-0.1);
+			yaw(-1.6);
 		}
 	}
 	void Camera::onKeyReleased(int key, int scancode)

@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/glm.hpp>
 #include "../Rendering/Models/Model.h"
 namespace Scene
 {
@@ -84,12 +85,27 @@ namespace Scene
 		m_scale = scale;
 		updateModelMatrix();
 	}
+	glm::quat GameObject::getOrientation() const
+	{
+		return m_orientation;
+	}
+
+	void GameObject::setOrientation(const glm::quat& orient)
+	{
+		m_orientation = orient;
+		updateModelMatrix();
+	}
 
 	void GameObject::updateModelMatrix()
 	{
-
+		
+		glm::mat4 rotationMat = glm::mat4_cast(m_orientation);
+		glm::vec3 rotateVec = glm::vec3(0.0f, 1.0f, 0.0f);
+		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::degrees(5.0f), rotateVec);
+		//m_orientation.
+		//glm::mat4 RotationMatrix = glm::qu.0at::toMat4(quaternion);
 		m_modelMatrix = glm::translate(
-			glm::scale(glm::mat4(1.0f), glm::vec3(m_scale, m_scale, m_scale)),
+			glm::scale(rotationMat, glm::vec3(m_scale, m_scale, m_scale)),
 			m_position);
 		if (m_pParent)
 		{

@@ -8,7 +8,7 @@ namespace Core{
 		virtual ~IListener() = 0;
 
 		//drawing functions
-		virtual void NotifyBeginFrame() = 0;
+		virtual void NotifyBeginFrame(double dt) = 0;
 		virtual void NotifyDisplayFrame() = 0;
 		virtual void NotifyEndFrame() = 0;
 		virtual void NotifyReshape(int width,

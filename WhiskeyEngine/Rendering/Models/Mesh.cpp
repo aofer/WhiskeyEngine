@@ -185,11 +185,11 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
 		}
 
 		// Load a white texture in case the model does not include its own texture
-		if (!m_Textures[i]) {
-			m_Textures[i] = new Texture("Assets\\tex1.png");
+		//if (!m_Textures[i]) {
+		//	m_Textures[i] = new Texture("Assets\\tex1.png"); //TODO I removed this for the shadow map test
 
-			Ret = m_Textures[i]->Load();
-		}
+		//	Ret = m_Textures[i]->Load();
+		//}
 	}
 
 	return Ret;
@@ -198,31 +198,16 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
 void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
 
-	//glUseProgram(program);
-
-	//glUniform3f(glGetUniformLocation(program, "rotation"),
-	//	0.0,
-	//	0.0,
-	//	0.0);
-
-
-	//glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1,
-	//	false, &view_matrix[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &getModelMatrix()[0][0]);
-	//glUniformMatrix4fv(glGetUniformLocation(1, "modelMatrix"), 1, GL_FALSE, &getModelMatrix()[0][0]);
 	for (unsigned int i = 0; i < m_Entries.size(); i++) {
 		glBindVertexArray(m_Entries.at(i).VAO);
 		const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
 
 		if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
-			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0); //TODO not bind default texture when none is found
+			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0); 
 		}
 
 		glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
 	}
-
-	//glBindVertexArray(0);
 
 }
 void Mesh::Update()

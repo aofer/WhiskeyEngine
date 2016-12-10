@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)platforms\windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>

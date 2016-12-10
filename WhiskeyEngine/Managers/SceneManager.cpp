@@ -43,10 +43,10 @@ SceneManager::~SceneManager()
 	//delete m_pActiveCamera;
 }
 
-void SceneManager::NotifyBeginFrame()
+void SceneManager::NotifyBeginFrame(double dt)
 {
 	modelsManager->Update();
-	m_activeScene->update(0.0f);
+	m_activeScene->update(dt);
 }
 
 void SceneManager::NotifyDisplayFrame()

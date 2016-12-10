@@ -21,7 +21,7 @@ namespace Rendering
 		virtual bool Init();
 
 		void SetWVP(const glm::mat4& WVP);
-		void SetLightWVP(const glm::mat4& LightWVP);
+	//	void SetLightWVP(const glm::mat4& LightWVP);
 		void SetWorldMatrix(const glm::mat4& WVP);
 		void SetTextureUnit(unsigned int TextureUnit);
 		void SetDirectionalLight(const DirectionalLight& Light);
@@ -34,7 +34,7 @@ namespace Rendering
 	protected:
 
 		GLuint m_WVPLocation;
-		GLuint m_LightWVPLocation;
+		//GLuint m_LightWVPLocation;
 		GLuint m_WorldMatrixLocation;
 		GLuint m_samplerLocation;
 		GLuint m_eyeWorldPosLocation;

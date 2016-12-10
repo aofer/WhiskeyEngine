@@ -94,19 +94,13 @@ void Init_GLFW::Run()
 }
 void Init_GLFW::DisplayCallback()
 {
-	//if (listener)
-	//{
+	double time = glfwGetTime();
+	double dt = time - m_lastUpdate;
+	m_lastUpdate = time;
 
-	//	listener->NotifyBeginFrame();
-	//	listener->NotifyDisplayFrame();
-
-	//	glfwSwapBuffers(window);
-
-	//	listener->NotifyEndFrame();
-	//}
 	for (auto iter = m_listeners.begin(); iter != m_listeners.end(); iter++)
 	{
-		(*iter)->NotifyBeginFrame();
+		(*iter)->NotifyBeginFrame(dt);
 	}
 	for (auto iter = m_listeners.begin(); iter != m_listeners.end(); iter++)
 	{
@@ -119,10 +113,6 @@ void Init_GLFW::DisplayCallback()
 	}
 }
 
-//void Init_GLFW::SetListener(Core::IListener*& iListener)
-//{
-//	listener = iListener;
-//}
 
 void Init_GLFW::AddListener(Core::IListener* listener)
 {

@@ -18,10 +18,12 @@ namespace Rendering
 		virtual bool Init();
 
 		void SetShadowMapTextureUnit(uint TextureUnit);
+		void SetLightWVP(const glm::mat4& LightWVP);
 
 	private:
 
 		GLuint m_shadowMapLocation;
+		GLuint m_LightWVPLocation;
 
 	};
 

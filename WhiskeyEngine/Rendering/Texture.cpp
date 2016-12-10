@@ -8,6 +8,13 @@ namespace Rendering
 	{
 		m_textureTarget = TextureTarget;
 		m_fileName = FileName;
+		//TEMP HACK TO work with md2 file with pcx texture
+		if (m_fileName.find(".pcx") != std::string::npos)
+		{
+			int pos = m_fileName.find(".pcx");
+			m_fileName.replace(pos, 4, ".png");
+
+		}
 	}
 
 

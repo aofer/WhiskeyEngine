@@ -39,22 +39,24 @@ namespace Rendering
 		m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
 		m_numPointLightsLocation = GetUniformLocation("gNumPointLights");
 		m_numSpotLightsLocation = GetUniformLocation("gNumSpotLights");
+		m_LightWVPLocation = GetUniformLocation("gLightWVP");
 
-		if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
-			m_WVPLocation == INVALID_UNIFORM_LOCATION ||
-			m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
-			m_samplerLocation == INVALID_UNIFORM_LOCATION ||
-			m_shadowMapLocation == INVALID_UNIFORM_LOCATION ||
-			m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
-			m_dirLightLocation.Color == INVALID_UNIFORM_LOCATION ||
-			m_dirLightLocation.DiffuseIntensity == INVALID_UNIFORM_LOCATION ||
-			m_dirLightLocation.Direction == INVALID_UNIFORM_LOCATION ||
-			m_matSpecularIntensityLocation == INVALID_UNIFORM_LOCATION ||
-			m_matSpecularPowerLocation == INVALID_UNIFORM_LOCATION ||
-			m_numPointLightsLocation == INVALID_UNIFORM_LOCATION ||
-			m_numSpotLightsLocation == INVALID_UNIFORM_LOCATION) {
-			return false;
-		}
+		//if (m_dirLightLocation.AmbientIntensity == INVALID_UNIFORM_LOCATION ||
+		//	m_WVPLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_samplerLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_shadowMapLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_dirLightLocation.Color == INVALID_UNIFORM_LOCATION ||
+		//	m_dirLightLocation.DiffuseIntensity == INVALID_UNIFORM_LOCATION ||
+		//	m_dirLightLocation.Direction == INVALID_UNIFORM_LOCATION ||
+		//	m_matSpecularIntensityLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_matSpecularPowerLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_numPointLightsLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_numSpotLightsLocation == INVALID_UNIFORM_LOCATION ||
+		//	m_LightWVPLocation == INVALID_UNIFORM_LOCATION) {
+		//	return false;
+		//}
 
 		for (unsigned int i = 0; i < ARRAY_SIZE_IN_ELEMENTS(m_pointLightsLocation); i++) {
 			char Name[128];
@@ -142,5 +144,8 @@ namespace Rendering
 		glUniform1i(m_shadowMapLocation, TextureUnit);
 	}
 
-
+	void ShadowMapLightingTechnique::SetLightWVP(const glm::mat4& LightWVP)
+	{
+		glUniformMatrix4fv(m_LightWVPLocation, 1, GL_FALSE, &LightWVP[0][0]);
+	}
 }
