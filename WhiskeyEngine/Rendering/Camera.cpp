@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include <glm/gtx/constants.hpp>
+//#include <glm/gtx/constants.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW\glfw3.h> //TODO remove this dependency
 
