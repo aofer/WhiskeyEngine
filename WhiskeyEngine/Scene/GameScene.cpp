@@ -10,7 +10,7 @@ namespace Scene
 		m_pModelsManager = modelsManager;
 	}
 
-	void GameScene::setModelsManager(Managers::ModelsManager* manager)
+	void GameScene::SetModelsManager(Managers::ModelsManager* manager)
 	{
 		m_pModelsManager = manager;
 	}

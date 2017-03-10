@@ -31,5 +31,12 @@ void InputManager::onKeyboardEvent(int key, int scancode, int action, int mods)
 			(*iter)->onKeyReleased(key, scancode);
 		}
 	}
+	else if (action == GLFW_REPEAT)
+	{
+		for (auto iter = m_inputListeners.begin(); iter != m_inputListeners.end(); iter++)
+		{
+			(*iter)->onKeyRepeated(key, scancode);
+		}
+	}
 
 }

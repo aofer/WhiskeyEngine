@@ -117,6 +117,21 @@
     <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\CubeMapTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\SkyBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SkyboxTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SkyboxScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\GameComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -215,6 +230,21 @@
     <ClInclude Include="Core\Init\IInputListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\CubeMapTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\SkyBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SkyboxTechnique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SkyboxScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\GameComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -249,5 +279,9 @@
     </None>
     <None Include="Shaders\ShadowMapLighting_fs.glsl" />
     <None Include="Shaders\ShadowMapLighting_vs.glsl" />
+    <None Include="Shaders\EncryptedTexture_fs.glsl" />
+    <None Include="Shaders\EncryptedTexture_vs.glsl" />
+    <None Include="Shaders\Skybox_vs.glsl" />
+    <None Include="Shaders\Skybox_fs.glsl" />
   </ItemGroup>
 </Project>

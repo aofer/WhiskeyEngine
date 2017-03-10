@@ -21,13 +21,13 @@ namespace Scene{
 	public:
 		GameScene(Managers::ModelsManager* modelsManager);
 		GameScene();
-		void setModelsManager(Managers::ModelsManager* manager);
+		void SetModelsManager(Managers::ModelsManager* manager);
 		virtual ~GameScene();
 
-		virtual void init() = 0;
+		virtual void Init() = 0;
 
-		virtual void update(float dt) = 0;
-		virtual void draw() = 0;
+		virtual void Update(float dt) = 0;
+		virtual void Draw() = 0;
 
 	protected:
 		std::vector<GameObject*> m_gameObjectsFlat;

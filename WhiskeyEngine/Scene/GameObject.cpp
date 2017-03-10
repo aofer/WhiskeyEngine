@@ -24,33 +24,33 @@ namespace Scene
 
 
 
-	void GameObject::update(float dt)
+	void GameObject::Update(float dt)
 	{
 
 	}
 
-	void GameObject::setParent(GameObject* parent)
+	void GameObject::SetParent(GameObject* parent)
 	{
 		m_pParent = parent;
-		updateModelMatrix();
+		UpdateModelMatrix();
 	}
-	GameObject* GameObject::getParent() const
+	GameObject* GameObject::GetParent() const
 	{
 		return m_pParent;
 	}
 
-	Rendering::Models::Model* GameObject::getModel() const
+	Rendering::Models::Model* GameObject::GetModel() const
 	{
 		return m_pModel;
 	}
 
-	void GameObject::addChild(GameObject* child)
+	void GameObject::AddChild(GameObject* child)
 	{
-		child->setParent(this);
+		child->SetParent(this);
 		m_children.push_back(child);
 	}
 	
-	void GameObject::setModel(Rendering::Models::Model* model) 
+	void GameObject::SetModel(Rendering::Models::Model* model) 
 	{
 		m_pModel = model;
 	}
@@ -58,58 +58,55 @@ namespace Scene
 
 
 
-	glm::mat4 GameObject::getModelMatrix() const
+	glm::mat4 GameObject::GetModelMatrix() const
 	{
 		return m_modelMatrix;
 	}
 
-	glm::vec3 GameObject::getPosition() const
+	glm::vec3 GameObject::GetPosition() const
 	{
 		return m_position;
 	}
 
-	float GameObject::getScale() const
+	float GameObject::GetScale() const
 	{
 		return m_scale;
 	}
 
-	void GameObject::setPosition(const glm::vec3& position) 
+	void GameObject::SetPosition(const glm::vec3& position) 
 	{
 		m_position = position;
-		//glm::mat4 mat = glm::mat4::identyi
-		updateModelMatrix();
+		UpdateModelMatrix();
 	}
 
-	void GameObject::setScale(const float& scale)
+	void GameObject::SetScale(const float& scale)
 	{
 		m_scale = scale;
-		updateModelMatrix();
+		UpdateModelMatrix();
 	}
-	glm::quat GameObject::getOrientation() const
+	glm::quat GameObject::GetOrientation() const
 	{
 		return m_orientation;
 	}
 
-	void GameObject::setOrientation(const glm::quat& orient)
+	void GameObject::SetOrientation(const glm::quat& orient)
 	{
 		m_orientation = orient;
-		updateModelMatrix();
+		UpdateModelMatrix();
 	}
 
-	void GameObject::updateModelMatrix()
+	void GameObject::UpdateModelMatrix()
 	{
 		
 		glm::mat4 rotationMat = glm::mat4_cast(m_orientation);
 		glm::vec3 rotateVec = glm::vec3(0.0f, 1.0f, 0.0f);
 		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::degrees(5.0f), rotateVec);
-		//m_orientation.
-		//glm::mat4 RotationMatrix = glm::qu.0at::toMat4(quaternion);
 		m_modelMatrix = glm::translate(
 			glm::scale(rotationMat, glm::vec3(m_scale, m_scale, m_scale)),
 			m_position);
 		if (m_pParent)
 		{
-			m_modelMatrix = m_pParent->getModelMatrix() * m_modelMatrix;
+			m_modelMatrix = m_pParent->GetModelMatrix() * m_modelMatrix;
 		}
 	}
 

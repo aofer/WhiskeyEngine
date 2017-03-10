@@ -25,10 +25,10 @@ namespace Scene{
 		ShadowMapDebugScene();
 		virtual ~ShadowMapDebugScene();
 
-		virtual void init() override;
+		virtual void Init() override;
 
-		virtual void update(float dt) override;
-		virtual void draw() override;
+		virtual void Update(float dt) override;
+		virtual void Draw() override;
 
 	private:
 		Rendering::ShadowMapTechnique	m_shadowMapTech;

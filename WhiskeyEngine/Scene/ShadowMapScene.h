@@ -20,10 +20,10 @@ namespace Scene{
 		ShadowMapScene();
 		virtual ~ShadowMapScene();
 
-		virtual void init() override;
+		virtual void Init() override;
 
-		virtual void update(float dt) override;
-		virtual void draw() override;
+		virtual void Update(float dt) override;
+		virtual void Draw() override;
 
 		//support keyboard controls
 		virtual void onKeyPressed(int key, int scancode);

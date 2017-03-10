@@ -8,6 +8,7 @@
 #include "../Scene//LightingScene.h"
 #include "../Scene//ShadowMapDebugScene.h"
 #include "../Scene//ShadowMapScene.h"
+#include "../Scene/SkyboxScene.h"
 
 using namespace Managers;
 using namespace Scene;
@@ -28,9 +29,11 @@ SceneManager::SceneManager()
 
 	modelsManager = new ModelsManager();
 
-	m_activeScene = new ShadowMapScene();
-	m_activeScene->setModelsManager(modelsManager);
-	m_activeScene->init();
+	//m_activeScene = new ShadowMapScene();
+	m_activeScene = new SkyboxScene();
+	//m_activeScene = new LightingScene();
+	m_activeScene->SetModelsManager(modelsManager);
+	m_activeScene->Init();
 
 
 }
@@ -46,7 +49,7 @@ SceneManager::~SceneManager()
 void SceneManager::NotifyBeginFrame(double dt)
 {
 	modelsManager->Update();
-	m_activeScene->update(dt);
+	m_activeScene->Update(dt);
 }
 
 void SceneManager::NotifyDisplayFrame()
@@ -55,7 +58,7 @@ void SceneManager::NotifyDisplayFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	m_activeScene->draw();
+	m_activeScene->Draw();
 
 }
 

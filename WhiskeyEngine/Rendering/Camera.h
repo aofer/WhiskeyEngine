@@ -1,13 +1,13 @@
 #pragma once
 #include <glm/glm.hpp>
 #include "../Core/Init/IInputListener.h"
-
+#include "../Scene/Components/GameComponent.h"
 /*
 This class represents a basic camera with all of its camera controls
 */
 namespace Rendering
 {
-	class Camera : public Core::IInputListener{
+	class Camera : public Core::IInputListener, Scene::Components::GameComponent{
 	private:
 		glm::vec3 position;
 		glm::vec3 up;
@@ -23,6 +23,9 @@ namespace Rendering
 		void updateMatrices();
 
 	public:
+		//from game component
+		virtual const Scene::Components::FamilyType GetFamilyType();
+
 		//constructor
 		Camera();
 		Camera(float fieldOfView, float aspectRatio, float near, float far);
@@ -65,7 +68,10 @@ namespace Rendering
 
 		virtual void onKeyPressed(int key, int scancode);
 		virtual void onKeyReleased(int key, int scancode);
+		virtual void onKeyRepeated(int key, int scancode);
+		void handleKey(int key);
 
+		virtual void Update(float dt);
 
 	};
 

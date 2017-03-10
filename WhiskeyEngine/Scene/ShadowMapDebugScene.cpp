@@ -20,7 +20,7 @@ namespace Scene
 		SAFE_DELETE(m_pQuad);
 	}
 
-	void ShadowMapDebugScene::init()
+	void ShadowMapDebugScene::Init()
 	{
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -8.0));
 		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, 0.0));
@@ -32,9 +32,9 @@ namespace Scene
 		}
 		m_pModelsManager->AddModel("quad", quad);
 		m_pQuad = new GameObject();
-		m_pQuad->setModel(quad);
-		m_pQuad->setPosition(glm::vec3(0.0, 0.0, 1.0));
-		m_pQuad->setScale(5.0f);
+		m_pQuad->SetModel(quad);
+		m_pQuad->SetPosition(glm::vec3(0.0, 0.0, 1.0));
+		m_pQuad->SetScale(5.0f);
 
 		int test = GLCheckError();
 
@@ -61,15 +61,15 @@ namespace Scene
 		boxMesh->Create("Assets\\box.obj");
 		m_pModelsManager->AddModel("box", boxMesh);
 		Scene::GameObject* box = new GameObject();
-		box->setModel(boxMesh);
-		box->setPosition(glm::vec3(1.0, 1.0, 0.0));
-		box->setScale(1.0f);
+		box->SetModel(boxMesh);
+		box->SetPosition(glm::vec3(1.0, 1.0, 0.0));
+		box->SetScale(1.0f);
 		m_gameObjectsFlat.push_back(box);
 
 		Scene::GameObject* box2 = new GameObject();
-		box2->setModel(boxMesh);
-		box2->setPosition(glm::vec3(3.0, 1.0, 0.0));
-		box2->setScale(0.8f);
+		box2->SetModel(boxMesh);
+		box2->SetPosition(glm::vec3(3.0, 1.0, 0.0));
+		box2->SetScale(0.8f);
 		m_gameObjectsFlat.push_back(box2);
 
 
@@ -87,21 +87,21 @@ namespace Scene
 		groundMesh->Create("Assets\\ground.obj");
 		m_pModelsManager->AddModel("ground", groundMesh);
 		Scene::GameObject* ground = new GameObject();
-		ground->setModel(groundMesh);
-		ground->setPosition(glm::vec3(0.0, 0.0, 0.0));
-		ground->setScale(1.0f);
-		ground->addChild(box);
+		ground->SetModel(groundMesh);
+		ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		ground->SetScale(1.0f);
+		ground->AddChild(box);
 		m_gameObjectsFlat.push_back(ground);
 
 		m_shadowMapTech.Enable();
 	}
 
-	void ShadowMapDebugScene::update(float dt)
+	void ShadowMapDebugScene::Update(float dt)
 	{
 
 	}
 
-	void ShadowMapDebugScene::draw()
+	void ShadowMapDebugScene::Draw()
 	{
 		shadowMapPass();
 		renderPass();
@@ -118,8 +118,8 @@ namespace Scene
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
-			m_shadowMapTech.SetWorldMatrix((*nodeIter)->getModelMatrix());
-			(*nodeIter)->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			m_shadowMapTech.SetWorldMatrix((*nodeIter)->GetModelMatrix());
+			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -135,8 +135,8 @@ namespace Scene
 
 		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 
-		m_shadowMapTech.SetWorldMatrix(m_pQuad->getModelMatrix());
-		m_pQuad->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+		m_shadowMapTech.SetWorldMatrix(m_pQuad->GetModelMatrix());
+		m_pQuad->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		/*for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
 		m_shadowMapTech.SetWorldMatrix((*nodeIter)->getModelMatrix());

@@ -144,6 +144,7 @@
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
+    <ClCompile Include="Rendering\CubeMapTexture.cpp" />
     <ClCompile Include="Rendering\LightingTechnique.cpp" />
     <ClCompile Include="Rendering\Models\Cube.cpp" />
     <ClCompile Include="Rendering\Models\Mesh.cpp" />
@@ -155,12 +156,16 @@
     <ClCompile Include="Rendering\ShadowMapFbo.cpp" />
     <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp" />
     <ClCompile Include="Rendering\ShadowMapTechnique.cpp" />
+    <ClCompile Include="Rendering\SkyboxTechnique.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
+    <ClCompile Include="Scene\Components\GameComponent.cpp" />
+    <ClCompile Include="Scene\Components\SkyBox.cpp" />
     <ClCompile Include="Scene\GameObject.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\LightingScene.cpp" />
     <ClCompile Include="Scene\ShadowMapDebugScene.cpp" />
     <ClCompile Include="Scene\ShadowMapScene.cpp" />
+    <ClCompile Include="Scene\SkyboxScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\Common.h" />
@@ -175,6 +180,7 @@
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Rendering\Camera.h" />
+    <ClInclude Include="Rendering\CubeMapTexture.h" />
     <ClInclude Include="Rendering\IRenderable.h" />
     <ClInclude Include="Rendering\Lighting.h" />
     <ClInclude Include="Rendering\LightingTechnique.h" />
@@ -188,19 +194,25 @@
     <ClInclude Include="Rendering\ShadowMapFbo.h" />
     <ClInclude Include="Rendering\ShadowMapLightingTechnique.h" />
     <ClInclude Include="Rendering\ShadowMapTechnique.h" />
+    <ClInclude Include="Rendering\SkyboxTechnique.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\VertexFormat.h" />
+    <ClInclude Include="Scene\Components\GameComponent.h" />
+    <ClInclude Include="Scene\Components\SkyBox.h" />
     <ClInclude Include="Scene\GameObject.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\LightingScene.h" />
     <ClInclude Include="Scene\ShadowMapDebugScene.h" />
     <ClInclude Include="Scene\ShadowMapScene.h" />
+    <ClInclude Include="Scene\SkyboxScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\BasicLighting_fs.glsl" />
     <None Include="Shaders\BasicLighting_vs.glsl" />
     <None Include="Shaders\Camera_fragment.glsl" />
     <None Include="Shaders\Camera_vertex.glsl" />
+    <None Include="Shaders\EncryptedTexture_fs.glsl" />
+    <None Include="Shaders\EncryptedTexture_vs.glsl" />
     <None Include="Shaders\Fragment_Shader.glsl" />
     <None Include="Shaders\Lighting_fs.glsl" />
     <None Include="Shaders\Lighting_vs.glsl" />
@@ -208,6 +220,8 @@
     <None Include="Shaders\ShadowMapLighting_vs.glsl" />
     <None Include="Shaders\ShadowMap_fs.glsl" />
     <None Include="Shaders\ShadowMap_vs.glsl" />
+    <None Include="Shaders\Skybox_fs.glsl" />
+    <None Include="Shaders\Skybox_vs.glsl" />
     <None Include="Shaders\Vertex_Shader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

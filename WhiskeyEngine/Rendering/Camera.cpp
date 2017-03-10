@@ -3,9 +3,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW\glfw3.h> //TODO remove this dependency
 
+using namespace Scene::Components;
 
 namespace Rendering
 {
+	const FamilyType Camera::GetFamilyType()
+	{
+		return FamilyType::CAMERAS;
+	}
+
 
 	Camera::Camera(float fieldOfView, float aspectRatio, float near, float far) : fieldOfView(fieldOfView), aspectRatio(aspectRatio), zNear(near), zFar(far) 
 	{
@@ -20,6 +26,11 @@ namespace Rendering
 	}
 
 	Camera::~Camera()
+	{
+
+	}
+
+	void Camera::Update(float dt)
 	{
 
 	}
@@ -160,7 +171,7 @@ namespace Rendering
 	void Camera::updateMatrices()
 	{
 
-		projectionMatrix = glm::perspective(glm::degrees(fieldOfView), aspectRatio, zNear, zFar);
+		projectionMatrix = glm::perspective(glm::radians(fieldOfView), aspectRatio, zNear, zFar);
 		//projectionMatrix[0][0] = 1.0f / (aspectRatio * glm::tan(fieldOfView / 2.0f));
 		//projectionMatrix[1][1] = 1.0f / glm::tan(fieldOfView / 2.0f);
 		//projectionMatrix[2][2] = (-zNear - zFar) / (zNear - zFar);
@@ -193,7 +204,20 @@ namespace Rendering
 		updateMatrices();
 	}
 
+	void Camera::onKeyRepeated(int key, int scancode)
+	{
+		handleKey(key);
+	}
+	void Camera::onKeyReleased(int key, int scancode)
+	{
+
+	}
+
 	void Camera::onKeyPressed(int key, int scancode)
+	{
+		handleKey(key);
+	}
+	void Camera::handleKey(int key)
 	{
 		if (key == GLFW_KEY_UP)
 		{
@@ -236,10 +260,5 @@ namespace Rendering
 			yaw(-1.6);
 		}
 	}
-	void Camera::onKeyReleased(int key, int scancode)
-	{
-
-	}
-
 
 }

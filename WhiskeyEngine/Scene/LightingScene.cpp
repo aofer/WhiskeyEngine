@@ -19,7 +19,7 @@ namespace Scene
 
 	}
 
-	void LightingScene::init()
+	void LightingScene::Init()
 	{
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -6.0));
 		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, 0.0));
@@ -70,15 +70,15 @@ namespace Scene
 		boxMesh->Create("Assets\\box.obj");
 		m_pModelsManager->AddModel("box", boxMesh);
 		Scene::GameObject* box = new GameObject();
-		box->setModel(boxMesh);
-		box->setPosition(glm::vec3(1.0, 1.0, 0.0));
-		box->setScale(1.0f);
+		box->SetModel(boxMesh);
+		box->SetPosition(glm::vec3(1.0, 1.0, 0.0));
+		box->SetScale(1.0f);
 		m_gameObjectsFlat.push_back(box);
 
 		Scene::GameObject* box2 = new GameObject();
-		box2->setModel(boxMesh);
-		box2->setPosition(glm::vec3(3.0, 1.0, 0.0));
-		box2->setScale(0.8f);
+		box2->SetModel(boxMesh);
+		box2->SetPosition(glm::vec3(3.0, 1.0, 0.0));
+		box2->SetScale(0.8f);
 		m_gameObjectsFlat.push_back(box2);
 
 
@@ -86,19 +86,19 @@ namespace Scene
 		groundMesh->Create("Assets\\ground.obj");
 		m_pModelsManager->AddModel("ground", groundMesh);
 		Scene::GameObject* ground = new GameObject();
-		ground->setModel(groundMesh);
-		ground->setPosition(glm::vec3(0.0, 0.0, 0.0));
-		ground->setScale(1.0f);
-		ground->addChild(box);
+		ground->SetModel(groundMesh);
+		ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		ground->SetScale(1.0f);
+		ground->AddChild(box);
 		m_gameObjectsFlat.push_back(ground);
 	}
 
-	void LightingScene::update(float dt)
+	void LightingScene::Update(float dt)
 	{
 
 	}
 
-	void LightingScene::draw()
+	void LightingScene::Draw()
 	{
 		//const glm::mat4& WorldTransformation = p.GetWorldTrans();
 		m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getProjection() * m_pActiveCamera->getView());//TODO get model matrix
@@ -113,8 +113,8 @@ namespace Scene
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
-			m_lighting.SetWorldMatrix((*nodeIter)->getModelMatrix());
-			(*nodeIter)->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
+			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
 	}
 }

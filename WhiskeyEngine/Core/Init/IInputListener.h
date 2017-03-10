@@ -7,6 +7,7 @@ namespace Core{
 
 		virtual void onKeyPressed(int key, int scancode) = 0;
 		virtual void onKeyReleased(int key, int scancode) = 0;
+		virtual void onKeyRepeated(int key, int scancode) = 0;
 	};
 
 	}

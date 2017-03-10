@@ -3,6 +3,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtx\quaternion.hpp>
 
+
 namespace Rendering
 {
 	namespace Models
@@ -12,6 +13,11 @@ namespace Rendering
 }
 namespace Scene{
 
+	namespace Components
+	{
+		class GameComponent;
+	}
+	
 	class GameObject 
 	{
 
@@ -20,21 +26,24 @@ namespace Scene{
 		GameObject(GameObject* parent);
 		virtual ~GameObject();
 
-		glm::mat4 getModelMatrix() const;
-		glm::vec3 getPosition() const;
-		float getScale() const;
-		glm::quat getOrientation() const;
+		glm::mat4 GetModelMatrix() const;
+		glm::vec3 GetPosition() const;
+		float GetScale() const;
+		glm::quat GetOrientation() const;
 
-		void setOrientation(const glm::quat& orient);
-		void setPosition(const glm::vec3& position) ;
-		void setScale(const float& scale) ;
-		void setModel(Rendering::Models::Model* model);
-		void setParent(GameObject* parent);
-		GameObject* getParent() const;
-		Rendering::Models::Model* getModel() const;
-		void addChild(GameObject* child);
-		void update(float dt);
+		void SetOrientation(const glm::quat& orient);
+		void SetPosition(const glm::vec3& position) ;
+		void SetScale(const float& scale) ;
+		void SetModel(Rendering::Models::Model* model);
+		void SetParent(GameObject* parent);
+		GameObject* GetParent() const;
+		Rendering::Models::Model* GetModel() const;
+		void AddChild(GameObject* child);
+		void Update(float dt);
+
 		private:
+
+			void UpdateModelMatrix();
 
 			glm::mat4 m_modelMatrix;
 			glm::vec3 m_position;
@@ -43,6 +52,7 @@ namespace Scene{
 			Rendering::Models::Model* m_pModel; //Todo replace this when we add component system
 			GameObject* m_pParent;
 			std::vector<GameObject*> m_children;
-			void updateModelMatrix();
+			std::vector<Components::GameComponent*> m_gameComponents;
+
 	};
 }

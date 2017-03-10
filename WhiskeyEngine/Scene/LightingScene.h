@@ -14,10 +14,10 @@ namespace Scene{
 		LightingScene();
 		virtual ~LightingScene();
 
-		virtual void init() override;
+		virtual void Init() override;
 
-		virtual void update(float dt) override;
-		virtual void draw() override;
+		virtual void Update(float dt) override;
+		virtual void Draw() override;
 
 	private:
 		Rendering::LightingTechnique m_lighting;

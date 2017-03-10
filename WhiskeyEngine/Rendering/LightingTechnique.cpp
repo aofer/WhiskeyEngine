@@ -146,13 +146,6 @@ void LightingTechnique::SetWVP(const glm::mat4& WVP)
 	glUniformMatrix4fv(m_WVPLocation, 1, GL_FALSE, &WVP[0][0]);
 }
 
-//TODO check what to do with it
-//void LightingTechnique::SetLightWVP(const glm::mat4& LightWVP)
-//{
-//	glUniformMatrix4fv(m_LightWVPLocation, 1, GL_FALSE, &LightWVP[0][0]);
-//}
-
-
 void LightingTechnique::SetWorldMatrix(const glm::mat4& WorldInverse)
 {
 	glUniformMatrix4fv(m_WorldMatrixLocation, 1, GL_FALSE, &WorldInverse[0][0]);

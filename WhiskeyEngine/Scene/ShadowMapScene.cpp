@@ -23,7 +23,7 @@ namespace Scene
 		
 	}
 
-	void ShadowMapScene::init()
+	void ShadowMapScene::Init()
 	{
 
 		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -8.0));
@@ -81,47 +81,47 @@ namespace Scene
 		}
 		m_pModelsManager->AddModel("quad", quad);
 		m_pQuad = new GameObject();
-		m_pQuad->setModel(quad);
-		m_pQuad->setPosition(glm::vec3(0.0, 0.0, 1.0));
-		m_pQuad->setScale(5.0f);
+		m_pQuad->SetModel(quad);
+		m_pQuad->SetPosition(glm::vec3(0.0, 0.0, 1.0));
+		m_pQuad->SetScale(5.0f);
 
 		Models::Mesh* groundMesh = new Models::Mesh();
 		groundMesh->Create("Assets\\ground.obj");
 		m_pModelsManager->AddModel("ground", groundMesh);
 		m_pGround = new GameObject();
-		m_pGround->setModel(groundMesh);
-		m_pGround->setPosition(glm::vec3(0.0, 0.0, 0.0));
-		m_pGround->setScale(1.0f);
+		m_pGround->SetModel(groundMesh);
+		m_pGround->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		m_pGround->SetScale(1.0f);
 		//m_gameObjectsFlat.push_back(m_pGround);
 
 		Models::Mesh* spinningMesh = new Models::Mesh();
 		spinningMesh->Create("Assets\\deer-obj.obj");
 		m_pModelsManager->AddModel("spinning", spinningMesh);
 		m_spinningBox = new GameObject();
-		m_spinningBox->setModel(spinningMesh);
-		m_spinningBox->setPosition(glm::vec3(0.0, 2.0, 0.0));
-		m_spinningBox->setScale(0.15f);
+		m_spinningBox->SetModel(spinningMesh);
+		m_spinningBox->SetPosition(glm::vec3(0.0, 2.0, 0.0));
+		m_spinningBox->SetScale(0.15f);
 		m_gameObjectsFlat.push_back(m_spinningBox);
 
 		Models::Mesh* boxMesh = new Models::Mesh();
 		boxMesh->Create("Assets\\box.obj");
 		m_pModelsManager->AddModel("box", boxMesh);
 		Scene::GameObject* box2 = new GameObject();
-		box2->setModel(boxMesh);
-		box2->setPosition(glm::vec3(3.0, 1.0, 0.0));
-		box2->setScale(0.8f);
+		box2->SetModel(boxMesh);
+		box2->SetPosition(glm::vec3(3.0, 1.0, 0.0));
+		box2->SetScale(0.8f);
 		m_gameObjectsFlat.push_back(box2);
 
 
 
 	}
 
-	void ShadowMapScene::update(float dt)
+	void ShadowMapScene::Update(float dt)
 	{
-		m_spinningBox->setOrientation(m_spinningBox->getOrientation()  *  glm::angleAxis(glm::degrees(0.5f* dt), glm::vec3(0.0f, 1.f, 0.f)));
+		m_spinningBox->SetOrientation(m_spinningBox->GetOrientation()  *  glm::angleAxis(glm::degrees(0.05f* dt), glm::vec3(0.0f, 1.f, 0.f)));
 	}
 
-	void ShadowMapScene::draw()
+	void ShadowMapScene::Draw()
 	{
 		shadowMapPass();
 
@@ -145,8 +145,8 @@ namespace Scene
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
-			m_shadowMapTech.SetWorldMatrix((*nodeIter)->getModelMatrix());
-			(*nodeIter)->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			m_shadowMapTech.SetWorldMatrix((*nodeIter)->GetModelMatrix());
+			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -171,11 +171,11 @@ namespace Scene
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
-			m_lightingTech.SetWorldMatrix((*nodeIter)->getModelMatrix());
-			(*nodeIter)->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			m_lightingTech.SetWorldMatrix((*nodeIter)->GetModelMatrix());
+			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
-		m_lightingTech.SetWorldMatrix(m_pGround->getModelMatrix());
-		m_pGround->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+		m_lightingTech.SetWorldMatrix(m_pGround->GetModelMatrix());
+		m_pGround->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 
 	}
 
@@ -189,8 +189,8 @@ namespace Scene
 
 		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 
-		m_shadowMapTech.SetWorldMatrix(m_pQuad->getModelMatrix());
-		m_pQuad->getModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+		m_shadowMapTech.SetWorldMatrix(m_pQuad->GetModelMatrix());
+		m_pQuad->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 	}
 
 	void ShadowMapScene::onKeyPressed(int key, int scancode)
