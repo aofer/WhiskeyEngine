@@ -17,6 +17,7 @@ namespace Scene{
 	{
 		class GameComponent;
 	}
+	typedef uint32_t go_id;
 	
 	class GameObject 
 	{
@@ -26,10 +27,11 @@ namespace Scene{
 		GameObject(GameObject* parent);
 		virtual ~GameObject();
 
-		glm::mat4 GetModelMatrix() const;
-		glm::vec3 GetPosition() const;
-		float GetScale() const;
-		glm::quat GetOrientation() const;
+		const glm::mat4& GetModelMatrix() const;
+		const glm::vec3& GetPosition() const;
+		const float& GetScale() const;
+		const glm::quat& GetOrientation() const;
+		const std::string& GetGOName() const;
 
 		void SetOrientation(const glm::quat& orient);
 		void SetPosition(const glm::vec3& position) ;
@@ -44,7 +46,8 @@ namespace Scene{
 		private:
 
 			void UpdateModelMatrix();
-
+			std::string m_goName;
+			go_id		m_goId;
 			glm::mat4 m_modelMatrix;
 			glm::vec3 m_position;
 			glm::quat m_orientation;

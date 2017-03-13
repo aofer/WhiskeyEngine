@@ -161,12 +161,12 @@ void LightingTechnique::SetTextureUnit(uint TextureUnit)
 
 void LightingTechnique::SetDirectionalLight(const DirectionalLight& Light)
 {
-	glUniform3f(m_dirLightLocation.Color, Light.Color.x, Light.Color.y, Light.Color.z);
-	glUniform1f(m_dirLightLocation.AmbientIntensity, Light.AmbientIntensity);
-	glm::vec3 Direction = Light.Direction;
+	glUniform3f(m_dirLightLocation.Color, Light.m_color.x, Light.m_color.y, Light.m_color.z);
+	glUniform1f(m_dirLightLocation.AmbientIntensity, Light.m_ambientIntensity);
+	glm::vec3 Direction = Light.m_direction;
 	glm::normalize(Direction);
 	glUniform3f(m_dirLightLocation.Direction, Direction.x, Direction.y, Direction.z);
-	glUniform1f(m_dirLightLocation.DiffuseIntensity, Light.DiffuseIntensity);
+	glUniform1f(m_dirLightLocation.DiffuseIntensity, Light.m_diffuseIntensity);
 }
 
 
@@ -193,10 +193,10 @@ void LightingTechnique::SetPointLights(uint NumLights, const PointLight* pLights
 	glUniform1i(m_numPointLightsLocation, NumLights);
 
 	for (uint i = 0; i < NumLights; i++) {
-		glUniform3f(m_pointLightsLocation[i].Color, pLights[i].Color.x, pLights[i].Color.y, pLights[i].Color.z);
-		glUniform1f(m_pointLightsLocation[i].AmbientIntensity, pLights[i].AmbientIntensity);
-		glUniform1f(m_pointLightsLocation[i].DiffuseIntensity, pLights[i].DiffuseIntensity);
-		glUniform3f(m_pointLightsLocation[i].Position, pLights[i].Position.x, pLights[i].Position.y, pLights[i].Position.z);
+		glUniform3f(m_pointLightsLocation[i].Color, pLights[i].m_color.x, pLights[i].m_color.y, pLights[i].m_color.z);
+		glUniform1f(m_pointLightsLocation[i].AmbientIntensity, pLights[i].m_ambientIntensity);
+		glUniform1f(m_pointLightsLocation[i].DiffuseIntensity, pLights[i].m_diffuseIntensity);
+		glUniform3f(m_pointLightsLocation[i].Position, pLights[i].m_position.x, pLights[i].m_position.y, pLights[i].m_position.z);
 		glUniform1f(m_pointLightsLocation[i].Atten.Constant, pLights[i].Attenuation.Constant);
 		glUniform1f(m_pointLightsLocation[i].Atten.Linear, pLights[i].Attenuation.Linear);
 		glUniform1f(m_pointLightsLocation[i].Atten.Exp, pLights[i].Attenuation.Exp);
@@ -209,14 +209,14 @@ void LightingTechnique::SetSpotLights(uint NumLights, const SpotLight* pLights)
 	glUniform1i(m_numSpotLightsLocation, NumLights);
 
 	for (uint i = 0; i < NumLights; i++) {
-		glUniform3f(m_spotLightsLocation[i].Color, pLights[i].Color.x, pLights[i].Color.y, pLights[i].Color.z);
-		glUniform1f(m_spotLightsLocation[i].AmbientIntensity, pLights[i].AmbientIntensity);
-		glUniform1f(m_spotLightsLocation[i].DiffuseIntensity, pLights[i].DiffuseIntensity);
-		glUniform3f(m_spotLightsLocation[i].Position, pLights[i].Position.x, pLights[i].Position.y, pLights[i].Position.z);
-		glm::vec3 Direction = pLights[i].Direction;
+		glUniform3f(m_spotLightsLocation[i].Color, pLights[i].m_color.x, pLights[i].m_color.y, pLights[i].m_color.z);
+		glUniform1f(m_spotLightsLocation[i].AmbientIntensity, pLights[i].m_ambientIntensity);
+		glUniform1f(m_spotLightsLocation[i].DiffuseIntensity, pLights[i].m_diffuseIntensity);
+		glUniform3f(m_spotLightsLocation[i].Position, pLights[i].m_position.x, pLights[i].m_position.y, pLights[i].m_position.z);
+		glm::vec3 Direction = pLights[i].m_direction;
 		glm::normalize(Direction);
 		glUniform3f(m_spotLightsLocation[i].Direction, Direction.x, Direction.y, Direction.z);
-		glUniform1f(m_spotLightsLocation[i].Cutoff, cosf(glm::radians(pLights[i].Cutoff)));
+		glUniform1f(m_spotLightsLocation[i].Cutoff, cosf(glm::radians(pLights[i].m_cutoff)));
 		glUniform1f(m_spotLightsLocation[i].Atten.Constant, pLights[i].Attenuation.Constant);
 		glUniform1f(m_spotLightsLocation[i].Atten.Linear, pLights[i].Attenuation.Linear);
 		glUniform1f(m_spotLightsLocation[i].Atten.Exp, pLights[i].Attenuation.Exp);

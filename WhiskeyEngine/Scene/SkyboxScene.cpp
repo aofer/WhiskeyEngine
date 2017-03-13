@@ -36,22 +36,22 @@ namespace Scene
 		m_lighting.SetTextureUnit(0);
 
 		PointLight pl[1];
-		pl[0].DiffuseIntensity = 0.25f;
-		pl[0].AmbientIntensity = 0.1f;
-		pl[0].Color = glm::vec3(1.0f, 1.0f, 1.0f);
-		pl[0].Position = glm::vec3(2.0f, 3.0f, 0.0f);
+		pl[0].m_diffuseIntensity = 0.25f;
+		pl[0].m_ambientIntensity = 0.1f;
+		pl[0].m_color = glm::vec3(1.0f, 1.0f, 1.0f);
+		pl[0].m_position = glm::vec3(2.0f, 3.0f, 0.0f);
 		pl[0].Attenuation.Linear = 0.1f;
 
 		m_lighting.SetPointLights(1, pl);
 
 		SpotLight spotLights[1];
-		spotLights[0].Color = glm::vec3(1.0, 1.0, 1.0);
-		spotLights[0].DiffuseIntensity = 0.3f;
-		spotLights[0].Direction = glm::vec3(0.0, -1.0, 0.0);
+		spotLights[0].m_color = glm::vec3(1.0, 1.0, 1.0);
+		spotLights[0].m_diffuseIntensity = 0.3f;
+		spotLights[0].m_direction = glm::vec3(0.0, -1.0, 0.0);
 		spotLights[0].Attenuation.Linear = 0.1f;
-		spotLights[0].AmbientIntensity = 0.1f;
-		spotLights[0].Cutoff = 10.5f;
-		spotLights[0].Position = glm::vec3(-2.0, 10.0, -2.0);
+		spotLights[0].m_ambientIntensity = 0.1f;
+		spotLights[0].m_cutoff = 10.5f;
+		spotLights[0].m_position = glm::vec3(-2.0, 10.0, -2.0);
 		//spotLights[0].
 
 		m_lighting.SetSpotLights(1, spotLights);

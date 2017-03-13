@@ -1,36 +1,47 @@
 #pragma once
 
 #include <glm/glm.hpp>
-
+#include "../Scene/Components/GameComponent.h"
 namespace Rendering 
 {
-	struct BaseLight
+	struct BaseLight : public Scene::Components::GameComponent
 	{
-		glm::vec3 Color;
-		float AmbientIntensity;
-		float DiffuseIntensity;
+		glm::vec3 m_color;
+		float m_ambientIntensity;
+		float m_diffuseIntensity;
+		bool  m_produceShadows;
+
+		virtual void Update(float dt)
+		{
+
+		}
+		const Scene::Components::FamilyType GetFamilyType()
+		{
+			return Scene::Components::FamilyType::LIGHTING;
+		}
 
 		BaseLight()
 		{
-			Color = glm::vec3(0.0f, 0.0f, 0.0f);
-			AmbientIntensity = 0.0f;
-			DiffuseIntensity = 0.0f;
+			m_produceShadows = false;
+			m_color = glm::vec3(0.0f, 0.0f, 0.0f);
+			m_ambientIntensity = 0.0f;
+			m_diffuseIntensity = 0.0f;
 		}
 	};
 
 	struct DirectionalLight : public BaseLight
 	{
-		glm::vec3 Direction;
+		glm::vec3 m_direction;
 
 		DirectionalLight()
 		{
-			Direction = glm::vec3(0.0f, 0.0f, 0.0f);
+			m_direction = glm::vec3(0.0f, 0.0f, 0.0f);
 		}
 	};
 
 	struct PointLight : public BaseLight
 	{
-		glm::vec3 Position;
+		glm::vec3 m_position;
 
 		struct
 		{
@@ -41,7 +52,7 @@ namespace Rendering
 
 		PointLight()
 		{
-			Position = glm::vec3(0.0f, 0.0f, 0.0f);
+			m_position = glm::vec3(0.0f, 0.0f, 0.0f);
 			Attenuation.Constant = 0.0f;
 			Attenuation.Linear = 0.0f;
 			Attenuation.Exp = 0.0f;
@@ -50,13 +61,13 @@ namespace Rendering
 
 	struct SpotLight : public PointLight
 	{
-		glm::vec3 Direction;
-		float Cutoff;
+		glm::vec3 m_direction;
+		float m_cutoff;
 
 		SpotLight()
 		{
-			Direction = glm::vec3(0.0f, 0.0f, 0.0f);
-			Cutoff = 0.0f;
+			m_direction = glm::vec3(0.0f, 0.0f, 0.0f);
+			m_cutoff = 0.0f;
 		}
 	};
 }

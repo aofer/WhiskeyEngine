@@ -58,17 +58,17 @@ namespace Scene
 
 
 
-	glm::mat4 GameObject::GetModelMatrix() const
+	const glm::mat4& GameObject::GetModelMatrix() const
 	{
 		return m_modelMatrix;
 	}
 
-	glm::vec3 GameObject::GetPosition() const
+	const glm::vec3& GameObject::GetPosition() const
 	{
 		return m_position;
 	}
 
-	float GameObject::GetScale() const
+	const float& GameObject::GetScale() const
 	{
 		return m_scale;
 	}
@@ -84,9 +84,14 @@ namespace Scene
 		m_scale = scale;
 		UpdateModelMatrix();
 	}
-	glm::quat GameObject::GetOrientation() const
+	const glm::quat& GameObject::GetOrientation() const
 	{
 		return m_orientation;
+	}
+
+	const std::string& GameObject::GetGOName() const
+	{
+		return m_goName;
 	}
 
 	void GameObject::SetOrientation(const glm::quat& orient)

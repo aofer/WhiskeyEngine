@@ -46,16 +46,16 @@ namespace Scene
 			printf("Error initializing the shadow map technique\n");
 		}
 
-		m_spotLight.Color = glm::vec3(1.0, 1.0, 1.0);
-		m_spotLight.DiffuseIntensity = 0.3f;
-		m_spotLight.Direction = glm::vec3(-0.5, -10.0, -2.0);
+		m_spotLight.m_color = glm::vec3(1.0, 1.0, 1.0);
+		m_spotLight.m_diffuseIntensity = 0.3f;
+		m_spotLight.m_direction = glm::vec3(-0.5, -10.0, -2.0);
 		m_spotLight.Attenuation.Linear = 0.1f;
-		m_spotLight.AmbientIntensity = 0.1f;
-		m_spotLight.Cutoff = 40.5f;
-		m_spotLight.Position = glm::vec3(0.5, 10.0, 2.0);
+		m_spotLight.m_ambientIntensity = 0.1f;
+		m_spotLight.m_cutoff = 40.5f;
+		m_spotLight.m_position = glm::vec3(0.5, 10.0, 2.0);
 
-		m_spotCamera.setPosition(m_spotLight.Position);
-		m_spotCamera.setLookAt(glm::vec3(m_spotLight.Position + m_spotLight.Direction));
+		m_spotCamera.setPosition(m_spotLight.m_position);
+		m_spotCamera.setLookAt(glm::vec3(m_spotLight.m_position + m_spotLight.m_direction));
 
 		Models::Mesh* boxMesh = new Models::Mesh();
 		boxMesh->Create("Assets\\box.obj");

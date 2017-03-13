@@ -49,26 +49,26 @@ namespace Scene
 		m_lightingTech.SetShadowMapTextureUnit(1);
 
 		PointLight pl[1];
-		pl[0].DiffuseIntensity = 0.055f;
-		pl[0].AmbientIntensity = 0.05f;
-		pl[0].Color = glm::vec3(0.8f, 0.7f, 1.0f);
-		pl[0].Position = glm::vec3(2.0f, 2.0f, 0.0f);
+		pl[0].m_diffuseIntensity = 0.055f;
+		pl[0].m_ambientIntensity = 0.05f;
+		pl[0].m_color = glm::vec3(0.8f, 0.7f, 1.0f);
+		pl[0].m_position = glm::vec3(2.0f, 2.0f, 0.0f);
 		pl[0].Attenuation.Linear = 0.1f;
 
 		m_lightingTech.SetPointLights(1, pl);
 
 
-		m_spotLight.Color = glm::vec3(1.0, 1.0, 1.0);
-		m_spotLight.DiffuseIntensity = 0.03f;
-		m_spotLight.Direction = glm::vec3(-0.5, -10.0, -2.0);
+		m_spotLight.m_color = glm::vec3(1.0, 1.0, 1.0);
+		m_spotLight.m_diffuseIntensity = 0.03f;
+		m_spotLight.m_direction = glm::vec3(-0.5, -10.0, -2.0);
 		m_spotLight.Attenuation.Linear = 0.1f;
-		m_spotLight.AmbientIntensity = 0.001f;
-		m_spotLight.Cutoff = 40.5f;
-		m_spotLight.Position = glm::vec3(0.5, 8.0, 2.0);
+		m_spotLight.m_ambientIntensity = 0.001f;
+		m_spotLight.m_cutoff = 40.5f;
+		m_spotLight.m_position = glm::vec3(0.5, 8.0, 2.0);
 
 
-		m_spotCamera.setPosition(m_spotLight.Position);
-		m_spotCamera.setLookAt(glm::vec3(m_spotLight.Position + m_spotLight.Direction));
+		m_spotCamera.setPosition(m_spotLight.m_position);
+		m_spotCamera.setLookAt(glm::vec3(m_spotLight.m_position + m_spotLight.m_direction));
 
 
 		m_lightingTech.SetSpotLights(1, &m_spotLight);

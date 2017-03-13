@@ -4,7 +4,7 @@ namespace Scene
 {
 	namespace Components
 	{
-		GameComponent::GameComponent(go_priority priority):
+		GameComponent::GameComponent(gc_priority priority):
 			m_priority(priority)
 		{
 
@@ -21,7 +21,7 @@ namespace Scene
 
 		}
 
-		const go_priority GameComponent::GetPriority() const
+		const gc_priority GameComponent::GetPriority() const
 		{
 			return m_priority;
 		}
