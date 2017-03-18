@@ -5,6 +5,7 @@
 #include "../Rendering/Camera.h"
 #include "../Rendering/LightingTechnique.h"
 
+//THIS CLASS WILL BE REMOVED SOON
 namespace Scene
 {
 	class GameObject;
@@ -29,7 +30,6 @@ namespace Managers
 		Managers::ShaderManager* shaderManager;
 		Managers::ModelsManager* modelsManager;
 		Scene::GameScene*			 m_activeScene;
-		LightingTechnique m_lighting;
 	};
 
 }

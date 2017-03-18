@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
+#include <map>
 #include <glm\glm.hpp>
 #include <glm\gtx\quaternion.hpp>
+#include "Components/GameComponent.h"
 
 
 namespace Rendering
@@ -16,6 +18,7 @@ namespace Scene{
 	namespace Components
 	{
 		class GameComponent;
+		//enum class FamilyType;
 	}
 	typedef uint32_t go_id;
 	
@@ -42,6 +45,7 @@ namespace Scene{
 		Rendering::Models::Model* GetModel() const;
 		void AddChild(GameObject* child);
 		void Update(float dt);
+		void AddGameComponent(const Components::FamilyType& familyType, Components::GameComponent* component);
 
 		private:
 
@@ -55,7 +59,7 @@ namespace Scene{
 			Rendering::Models::Model* m_pModel; //Todo replace this when we add component system
 			GameObject* m_pParent;
 			std::vector<GameObject*> m_children;
-			std::vector<Components::GameComponent*> m_gameComponents;
+			std::map<const Components::FamilyType, Components::GameComponent*> m_gameComponents;
 
 	};
 }

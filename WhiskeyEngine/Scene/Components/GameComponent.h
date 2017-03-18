@@ -1,6 +1,8 @@
 #pragma once
 
 namespace Scene{
+	
+	class GameObject;
 
 	namespace Components
 	{
@@ -14,21 +16,22 @@ namespace Scene{
 		};
 
 		typedef unsigned int gc_id;
-		typedef unsigned int gc_priority;
+
 
 		class GameComponent
 		{
 		public:
-
-			GameComponent(gc_priority priority);
-			GameComponent();
+			GameComponent(); //A hack to keep stuff compling - will be removed soon
+			GameComponent(GameObject* owner);
 			virtual ~GameComponent();
 			virtual const FamilyType GetFamilyType() = 0 ;
-			const gc_priority GetPriority() const;
+			const GameObject* GetOwner() const;
+
 			virtual void Update(float dt) = 0;
 
 		private:
-			const gc_priority m_priority; //Game objects will be updated by their given priority
+			GameObject* m_pOwner;
+
 		};
 
 	}

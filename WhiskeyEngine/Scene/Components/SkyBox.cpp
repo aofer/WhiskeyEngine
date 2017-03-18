@@ -60,12 +60,6 @@ namespace Scene
 			glCullFace(GL_FRONT);
 			glDepthFunc(GL_LEQUAL);
 
-			//Pipeline p;
-			//p.Scale(20.0f, 20.0f, 20.0f);
-			//p.Rotate(0.0f, 0.0f, 0.0f);
-			//p.WorldPos(m_pCamera->GetPos().x, m_pCamera->GetPos().y, m_pCamera->GetPos().z);
-			//p.SetCamera(m_pCamera->GetPos(), m_pCamera->GetTarget(), m_pCamera->GetUp());
-			//p.SetPerspectiveProj(m_persProjInfo);
 			m_skyboxTech->SetWVP( m_pCamera->getViewProjection() * modelMatrix/*m_pCamera->getProjection() * m_pCamera->getView()*/);
 			m_pCubeMapTexture->Bind(GL_TEXTURE0);
 			m_pMesh->Draw(m_pCamera->getProjection(), m_pCamera->getView());

@@ -4,27 +4,29 @@ namespace Scene
 {
 	namespace Components
 	{
-		GameComponent::GameComponent(gc_priority priority):
-			m_priority(priority)
+
+		GameComponent::GameComponent():
+			GameComponent(nullptr)
 		{
 
 		}
 
-		GameComponent::GameComponent():
-			m_priority(1)
+		GameComponent::GameComponent(GameObject* owner):
+			m_pOwner(owner)
 		{
 
 		}
 
 		GameComponent::~GameComponent()
 		{
-
+			m_pOwner = nullptr;
 		}
 
-		const gc_priority GameComponent::GetPriority() const
+		const GameObject* GameComponent::GetOwner() const
 		{
-			return m_priority;
+			return m_pOwner;
 		}
+
 
 	}
 }

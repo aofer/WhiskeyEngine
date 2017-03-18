@@ -4,7 +4,6 @@
 #include "../Rendering/Lighting.h"
 #include "GameObject.h"
 #include "../Managers/ModelsManager.h"
-#include "../Rendering/Pipeline.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 using namespace Rendering;

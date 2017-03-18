@@ -6,6 +6,8 @@
 #include "../Rendering/Models/Quad.h"
 #include "../Rendering/Models/Cube.h"
 
+//TODO turn into meshes cache
+
 using namespace Rendering;
 
 namespace Managers

@@ -1,13 +1,12 @@
 #include "SceneManager.h"
 #include <glm/glm.hpp>
-#include "../Rendering/Pipeline.h"
 #include "../Rendering/Models/Mesh.h"
 #include "../Rendering/Models/Model.h"
 #include "../Scene/GameObject.h"
 #include "../Scene/GameScene.h"
-#include "../Scene//LightingScene.h"
-#include "../Scene//ShadowMapDebugScene.h"
-#include "../Scene//ShadowMapScene.h"
+#include "../Scene/LightingScene.h"
+#include "../Scene/ShadowMapDebugScene.h"
+#include "../Scene/ShadowMapScene.h"
 #include "../Scene/SkyboxScene.h"
 
 using namespace Managers;

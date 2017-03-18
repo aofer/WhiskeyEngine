@@ -4,7 +4,6 @@
 #include "../Rendering/Models/Mesh.h"
 #include "GameObject.h"
 #include "../Managers/ModelsManager.h"
-#include "../Rendering/Pipeline.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW\glfw3.h> //TODO remove this dependency
 #include "../Managers/InputManager.h"

@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -36,6 +32,9 @@
     </Filter>
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{d81c0491-50e8-4bcc-8619-1fbe2e798db8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Components">
+      <UniqueIdentifier>{1359ee50-848b-4ad0-83bd-de9f64291501}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,53 +83,53 @@
     <ClCompile Include="Rendering\Models\Mesh.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Pipeline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\ShadowMapFbo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\RenderingTechnique.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\LightingTechnique.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\ShadowMapTechnique.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\GameObject.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\LightingScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\GameScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Rendering\RenderingTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\ShadowMapScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\ShadowMapDebugScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Rendering\LightingTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\CubeMapTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Components\SkyBox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\SkyboxTechnique.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SkyboxScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Rendering\ShadowMapTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\SkyBox.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ShadowMapScene.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShadowMapFbo.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Components\GameComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\RenderingSystem.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\CubeMapTexture.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SkyboxScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ShadowMapDebugScene.cpp">
+      <Filter>Source Files\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,18 +193,6 @@
     <ClInclude Include="Rendering\RenderingTechnique.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Pipeline.h">
-      <Filter>Source Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\ShadowMapFbo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\LightingTechnique.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\ShadowMapTechnique.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\IRenderable.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
@@ -218,32 +205,47 @@
     <ClInclude Include="Scene\LightingScene.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\ShadowMapScene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Managers\System.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\ShadowMapDebugScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\ShadowMapLightingTechnique.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Init\IInputListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\CubeMapTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Components\SkyBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\SkyboxTechnique.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\SkyboxScene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Managers\RenderingSystem.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Components\GameComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapLightingTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\LightingTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShadowMapFbo.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\CubeMapTexture.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\SkyBox.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SkyboxTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SkyboxScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ShadowMapDebugScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ShadowMapScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Init\IInputListener.h">
+      <Filter>Source Files\Core\Init</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -277,11 +279,17 @@
     <None Include="Shaders\ShadowMap_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\ShadowMapLighting_fs.glsl" />
-    <None Include="Shaders\ShadowMapLighting_vs.glsl" />
-    <None Include="Shaders\EncryptedTexture_fs.glsl" />
-    <None Include="Shaders\EncryptedTexture_vs.glsl" />
-    <None Include="Shaders\Skybox_vs.glsl" />
-    <None Include="Shaders\Skybox_fs.glsl" />
+    <None Include="Shaders\ShadowMapLighting_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ShadowMapLighting_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Skybox_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Skybox_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

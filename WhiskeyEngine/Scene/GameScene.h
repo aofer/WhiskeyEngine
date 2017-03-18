@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <glm\glm.hpp>
+#include "../Rendering/Lighting.h"
 
 namespace Managers
 {
@@ -29,8 +30,15 @@ namespace Scene{
 		virtual void Update(float dt) = 0;
 		virtual void Draw() = 0;
 
+		const std::vector<Rendering::BaseLight*>& GetLights() const;
+		const std::vector<GameObject*>& GetGameObjectsFlat() const;
+
+	private:
+		void AddLight(Rendering::BaseLight* light);
+
 	protected:
 		std::vector<GameObject*> m_gameObjectsFlat;
+		std::vector<Rendering::BaseLight*>	m_lights;
 		GameScene::GameObject* m_pRoot;
 		Rendering::Camera* m_pActiveCamera;
 		Managers::ModelsManager*	m_pModelsManager;

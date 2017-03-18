@@ -3,6 +3,8 @@
 #include "../Managers/ModelsManager.h"
 #include "../Managers/InputManager.h"
 #include "../Rendering/Camera.h"
+
+
 namespace Scene
 {
 	GameScene::GameScene(Managers::ModelsManager* modelsManager)
@@ -24,6 +26,21 @@ namespace Scene
 	GameScene::~GameScene()
 	{
 
+	}
+
+	const std::vector<Rendering::BaseLight*>& GameScene::GetLights() const
+	{
+		return m_lights;
+	}
+
+	void GameScene::AddLight(Rendering::BaseLight* light)
+	{
+		m_lights.push_back(light);
+	}
+
+	const std::vector<GameObject*>& GameScene::GetGameObjectsFlat() const
+	{
+		return m_gameObjectsFlat;
 	}
 }
 

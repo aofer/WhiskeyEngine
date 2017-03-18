@@ -29,6 +29,16 @@ namespace Scene
 
 	}
 
+	void GameObject::AddGameComponent(const Components::FamilyType& familyType, Components::GameComponent* component)
+	{
+		if (m_gameComponents.find(familyType) != m_gameComponents.end())
+		{
+			//Remove old component replace with new
+			delete m_gameComponents[familyType];
+		}
+		m_gameComponents[familyType] = component;
+	}
+
 	void GameObject::SetParent(GameObject* parent)
 	{
 		m_pParent = parent;
