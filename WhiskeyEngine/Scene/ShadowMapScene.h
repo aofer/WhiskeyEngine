@@ -28,7 +28,7 @@ namespace Scene{
 		//support keyboard controls
 		virtual void onKeyPressed(int key, int scancode);
 		virtual void onKeyReleased(int key, int scancode);
-
+		virtual void onKeyRepeated(int key, int scancode);
 	private:
 		Rendering::ShadowMapLightingTechnique	m_lightingTech;
 		Rendering::ShadowMapTechnique	m_shadowMapTech;

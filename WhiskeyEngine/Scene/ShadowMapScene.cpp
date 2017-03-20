@@ -204,7 +204,10 @@ namespace Scene
 
 	}
 
+	void ShadowMapScene::onKeyRepeated(int key, int scancode)
+	{
 
+	}
 
 }
 

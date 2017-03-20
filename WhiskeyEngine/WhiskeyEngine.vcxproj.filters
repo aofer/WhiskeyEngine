@@ -131,6 +131,9 @@
     <ClCompile Include="Scene\ShadowMapDebugScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\MeshContainer.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -246,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="Core\Init\IInputListener.h">
       <Filter>Source Files\Core\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\MeshContainer.h">
+      <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
