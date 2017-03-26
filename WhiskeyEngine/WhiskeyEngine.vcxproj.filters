@@ -134,6 +134,27 @@
     <ClCompile Include="Rendering\Models\MeshContainer.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\BlinnPhongGbuffer.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SimplePBRGBuffer.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SimplePBRGeometryPassTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SimplePBRPointLightPassTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SimplePBRFinalCompositionTechnique.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GeometryPassTestScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\DeferredPBRTestScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -253,6 +274,30 @@
     <ClInclude Include="Rendering\Models\MeshContainer.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\BlinnPhongGbuffer.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Materials.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SimplePBRGBuffer.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SimplePBRGeometryPassTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SimplePBRPointLightPassTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SimplePBRFinalCompositionTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GeometryPassTestScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\DeferredPBRTestScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -295,6 +340,18 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\Skybox_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\PBRGPass_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\PBRGPass_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\PBRPointLightPass_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\PBRLightPass_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

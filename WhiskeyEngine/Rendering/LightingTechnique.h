@@ -22,7 +22,7 @@ namespace Rendering
 
 		void SetWVP(const glm::mat4& WVP);
 	//	void SetLightWVP(const glm::mat4& LightWVP);
-		void SetWorldMatrix(const glm::mat4& WVP);
+		void SetWorldMatrix(const glm::mat4& world);
 		void SetTextureUnit(unsigned int TextureUnit);
 		void SetDirectionalLight(const DirectionalLight& Light);
 		void SetPointLights(unsigned int NumLights, const PointLight* pLights);

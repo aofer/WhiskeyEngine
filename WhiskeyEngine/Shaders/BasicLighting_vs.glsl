@@ -14,7 +14,7 @@ out vec3 WorldPos0;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    gl_Position =  gWVP * gWorld * vec4(in_position, 1 );                    
+    gl_Position =  gWVP *  vec4(in_position, 1.0 );                    
     TexCoord0   = in_textcoords;                                                         
     Normal0     = (gWorld * vec4(in_normal, 0.0)).xyz;                                 
     WorldPos0   = (gWorld * vec4(in_position, 1.0)).xyz;                                                    
