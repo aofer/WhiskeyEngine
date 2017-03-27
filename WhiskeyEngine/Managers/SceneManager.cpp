@@ -31,8 +31,8 @@ SceneManager::SceneManager()
 	modelsManager = new ModelsManager();
 
 	//m_activeScene = new ShadowMapScene();
-	//m_activeScene = new GeometryPassTestScene();
-	m_activeScene = new DeferredPBRTestScene();
+	m_activeScene = new GeometryPassTestScene();
+	//m_activeScene = new DeferredPBRTestScene();
 	//m_activeScene = new SkyboxScene();
 	//m_activeScene = new LightingScene();
 	m_activeScene->SetModelsManager(modelsManager);
