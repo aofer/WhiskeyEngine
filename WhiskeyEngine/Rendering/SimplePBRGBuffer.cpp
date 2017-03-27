@@ -24,6 +24,7 @@ namespace Rendering
 		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depthMap, 0);
 
 		// final composition
+		glGenTextures(1, &m_outputTexture);
 		glBindTexture(GL_TEXTURE_2D, m_outputTexture);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, WindowWidth, WindowHeight, 0, GL_RGB, GL_FLOAT, nullptr);
 		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_2D, m_outputTexture, 0);
