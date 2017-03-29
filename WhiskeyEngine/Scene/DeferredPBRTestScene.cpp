@@ -52,16 +52,18 @@ namespace Scene
 		//end testing
 
 		PointLight pl[1];
-		pl[0].m_diffuseIntensity = 0.25f;
-		pl[0].m_ambientIntensity = 0.1f;
+		pl[0].m_diffuseIntensity = 0.55f;
+		pl[0].m_ambientIntensity = 0.2f;
 		pl[0].m_color = glm::vec3(1.0f, 1.0f, 1.0f);
-		pl[0].m_position = glm::vec3(2.0f, 3.0f, 0.0f);
-		pl[0].Attenuation.Linear = 0.1f;
+		pl[0].m_position = glm::vec3(2.0f, 5.0f, 0.0f);
+		pl[0].Attenuation.Linear = 0.2f;
 		//pl[1].DiffuseIntensity = 0.25f;
 		//pl[1].Color = glm::vec3(0.0f, 0.5f, 1.0f);
 		//pl[1].Position = glm::vec3(7.0f, 1.0f, 0.5f);
 		//pl[1].Attenuation.Linear = 0.1f;
 		m_lightingTech->SetPointLights(1, pl);
+		m_pointLightTech->Enable();
+		m_pointLightTech->SetPointLightParams(&pl[0]);
 
 		SpotLight spotLights[1];
 		spotLights[0].m_color = glm::vec3(1.0, 1.0, 1.0);
@@ -151,7 +153,7 @@ namespace Scene
 		testMat.diffuseColor = glm::vec3(0.2, 0.5, 0.8);
 		testMat.metallic = 0.8;
 		testMat.specular = 0.5;
-		testMat.roughness = 0.1;
+		testMat.roughness = 0.5;
 
 		m_geometryPassTech->SetMaterial(testMat);
 
@@ -185,7 +187,6 @@ namespace Scene
 		m_gBuffer->BindForLightPass();
 		m_pointLightTech->Enable();
 		m_pointLightTech->SetEyeWorldPosition(m_pActiveCamera->getPosition());
-
 		m_pointLightTech->SetWVP(glm::mat4(1.0));
 
 		glDisable(GL_DEPTH_TEST);
