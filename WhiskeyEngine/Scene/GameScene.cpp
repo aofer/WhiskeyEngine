@@ -2,7 +2,7 @@
 #include "GameScene.h"
 #include "../Managers/ModelsManager.h"
 #include "../Managers/InputManager.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 
 
 namespace Scene
@@ -19,7 +19,7 @@ namespace Scene
 
 	GameScene::GameScene()
 	{
-		m_pActiveCamera = new Camera();
+		m_pActiveCamera = new FPSCamera();
 		Managers::InputManager::getInstance().AddInputListener(m_pActiveCamera);
 	}
 

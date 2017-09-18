@@ -1,6 +1,6 @@
 #include "SkyboxScene.h"
 #include "../Core/Init/Common.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 #include "../Rendering/Models/Mesh.h"
 #include "../Rendering/Lighting.h"
 #include "GameObject.h"
@@ -61,8 +61,9 @@ namespace Scene
 		m_pModelsManager->AddModel("box", boxMesh);
 		Scene::GameObject* box = new GameObject();
 		box->SetModel(boxMesh);
-		box->SetPosition(glm::vec3(1.0, 1.0, 0.0));
-		box->SetScale(1.0f);
+		box->SetPosition(glm::vec3(5.0, 1.0, 0.0));
+		box->SetScale(2.0f);
+		//box->SetOrientation(glm::quat(45);
 		m_gameObjectsFlat.push_back(box);
 
 		Scene::GameObject* box2 = new GameObject();
@@ -93,7 +94,7 @@ namespace Scene
 			printf("cannot init skybox\n");
 		}
 		m_tempSkyBoxObject = new GameObject();
-		m_tempSkyBoxObject->SetScale(20);
+		m_tempSkyBoxObject->SetScale(200);
 		//m_tempSkyBoxObject->
 
 
@@ -108,7 +109,7 @@ namespace Scene
 	{
 		m_lighting.Enable();
 		//const glm::mat4& WorldTransformation = p.GetWorldTrans();
-		m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getViewProjection());//TODO get model matrix
+		//m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getViewProjection());//TODO get model matrix
 
 		//m_lighting.SetDirectionalLight(m_directionalLight);
 		//m_lighting.SetWorldMatrix(WorldTransformation);
@@ -120,10 +121,12 @@ namespace Scene
 
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
+			m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getViewProjection() * (*nodeIter)->GetModelMatrix());//TODO get model matrix
 			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
 			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
 		m_tempSkyBoxObject->SetPosition(m_pActiveCamera->getPosition());
+		
 		m_pSkybox->Render(m_tempSkyBoxObject->GetModelMatrix());
 	}
 }

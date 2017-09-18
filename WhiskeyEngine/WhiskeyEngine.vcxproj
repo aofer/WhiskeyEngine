@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E9023D64-CD1D-4188-814D-C305D45FB268}</ProjectGuid>
     <RootNamespace>WhiskeyEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,6 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)platforms\windows;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
@@ -79,6 +82,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)\source\common\thirdparty\GLEW\include;$(SolutionDir)\source\common\thirdparty\GLFW\include;$(SolutionDir)\source\common\thirdparty\glm;$(SolutionDir)\source\common\thirdparty\soil;$(SolutionDir)\source\common\thirdparty\assimp;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,15 +149,20 @@
     <ClCompile Include="Managers\RenderingSystem.cpp" />
     <ClCompile Include="Managers\SceneManager.cpp" />
     <ClCompile Include="Managers\ShaderManager.cpp" />
-    <ClCompile Include="Rendering\Camera.cpp" />
+    <ClCompile Include="Rendering\BaseCamera.cpp" />
+    <ClCompile Include="Rendering\CubeMapCamera.cpp" />
+    <ClCompile Include="Rendering\FPSCamera.cpp" />
     <ClCompile Include="Rendering\CubeMapTexture.cpp" />
     <ClCompile Include="Rendering\BlinnPhongGbuffer.cpp" />
     <ClCompile Include="Rendering\LightingTechnique.cpp" />
+    <ClCompile Include="Rendering\MeshRenderer.cpp" />
     <ClCompile Include="Rendering\Models\Cube.cpp" />
     <ClCompile Include="Rendering\Models\Mesh.cpp" />
     <ClCompile Include="Rendering\Models\MeshContainer.cpp" />
     <ClCompile Include="Rendering\Models\Model.cpp" />
+    <ClCompile Include="Rendering\Models\ObjMeshFactory.cpp" />
     <ClCompile Include="Rendering\Models\Quad.cpp" />
+    <ClCompile Include="Rendering\Models\SimpleMesh.cpp" />
     <ClCompile Include="Rendering\Models\Traingle.cpp" />
     <ClCompile Include="Rendering\RenderingTechnique.cpp" />
     <ClCompile Include="Rendering\ShadowMapFbo.cpp" />
@@ -174,6 +184,7 @@
     <ClCompile Include="Scene\ShadowMapDebugScene.cpp" />
     <ClCompile Include="Scene\ShadowMapScene.cpp" />
     <ClCompile Include="Scene\SkyboxScene.cpp" />
+    <ClCompile Include="Scene\SphericalHarmonicsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\Common.h" />
@@ -189,18 +200,24 @@
     <ClInclude Include="Managers\SceneManager.h" />
     <ClInclude Include="Managers\ShaderManager.h" />
     <ClInclude Include="Managers\System.h" />
-    <ClInclude Include="Rendering\Camera.h" />
+    <ClInclude Include="Rendering\BaseCamera.h" />
+    <ClInclude Include="Rendering\CubeMapCamera.h" />
+    <ClInclude Include="Rendering\FPSCamera.h" />
     <ClInclude Include="Rendering\CubeMapTexture.h" />
     <ClInclude Include="Rendering\BlinnPhongGbuffer.h" />
     <ClInclude Include="Rendering\IRenderable.h" />
     <ClInclude Include="Rendering\Lighting.h" />
     <ClInclude Include="Rendering\LightingTechnique.h" />
     <ClInclude Include="Rendering\Materials.h" />
+    <ClInclude Include="Rendering\MeshRenderer.h" />
     <ClInclude Include="Rendering\Models\Cube.h" />
+    <ClInclude Include="Rendering\Models\IMeshFactory.h" />
     <ClInclude Include="Rendering\Models\Mesh.h" />
     <ClInclude Include="Rendering\Models\MeshContainer.h" />
     <ClInclude Include="Rendering\Models\Model.h" />
+    <ClInclude Include="Rendering\Models\ObjMeshFactory.h" />
     <ClInclude Include="Rendering\Models\Quad.h" />
+    <ClInclude Include="Rendering\Models\SimpleMesh.h" />
     <ClInclude Include="Rendering\Models\Triangle.h" />
     <ClInclude Include="Rendering\RenderingTechnique.h" />
     <ClInclude Include="Rendering\ShadowMapFbo.h" />
@@ -223,6 +240,7 @@
     <ClInclude Include="Scene\ShadowMapDebugScene.h" />
     <ClInclude Include="Scene\ShadowMapScene.h" />
     <ClInclude Include="Scene\SkyboxScene.h" />
+    <ClInclude Include="Scene\SphericalHarmonicsScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\BasicLighting_fs.glsl" />

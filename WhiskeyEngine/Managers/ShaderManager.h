@@ -14,7 +14,7 @@ namespace Managers
 
 	public:
 
-		ShaderManager(void);
+		ShaderManager(void) {}
 		~ShaderManager(void);
 
 		void CreateProgram(const std::string& shaderName,

@@ -115,10 +115,12 @@ namespace Scene
 		
 		glm::mat4 rotationMat = glm::mat4_cast(m_orientation);
 		glm::vec3 rotateVec = glm::vec3(0.0f, 1.0f, 0.0f);
-		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::degrees(5.0f), rotateVec);
+		//glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::degrees(5.0f), rotateVec);
 		m_modelMatrix = glm::translate(
 			glm::scale(rotationMat, glm::vec3(m_scale, m_scale, m_scale)),
 			m_position);
+		m_modelMatrix = glm::scale(	glm::translate(rotationMat, m_position),
+			glm::vec3(m_scale, m_scale, m_scale));
 		if (m_pParent)
 		{
 			m_modelMatrix = m_pParent->GetModelMatrix() * m_modelMatrix;

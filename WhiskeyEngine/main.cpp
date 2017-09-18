@@ -3,7 +3,7 @@
 #include "Core\Init\WindowInfo.h"
 #include "Core/Init/Common.h"
 #include "Managers\SceneManager.h"
-#include "Managers\InputManager.h"
+//#include "Managers\InputManager.h"
 
 using namespace Core;
 using namespace Init;

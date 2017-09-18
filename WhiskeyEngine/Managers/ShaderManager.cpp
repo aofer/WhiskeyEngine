@@ -5,8 +5,6 @@ using namespace Managers;
 
 std::map<std::string, GLuint> ShaderManager::programs;
 
-ShaderManager::ShaderManager(void){}
-
 ShaderManager::~ShaderManager(void)
 {
 

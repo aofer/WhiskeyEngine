@@ -1,7 +1,7 @@
 #pragma once
 #include "../Core/Init/IInputListener.h"
 #include <vector>
-//#include "../Rendering/Camera.h"
+//#include "../Rendering/FPSCamera.h"
 namespace Managers
 {
 	class InputManager 

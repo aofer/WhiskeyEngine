@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Rendering/Camera.h"
+#include "../../Rendering/FPSCamera.h"
 #include "../../Rendering/CubeMapTexture.h"
 #include "../../Rendering/Models/Mesh.h"
 #include "../../Rendering/SkyboxTechnique.h"
@@ -12,7 +12,7 @@ namespace Scene
 		class SkyBox : public GameComponent
 		{
 		public:
-			SkyBox(const Rendering::Camera* pCamera);
+			SkyBox(const Rendering::FPSCamera* pCamera);
 			~SkyBox();
 
 			virtual const FamilyType GetFamilyType();
@@ -29,7 +29,7 @@ namespace Scene
 			virtual void Update(float dt);
 
 		private:
-			const Rendering::Camera* m_pCamera;
+			const Rendering::FPSCamera* m_pCamera;
 			Rendering::CubeMapTexture* m_pCubeMapTexture;
 			Rendering::Models::Mesh* m_pMesh;
 			Rendering::SkyboxTechnique* m_skyboxTech;

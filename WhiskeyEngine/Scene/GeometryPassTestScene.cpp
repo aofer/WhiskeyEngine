@@ -3,7 +3,7 @@
 #include "../Rendering/Models/Mesh.h"
 #include "GameObject.h"
 #include "../Managers/ModelsManager.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 //#include <glm/gtc/matrix_transform.hpp>
 
 

@@ -6,7 +6,7 @@ namespace Scene
 {
 	namespace Components
 	{
-		SkyBox::SkyBox(const Rendering::Camera* pCamera)
+		SkyBox::SkyBox(const Rendering::FPSCamera* pCamera)
 		{
 			m_pCamera = pCamera;
 		}
@@ -45,7 +45,7 @@ namespace Scene
 			}
 
 			m_pMesh = new Models::Mesh();
-			m_pMesh->Create("Assets\\box.obj");
+			m_pMesh->Create("Assets\\sphere.obj");
 			return true;
 		}
 
@@ -60,7 +60,7 @@ namespace Scene
 			glCullFace(GL_FRONT);
 			glDepthFunc(GL_LEQUAL);
 
-			m_skyboxTech->SetWVP( m_pCamera->getViewProjection() * modelMatrix/*m_pCamera->getProjection() * m_pCamera->getView()*/);
+			m_skyboxTech->SetWVP( m_pCamera->getProjection() * m_pCamera->getView() * modelMatrix/*m_pCamera->getProjection() * m_pCamera->getView()*/);
 			m_pCubeMapTexture->Bind(GL_TEXTURE0);
 			m_pMesh->Draw(m_pCamera->getProjection(), m_pCamera->getView());
 

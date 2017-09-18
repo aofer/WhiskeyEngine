@@ -10,6 +10,7 @@
 #include "../Scene/SkyboxScene.h"
 #include "../Scene/GeometryPassTestScene.h"
 #include "../Scene/DeferredPBRTestScene.h"
+#include "../Scene/SphericalHarmonicsScene.h"
 
 using namespace Managers;
 using namespace Scene;
@@ -31,9 +32,10 @@ SceneManager::SceneManager()
 	modelsManager = new ModelsManager();
 
 	//m_activeScene = new ShadowMapScene();
-	m_activeScene = new GeometryPassTestScene();
+	//m_activeScene = new GeometryPassTestScene();
 	//m_activeScene = new DeferredPBRTestScene();
 	//m_activeScene = new SkyboxScene();
+	m_activeScene = new SphericalHarmonicsScene();
 	//m_activeScene = new LightingScene();
 	m_activeScene->SetModelsManager(modelsManager);
 	m_activeScene->Init();

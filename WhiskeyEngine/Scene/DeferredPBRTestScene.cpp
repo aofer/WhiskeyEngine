@@ -3,7 +3,7 @@
 #include "../Rendering/Models/Mesh.h"
 #include "GameObject.h"
 #include "../Managers/ModelsManager.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 //#include <glm/gtc/matrix_transform.hpp>
 
 
@@ -52,8 +52,8 @@ namespace Scene
 		//end testing
 
 		PointLight pl[1];
-		pl[0].m_diffuseIntensity = 0.55f;
-		pl[0].m_ambientIntensity = 0.2f;
+		pl[0].m_diffuseIntensity = 0.25f;
+		pl[0].m_ambientIntensity = 0.4f;
 		pl[0].m_color = glm::vec3(1.0f, 1.0f, 1.0f);
 		pl[0].m_position = glm::vec3(2.0f, 5.0f, 0.0f);
 		pl[0].Attenuation.Linear = 0.2f;
@@ -150,10 +150,10 @@ namespace Scene
 		glEnable(GL_DEPTH_TEST);
 
 		SimplePBRMaterial testMat;
-		testMat.diffuseColor = glm::vec3(0.2, 0.5, 0.8);
+		testMat.diffuseColor = glm::vec3(1.0, 0.5, 0.8);
 		testMat.metallic = 0.8;
 		testMat.specular = 0.5;
-		testMat.roughness = 0.5;
+		testMat.roughness = 0.2;
 
 		m_geometryPassTech->SetMaterial(testMat);
 

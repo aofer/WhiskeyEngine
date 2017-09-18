@@ -38,7 +38,7 @@ namespace Rendering
 
 	void SkyboxTechnique::SetWVP(const glm::mat4& WVP)
 	{
-		glUniformMatrix4fv(m_WVPLocation, 1, GL_FALSE, (const GLfloat*)&WVP[0]);
+		glUniformMatrix4fv(m_WVPLocation, 1, GL_FALSE, (const GLfloat*)&WVP[0][0]);
 	}
 
 	void SkyboxTechnique::SetTextureUnit(unsigned int TextureUnit)

@@ -7,7 +7,6 @@
 #include <vector>
 #include <GL/glew.h>
 #include <Importer.hpp> 
-#include <Mesh.h>
 #include <scene.h>       // Output data structure
 #include <postprocess.h> // Post processing flags
 

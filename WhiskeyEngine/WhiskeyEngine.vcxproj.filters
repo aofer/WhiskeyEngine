@@ -71,9 +71,6 @@
     <ClCompile Include="Rendering\Models\Traingle.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Camera.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Managers\InputManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
@@ -155,6 +152,27 @@
     <ClCompile Include="Scene\DeferredPBRTestScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\SimpleMesh.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Models\ObjMeshFactory.cpp">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\MeshRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SphericalHarmonicsScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\BaseCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\FPSCamera.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\CubeMapCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -195,9 +213,6 @@
     </ClInclude>
     <ClInclude Include="Rendering\Models\Triangle.h">
       <Filter>Source Files\Rendering\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Camera.h">
-      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Managers\InputManager.h">
       <Filter>Source Files\Managers</Filter>
@@ -298,6 +313,22 @@
     <ClInclude Include="Scene\DeferredPBRTestScene.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Models\SimpleMesh.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\ObjMeshFactory.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Models\IMeshFactory.h">
+      <Filter>Source Files\Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\MeshRenderer.h" />
+    <ClInclude Include="Scene\SphericalHarmonicsScene.h" />
+    <ClInclude Include="Rendering\BaseCamera.h" />
+    <ClInclude Include="Rendering\FPSCamera.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\CubeMapCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">

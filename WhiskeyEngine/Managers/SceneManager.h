@@ -2,7 +2,7 @@
 #include "ShaderManager.h"
 #include "ModelsManager.h"
 #include "../Core/Init/IListener.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 #include "../Rendering/LightingTechnique.h"
 
 //THIS CLASS WILL BE REMOVED SOON

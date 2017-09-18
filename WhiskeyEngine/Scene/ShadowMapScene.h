@@ -6,7 +6,7 @@
 #include "../Rendering/ShadowMapTechnique.h"
 #include "../Rendering/ShadowMapFbo.h"
 #include "../Rendering/Lighting.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 #include "../Core/Init/IInputListener.h"
 
 
@@ -35,7 +35,7 @@ namespace Scene{
 		ShadowMapFBO					m_shadowMapFBO;
 
 		Rendering::SpotLight			m_spotLight;
-		Rendering::Camera				m_spotCamera;
+		Rendering::FPSCamera				m_spotCamera;
 		GameObject*						m_pQuad;
 		GameObject*						m_pGround;
 		GameObject*						m_spinningBox;

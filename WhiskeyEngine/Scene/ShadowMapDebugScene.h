@@ -5,7 +5,7 @@
 #include "../Rendering/LightingTechnique.h"
 #include "../Rendering/ShadowMapTechnique.h"
 #include "../Rendering/ShadowMapFbo.h"
-#include "../Rendering/Camera.h"
+#include "../Rendering/FPSCamera.h"
 
 namespace Rendering
 {
@@ -36,7 +36,7 @@ namespace Scene{
 		GameObject*						m_pQuad;
 
 		Rendering::SpotLight			m_spotLight;
-		Rendering::Camera				m_spotCamera; //for making sure the matrix is ok
+		Rendering::FPSCamera				m_spotCamera; //for making sure the matrix is ok
 
 		void shadowMapPass();
 		void renderPass();

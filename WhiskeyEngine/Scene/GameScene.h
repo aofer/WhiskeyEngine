@@ -10,7 +10,7 @@ namespace Managers
 
 namespace Rendering
 {
-	class Camera;
+	class FPSCamera;
 }
 namespace Scene{
 
@@ -40,7 +40,7 @@ namespace Scene{
 		std::vector<GameObject*> m_gameObjectsFlat;
 		std::vector<Rendering::BaseLight*>	m_lights;
 		GameScene::GameObject* m_pRoot;
-		Rendering::Camera* m_pActiveCamera;
+		Rendering::FPSCamera* m_pActiveCamera;
 		Managers::ModelsManager*	m_pModelsManager;
 	};
 }

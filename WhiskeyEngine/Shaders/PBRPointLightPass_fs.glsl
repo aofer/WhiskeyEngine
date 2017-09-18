@@ -70,18 +70,23 @@ void main()
 	float NL = max(dot(normal,lightDir),0.0);
 	vec3 color = (KD * diffuse / PI + brdf) * radiance * NL;
 
-	vec3 ambient = vec3(0.03) * diffuse * specular;
+		//gamma correction for diffuse - TEST LINE
+	vec3 gammaDiffuse = pow(diffuse, vec3(2.2,2.2,2.2));
+	vec3 realSpecular = mix(gammaDiffuse,vec3( metallic, metallic, metallic), 0.03f);
+	
+	vec3 realAlbedo = gammaDiffuse - gammaDiffuse * metallic;
+	// END TEST
+
+	vec3 ambient = vec3(0.03) * diffuse * realSpecular;
 	color += ambient;
 	color /= color + vec3(1.0);
 	color = pow(color, vec3(1.0/2.2));
 	
 
-	//gamma correction for diffuse
-	//vec3 gammaDiffuse = pow(diffuse, vec3(2.2,2.2,2.2));
 
 
-	//vec3 realAlbedo = gammaDiffuse - gammaDiffuse * metallic;
-	//vec3 realSpecular = mix(gammaDiffuse, metallic, 0.03f);
+
+
 	
 	fragColor = vec4(color,1.0);            
 }
