@@ -22,7 +22,12 @@ namespace Scene{
 	private:
 		Rendering::LightingTechnique m_lighting;
 		GLuint m_EnvMapTexture;
+		GLuint m_fboId;
 
 		void createEnvironmentMapTexture();
+
+		void initEnvironmentRendering();
+
+		void RenderEnvironmentMap();
 	};
 }

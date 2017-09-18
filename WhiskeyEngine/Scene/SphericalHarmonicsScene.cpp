@@ -142,6 +142,7 @@ namespace Scene
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferId);
 
+
 	}
 
 	void SphericalHarmonicsScene::RenderEnvironmentMap()
