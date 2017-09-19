@@ -8,7 +8,7 @@ This class represents a basic camera with all of its camera controls
 */
 namespace Rendering
 {
-	class FPSCamera : public BaseCamera{
+	class FPSCamera : public BaseCamera, public Core::IInputListener{
 	private:
 
 	public:

@@ -7,7 +7,7 @@ This class represents a basic camera with all of its camera controls
 */
 namespace Rendering
 {
-	class BaseCamera : public Core::IInputListener, Scene::Components::GameComponent{
+	class BaseCamera : Scene::Components::GameComponent{
 		private:
 
 		float fieldOfView;

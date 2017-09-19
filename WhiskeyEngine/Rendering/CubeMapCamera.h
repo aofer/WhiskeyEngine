@@ -6,13 +6,13 @@ This class represents a basic camera with all of its camera controls
 */
 namespace Rendering
 {
-	class CubMapCamera : public Rendering::BaseCamera{
+	class CubeMapCamera : public Rendering::BaseCamera{
 	private:
 
 
 	public:
 	
-		CubMapCamera(glm::vec3 camPosition);
+		CubeMapCamera(glm::vec3 camPosition);
 
 		void SetCameraToFace(int faceIndex);
 

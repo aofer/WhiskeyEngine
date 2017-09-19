@@ -16,13 +16,16 @@ namespace Scene
 	}
 	SphericalHarmonicsScene::~SphericalHarmonicsScene()
 	{
-
+		delete m_cubeCam;
 	}
 
 	void SphericalHarmonicsScene::Init()
 	{
-		m_pActiveCamera->setPosition(glm::vec3(0.0, 2.0f, -6.0));
+		glm::vec3 camPos = glm::vec3(0.0, 2.0f, -6.0);
+		m_pActiveCamera->setPosition(camPos);
 		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, 0.0));
+
+		m_cubeCam = new CubeMapCamera(camPos);
 
 		int test = GLCheckError(); //TODO figure out why we need to clear this
 		if (!m_lighting.Init())
@@ -85,15 +88,18 @@ namespace Scene
 		m_gameObjectsFlat.push_back(box2);
 
 
-		//Models::Mesh* groundMesh = new Models::Mesh();
-		//groundMesh->Create("Assets\\ground.obj");
-		//m_pModelsManager->AddModel("ground", groundMesh);
-		//Scene::GameObject* ground = new GameObject();
-		//ground->SetModel(groundMesh);
-		//ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
-		//ground->SetScale(1.0f);
+		Models::Mesh* groundMesh = new Models::Mesh();
+		groundMesh->Create("Assets\\ground.obj");
+		m_pModelsManager->AddModel("ground", groundMesh);
+		Scene::GameObject* ground = new GameObject();
+		ground->SetModel(groundMesh);
+		ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		ground->SetScale(1.0f);
 		//ground->AddChild(box);
-		//m_gameObjectsFlat.push_back(ground);
+		m_gameObjectsFlat.push_back(ground);
+
+		initEnvironmentMapTexture();
+		initEnvironmentRendering();
 	}
 
 	void SphericalHarmonicsScene::Update(float dt)
@@ -103,6 +109,70 @@ namespace Scene
 
 	void SphericalHarmonicsScene::Draw()
 	{
+		renderEnvironmentMap();
+		renderScene();
+
+	}
+
+	void SphericalHarmonicsScene::initEnvironmentMapTexture()
+	{
+		glGenTextures(1, &m_EnvMapTexture);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, m_EnvMapTexture);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		const int cubeMapSize = 32;
+		for (int i = 0; i < 6; ++i)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, cubeMapSize,
+				cubeMapSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+		}
+
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+			std::cout << "Framebuffer not complete!" << std::endl;
+
+		glBindTexture(GL_TEXTURE_CUBE_MAP,0);
+
+	}
+
+	void SphericalHarmonicsScene::initEnvironmentRendering()
+	{
+		glGenFramebuffers(1, &m_fboId);
+		glBindFramebuffer(GL_FRAMEBUFFER, m_fboId);
+		//glDrawBuffer(GL_COLOR_ATTACHMENT0);
+		GLuint depthBufferId;
+		glGenRenderbuffers(1, &depthBufferId);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X, m_EnvMapTexture, 0);
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferId);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X, m_EnvMapTexture, 0);
+
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+			std::cout << "Framebuffer not complete!" << std::endl;
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	}
+
+	void SphericalHarmonicsScene::renderEnvironmentMap()
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, m_fboId);
+
+		for (int faceIndex = 0; faceIndex < 6; ++faceIndex)
+		{
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceIndex, m_EnvMapTexture, 0);
+			glClear(GL_DEPTH_BUFFER_BIT);
+			m_cubeCam->SetCameraToFace(faceIndex);
+			renderScene();
+		}
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
+
+	void SphericalHarmonicsScene::renderScene()
+	{
+
 		m_lighting.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());//TODO get model matrix
 
 		m_lighting.SetEyeWorldPos(m_pActiveCamera->getPosition());
@@ -117,37 +187,6 @@ namespace Scene
 			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
 			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
 		}
-	}
-
-	void SphericalHarmonicsScene::createEnvironmentMapTexture()
-	{
-		glGenTextures(1, &m_EnvMapTexture);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, m_EnvMapTexture);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-		glBindTexture(GL_TEXTURE_CUBE_MAP,0);
-
-	}
-
-	void SphericalHarmonicsScene::initEnvironmentRendering()
-	{
-		glGenFramebuffers(1, &m_fboId);
-		glBindFramebuffer(GL_FRAMEBUFFER, m_fboId);
-		glDrawBuffer(GL_COLOR_ATTACHMENT0);
-		GLuint depthBufferId;
-		glGenRenderbuffers(1, &depthBufferId);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferId);
-
-
-	}
-
-	void SphericalHarmonicsScene::RenderEnvironmentMap()
-	{
-
 	}
 
 }

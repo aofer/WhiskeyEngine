@@ -56,7 +56,7 @@ namespace Rendering
 
 	void BaseCamera::setFieldOfView(float fov)
 	{
-		this->fieldOfView = fieldOfView;
+		this->fieldOfView = fov;
 		updateMatrices();
 	}
 

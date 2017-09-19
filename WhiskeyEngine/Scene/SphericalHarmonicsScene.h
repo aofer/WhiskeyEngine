@@ -3,6 +3,7 @@
 #include <glm\glm.hpp>
 #include "GameScene.h"
 #include "../Rendering/LightingTechnique.h"
+#include "../Rendering/CubeMapCamera.h"
 
 namespace Scene{
 
@@ -19,15 +20,19 @@ namespace Scene{
 		virtual void Update(float dt) override;
 		virtual void Draw() override;
 
+		void renderScene();
+
+
 	private:
 		Rendering::LightingTechnique m_lighting;
 		GLuint m_EnvMapTexture;
 		GLuint m_fboId;
+		Rendering::CubeMapCamera* m_cubeCam;
 
-		void createEnvironmentMapTexture();
+		void initEnvironmentMapTexture();
 
 		void initEnvironmentRendering();
 
-		void RenderEnvironmentMap();
+		void renderEnvironmentMap();
 	};
 }
