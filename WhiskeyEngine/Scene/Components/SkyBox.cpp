@@ -62,7 +62,7 @@ namespace Scene
 
 			m_skyboxTech->SetWVP( m_pCamera->getProjection() * m_pCamera->getView() * modelMatrix/*m_pCamera->getProjection() * m_pCamera->getView()*/);
 			m_pCubeMapTexture->Bind(GL_TEXTURE0);
-			m_pMesh->Draw(m_pCamera->getProjection(), m_pCamera->getView());
+			m_pMesh->Draw();
 
 			glCullFace(OldCullFaceMode);
 			glDepthFunc(OldDepthFuncMode);

@@ -195,7 +195,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
 	return Ret;
 }
 
-void Mesh::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+void Mesh::Draw()
 {
 
 	for (unsigned int i = 0; i < m_Entries.size(); i++) {

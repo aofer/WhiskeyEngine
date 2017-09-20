@@ -143,8 +143,7 @@ void Cube::Update()
 
 }
 
-void Cube::Draw(const glm::mat4& projection_matrix,
-	const glm::mat4& view_matrix)
+void Cube::Draw()
 {
 	rotation = 0.01f * rotation_speed + rotation;
 	//std::cout << "view matrix: " << view_matrix[0][0] << std::endl;
@@ -155,9 +154,9 @@ void Cube::Draw(const glm::mat4& projection_matrix,
 		rotation_sin.x,
 		rotation_sin.y,
 		rotation_sin.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1,
-		false, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
+	//glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1,
+	//	false, &view_matrix[0][0]);
+	//glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 //	glUniformMatrix4fv(glGetUniformLocation(program, "model_matrix"), 1, false, &getModelMatrix()[0][0]);
 	glBindVertexArray(vao);
 	m_texture.Bind(GL_TEXTURE0);

@@ -8,6 +8,8 @@
 
 using namespace Rendering;
 
+const int CUBEMAP_SIZE = 1024;
+
 namespace Scene
 {
 	SphericalHarmonicsScene::SphericalHarmonicsScene() : GameScene()
@@ -21,9 +23,9 @@ namespace Scene
 
 	void SphericalHarmonicsScene::Init()
 	{
-		glm::vec3 camPos = glm::vec3(0.0, 2.0f, -6.0);
+		glm::vec3 camPos = glm::vec3(0.0, 5.0f, -6.0);
 		m_pActiveCamera->setPosition(camPos);
-		m_pActiveCamera->setLookAt(glm::vec3(0.0, 2.0, 0.0));
+		m_pActiveCamera->setLookAt(glm::vec3(0.0, 5.0, 0.0));
 
 		m_cubeCam = new CubeMapCamera(camPos);
 
@@ -78,25 +80,25 @@ namespace Scene
 		Scene::GameObject* room = new GameObject();
 		room->SetModel(roomMesh);
 		room->SetPosition(glm::vec3(0.0, 0.0, 0.0));
-		room->SetScale(1.0f);
+		room->SetScale(2.0f);
 		m_gameObjectsFlat.push_back(room);
 
 		Scene::GameObject* box2 = new GameObject();
 		box2->SetModel(boxMesh);
-		box2->SetPosition(glm::vec3(3.0, 0.2, 0.0));
+		box2->SetPosition(glm::vec3(0.0, 3.4, 0.0));
 		box2->SetScale(0.8f);
 		m_gameObjectsFlat.push_back(box2);
 
 
-		Models::Mesh* groundMesh = new Models::Mesh();
-		groundMesh->Create("Assets\\ground.obj");
-		m_pModelsManager->AddModel("ground", groundMesh);
-		Scene::GameObject* ground = new GameObject();
-		ground->SetModel(groundMesh);
-		ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
-		ground->SetScale(1.0f);
-		//ground->AddChild(box);
-		m_gameObjectsFlat.push_back(ground);
+		//Models::Mesh* groundMesh = new Models::Mesh();
+		//groundMesh->Create("Assets\\ground.obj");
+		//m_pModelsManager->AddModel("ground", groundMesh);
+		//Scene::GameObject* ground = new GameObject();
+		//ground->SetModel(groundMesh);
+		//ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
+		//ground->SetScale(1.0f);
+		////ground->AddChild(box);
+		//m_gameObjectsFlat.push_back(ground);
 
 		initEnvironmentMapTexture();
 		initEnvironmentRendering();
@@ -110,7 +112,7 @@ namespace Scene
 	void SphericalHarmonicsScene::Draw()
 	{
 		renderEnvironmentMap();
-		renderScene();
+		renderScene(m_pActiveCamera->getPosition(), m_pActiveCamera->getViewProjection());
 
 	}
 
@@ -123,11 +125,10 @@ namespace Scene
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-		const int cubeMapSize = 32;
 		for (int i = 0; i < 6; ++i)
 		{
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, cubeMapSize,
-				cubeMapSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, CUBEMAP_SIZE,
+				CUBEMAP_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 		}
 
 		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -144,7 +145,7 @@ namespace Scene
 		//glDrawBuffer(GL_COLOR_ATTACHMENT0);
 		GLuint depthBufferId;
 		glGenRenderbuffers(1, &depthBufferId);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, CUBEMAP_SIZE, CUBEMAP_SIZE);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X, m_EnvMapTexture, 0);
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferId);
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X, m_EnvMapTexture, 0);
@@ -165,27 +166,23 @@ namespace Scene
 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceIndex, m_EnvMapTexture, 0);
 			glClear(GL_DEPTH_BUFFER_BIT);
 			m_cubeCam->SetCameraToFace(faceIndex);
-			renderScene();
+			renderScene(m_cubeCam->getPosition(), m_cubeCam->getViewProjection());
 		}
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
-	void SphericalHarmonicsScene::renderScene()
+	void SphericalHarmonicsScene::renderScene(glm::vec3 camPosition, glm::mat4 viewProjection)
 	{
 
-		m_lighting.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());//TODO get model matrix
-
-		m_lighting.SetEyeWorldPos(m_pActiveCamera->getPosition());
+		m_lighting.SetEyeWorldPos(camPosition);
 		m_lighting.SetMatSpecularIntensity(0.0f);
 		m_lighting.SetMatSpecularPower(0);
 
-		//Render scene - TODO: change to scene graph
-
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
-			m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getProjection() * m_pActiveCamera->getView()* (*nodeIter)->GetModelMatrix());//TODO get model matrix
+			m_lighting.SetWVP(viewProjection* (*nodeIter)->GetModelMatrix());
 			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 	}
 

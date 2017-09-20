@@ -23,7 +23,7 @@ namespace Rendering
 
 			bool Create(const std::string& Filename);
 
-			virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)	override final;
+			virtual void Draw()	override;
 
 		private:
 			bool InitFromScene(const aiScene* pScene, const std::string& Filename);

@@ -145,7 +145,7 @@ namespace Scene
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
 			m_shadowMapTech.SetWorldMatrix((*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -171,10 +171,10 @@ namespace Scene
 		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
 		{
 			m_lightingTech.SetWorldMatrix((*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 		m_lightingTech.SetWorldMatrix(m_pGround->GetModelMatrix());
-		m_pGround->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+		m_pGround->GetModel()->Draw();
 
 	}
 
@@ -189,7 +189,7 @@ namespace Scene
 		m_shadowMapTech.SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView());
 
 		m_shadowMapTech.SetWorldMatrix(m_pQuad->GetModelMatrix());
-		m_pQuad->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+		m_pQuad->GetModel()->Draw();
 	}
 
 	void ShadowMapScene::onKeyPressed(int key, int scancode)

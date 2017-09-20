@@ -16,8 +16,7 @@ namespace Rendering
 			~Cube();
 
 			void Create();
-			virtual void Draw(const glm::mat4& projection_matrix,
-				const glm::mat4& view_matrix)
+			virtual void Draw()
 				override final;
 			virtual void Update() override final;
 

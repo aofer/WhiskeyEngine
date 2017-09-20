@@ -20,7 +20,7 @@ namespace Scene{
 		virtual void Update(float dt) override;
 		virtual void Draw() override;
 
-		void renderScene();
+		void renderScene(glm::vec3 camPosition, glm::mat4 viewProjection);
 
 
 	private:

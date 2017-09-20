@@ -115,7 +115,7 @@ namespace Scene
 		{
 			m_lighting.SetWVP(/*p.GetWVPTrans()*/m_pActiveCamera->getProjection() * m_pActiveCamera->getView()* (*nodeIter)->GetModelMatrix());//TODO get model matrix
 			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 	}
 }

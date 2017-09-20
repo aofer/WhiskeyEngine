@@ -161,7 +161,7 @@ namespace Scene
 		{
 			m_geometryPassTech->SetWorldMatrix((*nodeIter)->GetModelMatrix());
 			m_geometryPassTech->SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView() * (*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 
 		glDepthMask(GL_FALSE);
@@ -193,7 +193,7 @@ namespace Scene
 		glEnable(GL_BLEND);
 		glBlendEquation(GL_FUNC_ADD);
 		glBlendFunc(GL_ONE, GL_ONE);
-		m_pQuad->GetModel()->Draw(glm::mat4(1.0), glm::mat4(1.0));
+		m_pQuad->GetModel()->Draw();
 		glDisable(GL_BLEND);
 	}
 

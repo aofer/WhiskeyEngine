@@ -142,7 +142,7 @@ namespace Scene
 		{
 			m_geometryPassTech->SetWorldMatrix((*nodeIter)->GetModelMatrix());
 			m_geometryPassTech->SetWVP(m_pActiveCamera->getProjection() * m_pActiveCamera->getView() * (*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw(m_pActiveCamera->getProjection(), m_pActiveCamera->getView());
+			(*nodeIter)->GetModel()->Draw();
 		}
 
 		//m_lightingTech->Enable();
