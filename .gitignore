@@ -1,2 +1,4 @@
 WhiskeyEngine.opensdf
 WhiskeyEngine.sdf
+build/*
+Tests/*
