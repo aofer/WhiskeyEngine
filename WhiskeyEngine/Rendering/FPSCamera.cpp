@@ -112,27 +112,27 @@ namespace Rendering
 		{
 			strafe(-0.5);
 		}
-		else if (key == GLFW_KEY_A)
+		else if (key == GLFW_KEY_W)
 		{
 			moveForward(-0.5);
 		}
-		else if (key == GLFW_KEY_Q)
+		else if (key == GLFW_KEY_S)
 		{
 			moveForward(0.5);
 		}
-		else if (key == GLFW_KEY_W)
+		else if (key == GLFW_KEY_R)
 		{
 			pitch(8.0);
 		}
-		else if (key == GLFW_KEY_S)
+		else if (key == GLFW_KEY_F)
 		{
 			pitch(-8.0);
 		}
-		else if (key == GLFW_KEY_Z)
+		else if (key == GLFW_KEY_C)
 		{
 			yaw(1.6);
 		}
-		else if (key == GLFW_KEY_X)
+		else if (key == GLFW_KEY_V)
 		{
 			yaw(-1.6);
 		}

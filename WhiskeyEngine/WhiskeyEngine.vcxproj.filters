@@ -173,6 +173,9 @@
     <ClCompile Include="Rendering\CubeMapCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\SHTechnique.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Init\ContextInfo.h">
@@ -329,6 +332,7 @@
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\CubeMapCamera.h" />
+    <ClInclude Include="Rendering\SHTechnique.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -385,5 +389,7 @@
     <None Include="Shaders\PBRLightPass_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\SHLighting_vs.glsl" />
+    <None Include="Shaders\SHLighting_fs.glsl" />
   </ItemGroup>
 </Project>

@@ -170,6 +170,7 @@
     <ClCompile Include="Rendering\ShadowMapFbo.cpp" />
     <ClCompile Include="Rendering\ShadowMapLightingTechnique.cpp" />
     <ClCompile Include="Rendering\ShadowMapTechnique.cpp" />
+    <ClCompile Include="Rendering\SHTechnique.cpp" />
     <ClCompile Include="Rendering\SimplePBRFinalCompositionTechnique.cpp" />
     <ClCompile Include="Rendering\SimplePBRGBuffer.cpp" />
     <ClCompile Include="Rendering\SimplePBRGeometryPassTechnique.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Rendering\ShadowMapFbo.h" />
     <ClInclude Include="Rendering\ShadowMapLightingTechnique.h" />
     <ClInclude Include="Rendering\ShadowMapTechnique.h" />
+    <ClInclude Include="Rendering\SHTechnique.h" />
     <ClInclude Include="Rendering\SimplePBRFinalCompositionTechnique.h" />
     <ClInclude Include="Rendering\SimplePBRGBuffer.h" />
     <ClInclude Include="Rendering\SimplePBRGeometryPassTechnique.h" />
@@ -260,6 +262,8 @@
     <None Include="Shaders\ShadowMapLighting_vs.glsl" />
     <None Include="Shaders\ShadowMap_fs.glsl" />
     <None Include="Shaders\ShadowMap_vs.glsl" />
+    <None Include="Shaders\SHLighting_fs.glsl" />
+    <None Include="Shaders\SHLighting_vs.glsl" />
     <None Include="Shaders\Skybox_fs.glsl" />
     <None Include="Shaders\Skybox_vs.glsl" />
     <None Include="Shaders\Vertex_Shader.glsl" />

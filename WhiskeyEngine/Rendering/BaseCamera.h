@@ -1,6 +1,5 @@
 #pragma once
 #include <glm/glm.hpp>
-#include "../Core/Init/IInputListener.h"
 #include "../Scene/Components/GameComponent.h"
 /*
 This class represents a basic camera with all of its camera controls
