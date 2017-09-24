@@ -39,8 +39,6 @@ namespace Scene
 
 		m_shCoeff[0].resize(9);
 
-		//int test = GLCheckError(); //TODO 
-
 		if (!m_shTech.Init())
 		{
 			printf("Error initializing sh technique\n");
@@ -443,19 +441,6 @@ namespace Scene
 		}
 
 	}
-	/*void SphericalHarmonicsScene::renderScene(glm::vec3 camPosition, glm::mat4 viewProjection)
-	{
 
-		m_lighting.SetEyeWorldPos(camPosition);
-		m_lighting.SetMatSpecularIntensity(0.0f);
-		m_lighting.SetMatSpecularPower(0);
-
-		for (auto nodeIter = m_gameObjectsFlat.begin(); nodeIter != m_gameObjectsFlat.end(); nodeIter++)
-		{
-			m_lighting.SetWVP(viewProjection* (*nodeIter)->GetModelMatrix());
-			m_lighting.SetWorldMatrix((*nodeIter)->GetModelMatrix());
-			(*nodeIter)->GetModel()->Draw();
-		}
-	}*/
 }
 
