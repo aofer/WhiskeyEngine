@@ -2,16 +2,17 @@
 #include <vector>
 #include <glm\glm.hpp>
 #include "GameScene.h"
-#include "../Rendering/LightingTechnique.h"
 #include "../Rendering/SHTechnique.h"
 #include "../Rendering/CubeMapCamera.h"
 #include "../Core/Init/IInputListener.h"
 
 namespace Scene{
 
-
+	
 	class SphericalHarmonicsScene : public GameScene, public Core::IInputListener
 	{
+
+
 
 	public:
 		SphericalHarmonicsScene();
@@ -32,7 +33,6 @@ namespace Scene{
 
 
 	private:
-		Rendering::LightingTechnique m_lighting;
 		Rendering::SHTechnique m_shTech;
 		GLuint m_EnvMapTexture;
 		GLuint m_fboId;
@@ -40,6 +40,7 @@ namespace Scene{
 		std::vector<glm::vec3> m_shCoeff[4];
 		unsigned int m_numOfBounces;
 
+	
 		void sphericalHarmonicsFromTexture(GLuint cubeTexture,
 			std::vector<glm::vec3> & output, const unsigned int order);
 

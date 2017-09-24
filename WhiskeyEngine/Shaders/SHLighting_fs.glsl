@@ -7,14 +7,25 @@ const float C1 = 0.429043;
 const float C2 = 0.511664;
 const float C3 = 0.743125;
 const float C4 = 0.886227;
-const float C5 = 0.247708;                                                    
-                                                                                    
+const float C5 = 0.247708;     
+
+                                              
 in vec2 TexCoord0;                                                                  
 in vec3 Normal0;                                                                    
 in vec3 WorldPos0;                                                                  
                                                                                     
-out vec4 FragColor;                                                                
-                                                                                                                                                                                                                                                                                                                             
+out vec4 FragColor;                                                             
+       
+	   
+struct Material
+{
+	vec3 diffuseColor;
+	vec3 specColor;
+	vec3 ambientColor;
+	float shininess;
+
+};                                                                                      
+		                                                                                                                                                                                                                                                                                                                      
 struct Attenuation                                                                  
 {                                                                                   
     float Constant;                                                                 
@@ -40,7 +51,8 @@ uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];
 uniform vec3 gEyeWorldPos;                                                                  
 uniform float gMatSpecularIntensity;                                                        
 uniform float gSpecularPower; 
-uniform vec3 gCoef[9];                                                              
+uniform vec3 gCoef[9];   
+uniform Material mat;                                                           
                                                                                             
 vec4 CalcLightInternal(SpotLight Light, vec3 LightDirection, vec3 Normal)                   
 {                                                                                           
@@ -51,14 +63,14 @@ vec4 CalcLightInternal(SpotLight Light, vec3 LightDirection, vec3 Normal)
     vec4 SpecularColor = vec4(0, 0, 0, 0);                                                  
                                                                                             
     if (DiffuseFactor > 0) {                                                                
-        DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor, 1.0f);
+        DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor * mat.diffuseColor, 1.0f);
                                                                                             
         vec3 VertexToEye = normalize(gEyeWorldPos - WorldPos0);                             
         vec3 LightReflect = normalize(reflect(LightDirection, Normal));                     
         float SpecularFactor = dot(VertexToEye, LightReflect);                                      
         if (SpecularFactor > 0) {                                                           
-            SpecularFactor = pow(SpecularFactor, gSpecularPower);                               
-            SpecularColor = vec4(Light.Color * gMatSpecularIntensity * SpecularFactor, 1.0f);
+            SpecularFactor = pow(SpecularFactor, mat.shininess);                               
+            SpecularColor = vec4(Light.Color * gMatSpecularIntensity * SpecularFactor * mat.specColor, 1.0f);
         }                                                                                   
     }                                                                                       
                                                                                             
@@ -122,13 +134,7 @@ void main()
     }                                                                                       
 
 	vec3 ambient = calculateAmbientFromSH(Normal);
-	TotalLight.xyz += ambient;     
-	FragColor = vec4(0.5,0.3,0.2,1.0)* TotalLight;  
-	FragColor.a = 1.0;                                                                                     
+	FragColor.rgb = TotalLight.rgb + ambient * mat.ambientColor;     
+	FragColor.a = 1.0;                                                                          
    // FragColor = texture2D(gSampler, TexCoord0.xy)* TotalLight;
-	//FragColor  = FragColor + vec4(0.5,0.0,0.0,0.0);  
-
-	//FragColor.xyz = FragColor.xyz + ambient;
-	//FragColor = FragColor + vec4(0.0,0.0,gCoef[0].x,0.0);                           
-	//FragColor = vec4(1.0,1.0,0.0,1.0);
 }

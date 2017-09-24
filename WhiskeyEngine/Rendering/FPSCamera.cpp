@@ -104,19 +104,19 @@ namespace Rendering
 		{
 			liftUp(-0.5);
 		}
-		else if (key == GLFW_KEY_LEFT)
+		else if (key == GLFW_KEY_A)
 		{
 			strafe(0.5);
 		}
-		else if (key == GLFW_KEY_RIGHT)
+		else if (key == GLFW_KEY_D)
 		{
 			strafe(-0.5);
 		}
-		else if (key == GLFW_KEY_W)
+		else if (key == GLFW_KEY_S)
 		{
 			moveForward(-0.5);
 		}
-		else if (key == GLFW_KEY_S)
+		else if (key == GLFW_KEY_W)
 		{
 			moveForward(0.5);
 		}

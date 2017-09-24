@@ -34,19 +34,27 @@ bool SHTechnique::Init()
 
 	m_WVPLocation = GetUniformLocation("gWVP");
 	m_WorldMatrixLocation = GetUniformLocation("gWorld");
-	m_samplerLocation = GetUniformLocation("gSampler");
-	m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
+	//m_samplerLocation = GetUniformLocation("gSampler");
+
 	m_matSpecularIntensityLocation = GetUniformLocation("gMatSpecularIntensity");
-	m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
+	m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
+
+	GLint data;
+	glGetIntegerv(GL_MAX_UNIFORM_LOCATIONS, &data);
+
 	m_numSpotLightsLocation = GetUniformLocation("gNumSpotLights");
 	m_shCoeffLocation = GetUniformLocation("gCoef");
+	m_materialLocation.diffuseColor = GetUniformLocation("mat.diffuseColor");
+	m_materialLocation.specularColor = GetUniformLocation("mat.specColor");
+	m_materialLocation.ambientColor = GetUniformLocation("mat.ambientColor");
+	m_materialLocation.shininess = GetUniformLocation("mat.shininess");
 
 	if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
 		m_WorldMatrixLocation == INVALID_UNIFORM_LOCATION ||
 		/*m_samplerLocation == INVALID_UNIFORM_LOCATION ||*/
 		m_eyeWorldPosLocation == INVALID_UNIFORM_LOCATION ||
 		m_matSpecularIntensityLocation == INVALID_UNIFORM_LOCATION ||
-		m_matSpecularPowerLocation == INVALID_UNIFORM_LOCATION ||
+		//m_matSpecularPowerLocation == INVALID_UNIFORM_LOCATION ||
 		m_numSpotLightsLocation == INVALID_UNIFORM_LOCATION || 
 		m_shCoeffLocation == INVALID_UNIFORM_LOCATION) {
 		return false;
@@ -122,8 +130,6 @@ void SHTechnique::SetCoefficients(glm::vec3 coeff[])
 }
 
 
-
-
 void SHTechnique::SetEyeWorldPos(const glm::vec3& EyeWorldPos)
 {
 	glUniform3f(m_eyeWorldPosLocation, EyeWorldPos.x, EyeWorldPos.y, EyeWorldPos.z);
@@ -135,12 +141,10 @@ void SHTechnique::SetMatSpecularIntensity(float Intensity)
 	glUniform1f(m_matSpecularIntensityLocation, Intensity);
 }
 
-
 void SHTechnique::SetMatSpecularPower(float Power)
 {
 	glUniform1f(m_matSpecularPowerLocation, Power);
 }
-
 
 void SHTechnique::SetSpotLights(uint NumLights, const SpotLight* pLights)
 {
@@ -159,4 +163,24 @@ void SHTechnique::SetSpotLights(uint NumLights, const SpotLight* pLights)
 		glUniform1f(m_spotLightsLocation[i].Atten.Linear, pLights[i].Attenuation.Linear);
 		glUniform1f(m_spotLightsLocation[i].Atten.Exp, pLights[i].Attenuation.Exp);
 	}
+}
+
+void SHTechnique::SetDiffuseColor(const glm::vec3& diffuseColor)
+{
+	glUniform3f(m_materialLocation.diffuseColor, diffuseColor.x, diffuseColor.y, diffuseColor.z);
+}
+
+void SHTechnique::SetSpecularColor(const glm::vec3& specularColor)
+{
+	glUniform3f(m_materialLocation.specularColor, specularColor.x, specularColor.y, specularColor.z);
+}
+
+void SHTechnique::SetAmbientColor(const glm::vec3& ambientColor)
+{
+	glUniform3f(m_materialLocation.ambientColor, ambientColor.x, ambientColor.y, ambientColor.z);
+}
+
+void SHTechnique::SetShininess(const float& shininess)
+{
+	glUniform1f(m_materialLocation.shininess, shininess);
 }

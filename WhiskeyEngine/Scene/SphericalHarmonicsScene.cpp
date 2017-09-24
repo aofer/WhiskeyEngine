@@ -39,7 +39,7 @@ namespace Scene
 
 		m_shCoeff[0].resize(9);
 
-		int test = GLCheckError(); //TODO 
+		//int test = GLCheckError(); //TODO 
 
 		if (!m_shTech.Init())
 		{
@@ -51,28 +51,6 @@ namespace Scene
 		m_shTech.SetTextureUnit(0);
 
 
-		//if (!m_lighting.Init())
-		//{
-		//	printf("Error initializing lighting technique\n");
-		//}
-
-		//m_lighting.Enable();
-
-		//m_lighting.SetTextureUnit(0);
-
-		PointLight pl[1];
-		pl[0].m_diffuseIntensity = 0.25f;
-		pl[0].m_ambientIntensity = 0.1f;
-		pl[0].m_color = glm::vec3(1.0f, 1.0f, 1.0f);
-		pl[0].m_position = glm::vec3(2.0f, 3.0f, 0.0f);
-		pl[0].Attenuation.Linear = 0.1f;
-		//pl[1].DiffuseIntensity = 0.25f;
-		//pl[1].Color = glm::vec3(0.0f, 0.5f, 1.0f);
-		//pl[1].Position = glm::vec3(7.0f, 1.0f, 0.5f);
-		//pl[1].Attenuation.Linear = 0.1f;
-		//m_lighting.SetPointLights(1, pl);
-
-
 		SpotLight spotLights[1];
 		spotLights[0].m_color = glm::vec3(1.0, 1.0, 1.0);
 		spotLights[0].m_diffuseIntensity = 0.3f;
@@ -81,18 +59,10 @@ namespace Scene
 		spotLights[0].m_ambientIntensity = 0.0f;
 		spotLights[0].m_cutoff = 25.5f;
 		spotLights[0].m_position = glm::vec3(-2.0, 15.0, -2.0);
-		//spotLights[0].
 
-		//m_lighting.SetSpotLights(1, spotLights);
 		m_shTech.SetSpotLights(1, spotLights);
 
 
-		//m_lighting.SetPointLights()
-		/*
-		cam = new Camera(45.0f, 640 / 480, 0.1f, 100.0f);
-		cam->setPosition(Vector3(0, 1.5f, 6.0));
-		cam->setLookAt(Vector3(0, 1.5f, 0));
-		*/
 
 		Models::Mesh* boxMesh = new Models::Mesh();
 		boxMesh->Create("Assets\\box.obj");
@@ -106,22 +76,18 @@ namespace Scene
 		room->SetScale(2.0f);
 		m_gameObjectsFlat.push_back(room);
 
-		Scene::GameObject* box2 = new GameObject();
-		box2->SetModel(boxMesh);
-		box2->SetPosition(glm::vec3(0.0, 3.4, 0.0));
-		box2->SetScale(0.8f);
-		m_gameObjectsFlat.push_back(box2);
 
+		m_shTech.SetDiffuseColor(glm::vec3(0.8, 0.8, 0.8));
+		m_shTech.SetSpecularColor(glm::vec3(1.0, 1.0, 1.0));
+		m_shTech.SetAmbientColor(glm::vec3(1.0, 1.0, 1.0));
+		m_shTech.SetShininess(2);
 
-		//Models::Mesh* groundMesh = new Models::Mesh();
-		//groundMesh->Create("Assets\\ground.obj");
-		//m_pModelsManager->AddModel("ground", groundMesh);
-		//Scene::GameObject* ground = new GameObject();
-		//ground->SetModel(groundMesh);
-		//ground->SetPosition(glm::vec3(0.0, 0.0, 0.0));
-		//ground->SetScale(1.0f);
-		////ground->AddChild(box);
-		//m_gameObjectsFlat.push_back(ground);
+		//Scene::GameObject* box2 = new GameObject();
+		//box2->SetModel(boxMesh);
+		//box2->SetPosition(glm::vec3(0.0, 3.4, 0.0));
+		//box2->SetScale(0.8f);
+		//m_gameObjectsFlat.push_back(box2);
+
 
 		initEnvironmentMapTexture();
 		initEnvironmentRendering();

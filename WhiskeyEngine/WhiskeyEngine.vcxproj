@@ -110,8 +110,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)thirdParty\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /s "$(SolutionDir)thirdParty\lib\assimp-vc140-mt.dll" $(OutDir)
-</Command>
+      <Command>xcopy /y /s "$(SolutionDir)thirdParty\lib\assimp-vc140-mt.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,8 +146,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)thirdParty\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /s "$(SolutionDir)thirdParty\lib\assimp-vc140-mt.dll" $(OutDir)
-</Command>
+      <Command>xcopy /y /s "$(SolutionDir)thirdParty\lib\assimp-vc140-mt.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

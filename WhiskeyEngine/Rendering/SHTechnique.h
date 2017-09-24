@@ -16,7 +16,6 @@ namespace Rendering
 		virtual bool Init();
 
 		void SetWVP(const glm::mat4& WVP);
-	//	void SetLightWVP(const glm::mat4& LightWVP);
 		void SetWorldMatrix(const glm::mat4& world);
 		void SetTextureUnit(unsigned int TextureUnit);
 		void SetSpotLights(unsigned int NumLights, const SpotLight* pLights);
@@ -24,6 +23,13 @@ namespace Rendering
 		void SetMatSpecularIntensity(float Intensity);
 		void SetMatSpecularPower(float Power);
 		void SetCoefficients(glm::vec3 coeff[]);
+
+		void SetDiffuseColor(const glm::vec3& diffuseColor);
+		void SetSpecularColor(const glm::vec3& specularColor);
+		void SetAmbientColor(const glm::vec3& ambientColor);
+		void SetShininess(const float& shininess);
+
+
 
 	protected:
 
@@ -50,6 +56,15 @@ namespace Rendering
 				GLuint Exp;
 			} Atten;
 		} m_spotLightsLocation[MAX_SPOT_LIGHTS];
+
+		struct 
+		{
+			GLuint diffuseColor;
+			GLuint specularColor;
+			GLuint ambientColor;
+			GLuint shininess;
+		} m_materialLocation;
+
 	};
 
 }
