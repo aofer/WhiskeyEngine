@@ -158,23 +158,23 @@
     <ClCompile Include="Rendering\Models\ObjMeshFactory.cpp">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\MeshRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\SphericalHarmonicsScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\BaseCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\FPSCamera.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\BaseCamera.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
     <ClCompile Include="Rendering\CubeMapCamera.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SphericalHarmonicsScene.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\SHTechnique.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\MeshRenderer.cpp">
+      <Filter>Source Files\Scene\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,14 +325,24 @@
     <ClInclude Include="Rendering\Models\IMeshFactory.h">
       <Filter>Source Files\Rendering\Models</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\MeshRenderer.h" />
-    <ClInclude Include="Scene\SphericalHarmonicsScene.h" />
-    <ClInclude Include="Rendering\BaseCamera.h" />
     <ClInclude Include="Rendering\FPSCamera.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\CubeMapCamera.h" />
-    <ClInclude Include="Rendering\SHTechnique.h" />
+    <ClInclude Include="Rendering\BaseCamera.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\CubeMapCamera.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SphericalHarmonicsScene.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SHTechnique.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\MeshRenderer.h">
+      <Filter>Source Files\Scene\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment_Shader.glsl">
@@ -389,7 +399,11 @@
     <None Include="Shaders\PBRLightPass_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\SHLighting_vs.glsl" />
-    <None Include="Shaders\SHLighting_fs.glsl" />
+    <None Include="Shaders\SHLighting_fs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SHLighting_vs.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
